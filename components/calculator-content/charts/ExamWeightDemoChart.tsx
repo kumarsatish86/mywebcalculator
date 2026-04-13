@@ -1,13 +1,16 @@
 "use client";
 
 import { Bar, BarChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { useChartReady } from "./useChartReady";
 
 /** One row: stacked bar showing 70% prior work vs 30% final exam weight. */
 const data = [{ name: "Course grade", before: 70, final: 30 }];
 
 export default function ExamWeightDemoChart() {
+  const ready = useChartReady();
+  if (!ready) return <div className="h-[220px] w-full min-h-[220px] min-w-0" />;
   return (
-    <div className="h-[220px] w-full">
+    <div className="h-[220px] w-full min-h-[220px] min-w-0">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart layout="vertical" data={data} margin={{ top: 8, right: 24, left: 8, bottom: 8 }}>
           <XAxis type="number" domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fill: "var(--muted)", fontSize: 12 }} />

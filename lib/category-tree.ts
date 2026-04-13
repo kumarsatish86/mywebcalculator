@@ -60,22 +60,24 @@ const hubs: CategoryHubNode[] = [
         title: "Loans & EMI",
         description: "Amortizing loans, monthly payments, and borrowing estimates.",
         emptyState:
-          "EMI and mortgage-style tools are on the roadmap—bookmark this hub for new releases.",
+          "Core loan and EMI calculators are live below; specialized loan-type and regional tools are still rolling out—bookmark this hub for updates.",
         sections: [
           {
             slug: "core-loan-calculators",
             title: "Core loan calculators",
-            description: "Foundational EMI and repayment tools.",
+            description:
+              "Foundational tools: monthly payment, EMI, implied rate, loan amount, tenure, total interest, full amortization, and flat vs reducing comparison.",
             calculators: [
-              { slug: "emi-calculator-universal", title: "EMI Calculator (Universal)", status: "planned" },
-              { slug: "loan-emi-calculator", title: "Loan EMI Calculator", status: "planned" },
-              { slug: "interest-rate-calculator", title: "Interest Rate Calculator", status: "planned" },
-              { slug: "loan-amount-calculator", title: "Loan Amount Calculator", status: "planned" },
-              { slug: "loan-tenure-calculator", title: "Loan Tenure Calculator", status: "planned" },
-              { slug: "total-interest-payable-calculator", title: "Total Interest Payable Calculator", status: "planned" },
-              { slug: "loan-amortization-calculator", title: "Loan Amortization Calculator", status: "planned" },
-              { slug: "reducing-balance-emi-calculator", title: "Reducing Balance EMI Calculator", status: "planned" },
-              { slug: "flat-vs-reducing-interest-calculator", title: "Flat vs Reducing Interest Calculator", status: "planned" },
+              { slug: "loan-payment", title: "Loan Payment Calculator" },
+              { slug: "emi-calculator-universal", title: "EMI Calculator (Universal)" },
+              { slug: "loan-emi-calculator", title: "Loan EMI Calculator" },
+              { slug: "interest-rate-calculator", title: "Interest Rate Calculator" },
+              { slug: "loan-amount-calculator", title: "Loan Amount Calculator" },
+              { slug: "loan-tenure-calculator", title: "Loan Tenure Calculator" },
+              { slug: "total-interest-payable-calculator", title: "Total Interest Payable Calculator" },
+              { slug: "loan-amortization-calculator", title: "Loan Amortization Calculator" },
+              { slug: "reducing-balance-emi-calculator", title: "Reducing Balance EMI Calculator" },
+              { slug: "flat-vs-reducing-interest-calculator", title: "Flat vs Reducing Interest Calculator" },
             ],
           },
           {

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import "./globals.css";
 import { JsonLdOrganization } from "@/components/JsonLdOrganization";
 import { MainLayout } from "@/components/MainLayout";
@@ -56,16 +58,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const messages = await getMessages();
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
       <body className="flex min-h-full flex-col font-sans antialiased">
-        <JsonLdOrganization />
-        <MainLayout>{children}</MainLayout>
+        <NextIntlClientProvider locale="en" messages={messages}>
+          <JsonLdOrganization />
+          <MainLayout>{children}</MainLayout>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

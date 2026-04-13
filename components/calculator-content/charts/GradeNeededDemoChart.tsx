@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useChartReady } from "./useChartReady";
 
 /** Illustrative: hypothetical cumulative GPA path toward a target over terms. */
 const data = [
@@ -20,8 +21,10 @@ const data = [
 ];
 
 export default function GradeNeededDemoChart() {
+  const ready = useChartReady();
+  if (!ready) return <div className="h-[280px] w-full min-h-[280px] min-w-0" />;
   return (
-    <div className="h-[280px] w-full">
+    <div className="h-[280px] w-full min-h-[280px] min-w-0">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
           <CartesianGrid stroke="rgba(15,23,42,0.08)" vertical={false} />

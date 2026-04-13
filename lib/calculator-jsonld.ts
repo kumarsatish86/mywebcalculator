@@ -38,7 +38,24 @@ export function buildCalculatorJsonLd(def: CalculatorDefinition) {
     isPartOf: { "@type": "WebSite", name: "mywebcalculator", url: SITE },
   };
 
-  const graph: object[] = [breadcrumb, webPage];
+  const webApplication = {
+    "@type": "WebApplication",
+    "@id": `${pageUrl}#webapp`,
+    name: def.title,
+    url: pageUrl,
+    description: def.longDescription,
+    applicationCategory: "EducationalApplication",
+    operatingSystem: "Any",
+    browserRequirements: "Requires JavaScript",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    isRelatedTo: { "@id": pageUrl },
+  };
+
+  const graph: object[] = [breadcrumb, webPage, webApplication];
 
   if (def.faq.length > 0) {
     graph.push({

@@ -15,6 +15,7 @@ import {
   isCalculatorCategory,
 } from "@/lib/category-tree";
 import { getSectionHubContent } from "@/lib/hub-content";
+import { getCalculator } from "@/lib/registry";
 
 type Props = {
   params: Promise<{ category: string; subCategory: string; section: string }>;
@@ -106,6 +107,34 @@ export default async function CategorySectionPage({ params }: Props) {
         </p>
       </header>
 
+      {category === "finance" ? (
+        <aside
+          className="mb-8 rounded-xl border border-[var(--border)] bg-[var(--surface)]/70 px-4 py-3 text-sm leading-relaxed text-[var(--muted)]"
+          role="note"
+        >
+          <p className="font-medium text-[var(--text)]">Finance &amp; loans notice</p>
+          <p className="mt-1">
+            Calculators are for education and rough planning only—not credit, tax, or legal advice. Rates,
+            fees, insurance, and rounding differ by lender and country; your agreement and disclosures always
+            win over website estimates.
+          </p>
+        </aside>
+      ) : null}
+
+      {category === "education" ? (
+        <aside
+          className="mb-8 rounded-xl border border-[var(--border)] bg-[var(--surface)]/70 px-4 py-3 text-sm leading-relaxed text-[var(--muted)]"
+          role="note"
+        >
+          <p className="font-medium text-[var(--text)]">Study aid notice</p>
+          <p className="mt-1">
+            Tools here help you practice and check arithmetic quickly. For exams, assignments, and graded work,
+            follow your instructor&apos;s rules (calculator policy, rounding, and required work shown). When an
+            answer matters for safety or certification, verify it independently.
+          </p>
+        </aside>
+      ) : null}
+
       <div className="mb-10 space-y-10">
         <HubIntroProse paragraphs={rich.introParagraphs} />
         {rich.secondaryHeading && rich.bulletPoints?.length ? (
@@ -194,14 +223,40 @@ export default async function CategorySectionPage({ params }: Props) {
       ) : null}
 
       <ul className="grid gap-3 sm:grid-cols-2">
-        {sectionNode.calculators.map((item) => (
-          <li key={item.slug} className="rounded-xl border border-[var(--border)] bg-[var(--surface)]/60 p-4">
-            <p className="font-medium text-[var(--text)]">{item.title}</p>
-            <p className="mt-1 text-xs uppercase tracking-[0.12em] text-[var(--muted)]">
-              Planned · {item.slug}
-            </p>
-          </li>
-        ))}
+        {sectionNode.calculators.map((item) => {
+          const live = getCalculator(item.slug);
+          const inner = (
+            <>
+              <p className="font-medium text-[var(--text)]">{item.title}</p>
+              <p className="mt-1 text-xs uppercase tracking-[0.12em] text-[var(--muted)]">
+                {live ? (
+                  <>
+                    <span className="text-[var(--accent-bright)]">Open · </span>
+                    {item.slug}
+                  </>
+                ) : (
+                  <>
+                    Planned · {item.slug}
+                  </>
+                )}
+              </p>
+            </>
+          );
+          return (
+            <li key={item.slug} className="rounded-xl border border-[var(--border)] bg-[var(--surface)]/60 p-4">
+              {live ? (
+                <Link
+                  href={`/calculators/${item.slug}`}
+                  className="block rounded-lg outline-none transition-colors hover:bg-[var(--surface)]/80 focus-visible:ring-2 focus-visible:ring-[var(--ring)] -m-1 p-1"
+                >
+                  {inner}
+                </Link>
+              ) : (
+                inner
+              )}
+            </li>
+          );
+        })}
       </ul>
 
       <div className="mt-16 space-y-12 border-t border-[var(--border)] pt-12">

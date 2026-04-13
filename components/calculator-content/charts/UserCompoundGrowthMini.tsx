@@ -11,6 +11,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useChartReady } from "./useChartReady";
 
 type Props = {
   principal: number;
@@ -25,6 +26,7 @@ export function UserCompoundGrowthMini({
   years,
   compoundsPerYear,
 }: Props) {
+  const ready = useChartReady();
   const gradId = useId().replace(/:/g, "");
   const yMax = Math.min(45, Math.max(1, Math.ceil(years)));
   const data: { year: number; value: number }[] = [];
@@ -39,12 +41,12 @@ export function UserCompoundGrowthMini({
     data.push({ year: y, value: Math.round(r.futureValue) });
   }
 
-  if (data.length === 0) return null;
+  if (!ready || data.length === 0) return null;
 
   return (
     <div className="mt-8 rounded-xl border border-[var(--border)] bg-[var(--input-bg)]/30 p-4">
       <p className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">Your growth path</p>
-      <div className="mt-3 h-[200px] w-full">
+      <div className="mt-3 h-[200px] w-full min-h-[200px] min-w-0">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
             <defs>

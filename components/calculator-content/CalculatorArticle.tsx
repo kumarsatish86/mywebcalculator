@@ -1,9 +1,13 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { amortizationSchedule } from "@/lib/calculators/loanPayment";
 import { GRADE_SCALE_ROWS } from "@/lib/calculators/letterGrade";
 import { humanToCatYears } from "@/lib/calculators/catAge";
+import { BasicMathArticleBody } from "@/components/calculator-content/BasicMathArticleBody";
+import { BASIC_MATH_SLUGS } from "@/lib/calculators/basicMathSlugs";
 import { getCalculator } from "@/lib/registry";
 import { ChartSkeleton } from "./ChartSkeleton";
 import { DaysBetweenTimeline } from "./DaysBetweenTimeline";
@@ -45,6 +49,99 @@ const proseMuted = "mt-4 text-sm leading-relaxed text-[var(--muted)]";
 const h2 = "text-xl font-semibold tracking-tight text-[var(--text)]";
 const h3 = "mt-6 text-base font-semibold text-[var(--text)]";
 
+const LOAN_EDU_SLUGS = new Set([
+  "loan-payment",
+  "emi-calculator-universal",
+  "loan-emi-calculator",
+  "interest-rate-calculator",
+  "loan-amount-calculator",
+  "loan-tenure-calculator",
+  "total-interest-payable-calculator",
+  "loan-amortization-calculator",
+  "reducing-balance-emi-calculator",
+  "flat-vs-reducing-interest-calculator",
+]);
+
+const EMI_SIBLING_SLUGS = new Set([
+  "emi-calculator-universal",
+  "loan-emi-calculator",
+  "reducing-balance-emi-calculator",
+]);
+
+const EMI_SIBLING_LINKS: { slug: string; label: string }[] = [
+  { slug: "emi-calculator-universal", label: "EMI calculator (universal)" },
+  { slug: "loan-emi-calculator", label: "Loan EMI calculator" },
+  { slug: "reducing-balance-emi-calculator", label: "Reducing balance EMI calculator" },
+];
+
+/** Cross-links within the basic math family (SEO + navigation). */
+const BASIC_MATH_RELATED_SLUGS: Record<string, string[]> = {
+  "basic-calculator-add-subtract-multiply-divide": ["difference-calculator", "rounding-calculator"],
+  "percentage-calculator": ["percentage-increase-decrease-calculator", "ratio-calculator", "proportion-calculator"],
+  "percentage-increase-decrease-calculator": ["percentage-calculator", "proportion-calculator"],
+  "ratio-calculator": ["proportion-calculator", "percentage-calculator"],
+  "proportion-calculator": ["ratio-calculator", "percentage-calculator"],
+  "average-calculator": ["mean-calculator", "median-calculator", "mode-calculator", "sum-calculator"],
+  "mean-calculator": ["average-calculator", "median-calculator", "mode-calculator", "sum-calculator"],
+  "median-calculator": ["average-calculator", "mean-calculator", "mode-calculator", "sum-calculator"],
+  "mode-calculator": ["median-calculator", "average-calculator", "mean-calculator"],
+  "sum-calculator": ["average-calculator", "mean-calculator", "difference-calculator"],
+  "difference-calculator": ["basic-calculator-add-subtract-multiply-divide", "sum-calculator"],
+  "rounding-calculator": ["scientific-calculator", "order-of-operations-pemdas-calculator"],
+  "scientific-calculator": ["order-of-operations-pemdas-calculator", "rounding-calculator"],
+  "order-of-operations-pemdas-calculator": ["scientific-calculator", "rounding-calculator"],
+};
+
+function BasicMathRelatedSection({ slug }: { slug: string }) {
+  const t = useTranslations("CalculatorRelated");
+  const related = BASIC_MATH_RELATED_SLUGS[slug];
+  if (!related?.length) return null;
+
+  const linkCls = "font-medium text-[var(--accent)] hover:underline";
+
+  return (
+    <SectionReveal className={`${sectionBox} mt-8`}>
+      <h2 className={h2}>{t("title")}</h2>
+      <p className={proseMuted}>
+        {slug === "average-calculator" || slug === "mean-calculator" ? (
+          t.rich("introMeanAvg", {
+            avg: (chunks) => <span className="font-medium text-[var(--text)]">{chunks}</span>,
+            mean: (chunks) => <span className="font-medium text-[var(--text)]">{chunks}</span>,
+            median: (chunks) => (
+              <Link href="/calculators/median-calculator" className={linkCls}>
+                {chunks}
+              </Link>
+            ),
+            mode: (chunks) => (
+              <Link href="/calculators/mode-calculator" className={linkCls}>
+                {chunks}
+              </Link>
+            ),
+          })
+        ) : (
+          t("introDefault")
+        )}
+      </p>
+      <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-[var(--muted)]">
+        {related.map((s) => {
+          const def = getCalculator(s);
+          const label = def?.title ?? s;
+          return (
+            <li key={s}>
+              <Link
+                href={`/calculators/${s}`}
+                className="font-medium text-[var(--accent)] hover:text-[var(--accent-bright)] hover:underline"
+              >
+                {label}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </SectionReveal>
+  );
+}
+
 function GradeScaleTable() {
   return (
     <div className="overflow-x-auto rounded-xl border border-[var(--border)]">
@@ -69,7 +166,7 @@ function GradeScaleTable() {
 }
 
 function LoanDemoScheduleTable() {
-  const rows = amortizationSchedule(25000, 6.5, 5, 12);
+  const rows = amortizationSchedule(25000, 6.5, { termYears: 5 }, 12);
   if ("error" in rows) return null;
   return (
     <div className="overflow-x-auto rounded-xl border border-[var(--border)]">
@@ -190,6 +287,104 @@ function TipReferenceTable() {
 }
 
 function ArticleBody({ slug }: { slug: string }) {
+  if (LOAN_EDU_SLUGS.has(slug)) {
+    return (
+      <>
+        <SectionReveal className={sectionBox}>
+          <h2 className={h2}>Fixed payment amortization</h2>
+          <p className={proseMuted}>
+            Each payment covers interest on the remaining balance plus a slice of principal. Early
+            payments are interest-heavy; later ones pay principal faster. That is why refinancing or extra
+            payments can change total interest dramatically.
+          </p>
+          <h3 className={h3}>Demo amortization schedule (first year)</h3>
+          <div className="mt-4">
+            <LoanDemoScheduleTable />
+          </div>
+        </SectionReveal>
+        <SectionReveal className={`${sectionBox} mt-8`}>
+          <h2 className={h2}>Balance falling over time</h2>
+          <p className={proseMuted}>
+            The line shows remaining principal for a sample loan. On EMI tools with a chart, your inputs
+            update the balance curve in the calculator card.
+          </p>
+          <div className="mt-6">
+            <LoanBalanceDemoChart />
+          </div>
+        </SectionReveal>
+        {EMI_SIBLING_SLUGS.has(slug) ? (
+          <SectionReveal className={`${sectionBox} mt-8`}>
+            <h2 className={h2}>Related EMI calculators</h2>
+            <p className={proseMuted}>
+              These three pages use the same reducing-balance math and controls (including advanced prepayment,
+              step-up, balance chart, copy summary, share link, and optional penny rounding). Pick the title that
+              best matches how you teach or search—results stay consistent when inputs match.
+            </p>
+            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-[var(--muted)]">
+              {EMI_SIBLING_LINKS.map((item) => (
+                <li key={item.slug}>
+                  {item.slug === slug ? (
+                    <span className="font-medium text-[var(--text)]">{item.label} (this page)</span>
+                  ) : (
+                    <Link
+                      href={`/calculators/${item.slug}`}
+                      className="font-medium text-[var(--accent)] hover:text-[var(--accent-bright)] hover:underline"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
+                </li>
+              ))}
+              <li>
+                <Link
+                  href="/calculators/loan-amortization-calculator"
+                  className="font-medium text-[var(--accent)] hover:text-[var(--accent-bright)] hover:underline"
+                >
+                  Loan amortization calculator
+                </Link>{" "}
+                for a downloadable month-by-month CSV schedule.
+              </li>
+            </ul>
+          </SectionReveal>
+        ) : null}
+        <SectionReveal className={`${sectionBox} mt-8`}>
+          <h2 className={h2}>Model assumptions</h2>
+          <p className={proseMuted}>
+            These calculators use a textbook fixed-rate amortization model for illustration. Real loans may
+            differ in fees, rounding, payment holidays, variable rates, or day-count conventions.
+          </p>
+          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-[var(--muted)]">
+            <li>
+              <span className="font-medium text-[var(--text)]">Reducing-balance APR</span> is a nominal annual
+              rate with <span className="font-medium text-[var(--text)]">monthly compounding</span> (monthly
+              rate = APR ÷ 12).
+            </li>
+            <li>
+              EMI is level unless you use advanced options (extra principal or annual step-up). Optional{" "}
+              <span className="font-medium text-[var(--text)]">bank-style penny rounding</span> rounds
+              interest, principal, payment, and balance to two decimals on each schedule row so CSV and tables
+              can match simple bank-style ledgers; the default path keeps full floating-point precision.
+            </li>
+            <li>
+              <span className="font-medium text-[var(--text)]">Flat rate</span> in the comparison tool means
+              simple interest on the original principal for the full term (interest = principal × flat% × years
+              in years), then divided into equal installments—not the same as a reducing APR with the same
+              headline number.
+            </li>
+            <li>
+              Inverse tools (rate from EMI, loan amount from EMI, tenure from EMI) assume the same amortization
+              math and may not match lender disclosures that use different rounding or calendars.
+            </li>
+          </ul>
+        </SectionReveal>
+      </>
+    );
+  }
+
+  if (BASIC_MATH_SLUGS.has(slug)) {
+    return <BasicMathArticleBody slug={slug} />;
+  }
+
   switch (slug) {
     case "weighted-gpa":
       return (
@@ -291,33 +486,6 @@ function ArticleBody({ slug }: { slug: string }) {
           </SectionReveal>
         </>
       );
-    case "loan-payment":
-      return (
-        <>
-          <SectionReveal className={sectionBox}>
-            <h2 className={h2}>Fixed payment amortization</h2>
-            <p className={proseMuted}>
-              Each payment covers interest on the remaining balance plus a slice of principal. Early
-              payments are interest-heavy; later ones pay principal faster. That is why refinancing or extra
-              payments can change total interest dramatically.
-            </p>
-            <h3 className={h3}>Demo amortization schedule (first year)</h3>
-            <div className="mt-4">
-              <LoanDemoScheduleTable />
-            </div>
-          </SectionReveal>
-          <SectionReveal className={`${sectionBox} mt-8`}>
-            <h2 className={h2}>Balance falling over time</h2>
-            <p className={proseMuted}>
-              The line shows remaining principal for a sample loan. Your numbers above the fold update the
-              chart inside the calculator card.
-            </p>
-            <div className="mt-6">
-              <LoanBalanceDemoChart />
-            </div>
-          </SectionReveal>
-        </>
-      );
     case "compound-interest":
       return (
         <>
@@ -412,6 +580,7 @@ export function CalculatorArticle({ slug, children }: { slug: string; children?:
   return (
     <article className="mt-14 w-full max-w-full space-y-10 pb-8">
       <ArticleBody slug={slug} />
+      {BASIC_MATH_SLUGS.has(slug) ? <BasicMathRelatedSection slug={slug} /> : null}
       {children ? <SectionReveal>{children}</SectionReveal> : null}
       {/*
         Future live chat widget mount (Crisp, Intercom, etc.):

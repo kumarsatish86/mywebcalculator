@@ -10,11 +10,13 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useChartReady } from "./useChartReady";
 
 const DEMO = { principal: 25000, apr: 6.5, years: 5 };
 
 export default function LoanBalanceDemoChart() {
-  const raw = loanBalanceOverTime(DEMO.principal, DEMO.apr, DEMO.years);
+  const ready = useChartReady();
+  const raw = loanBalanceOverTime(DEMO.principal, DEMO.apr, { termYears: DEMO.years });
   const data =
     "error" in raw
       ? []
@@ -23,8 +25,10 @@ export default function LoanBalanceDemoChart() {
           balance: Math.round(d.balance),
         }));
 
+  if (!ready) return <div className="h-[300px] w-full min-h-[300px] min-w-0" />;
+
   return (
-    <div className="h-[300px] w-full">
+    <div className="h-[300px] w-full min-h-[300px] min-w-0">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 8, right: 8, left: 8, bottom: 0 }}>
           <CartesianGrid stroke="rgba(15,23,42,0.08)" vertical={false} />

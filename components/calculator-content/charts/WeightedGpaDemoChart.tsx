@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useChartReady } from "./useChartReady";
 
 /** Demo: credit-weighted grade points per course (grade points × credits). */
 const data = [
@@ -19,8 +20,10 @@ const data = [
 ];
 
 export default function WeightedGpaDemoChart() {
+  const ready = useChartReady();
+  if (!ready) return <div className="h-[300px] w-full min-h-[300px] min-w-0" />;
   return (
-    <div className="h-[300px] w-full">
+    <div className="h-[300px] w-full min-h-[300px] min-w-0">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
           <CartesianGrid stroke="rgba(15,23,42,0.08)" vertical={false} />

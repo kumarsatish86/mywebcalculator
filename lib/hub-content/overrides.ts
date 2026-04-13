@@ -70,8 +70,8 @@ export const HUB_CONTENT_OVERRIDES: Record<string, HubContentOverride> = {
 
   "finance/loans-emi/core-loan-calculators": {
     introParagraphs: [
-      "Core loan calculators are the backbone of borrowing math: EMI, interest, tenure, amortization, and comparing flat versus reducing balance schedules.",
-      "Each planned tool below will eventually link to a full page with step-by-step context. Until then, use this list to see coverage and browse sibling sections for specialized loan types.",
+      "Core loan calculators are the backbone of borrowing math: monthly payment, EMI, interest, tenure, amortization, and comparing flat versus reducing balance schedules.",
+      "Open any card below for a full calculator page with FAQs. Specialized loan-type hubs in this category add more focused tools over time.",
       "Lenders apply fees, insurance, and rounding differently—always reconcile with your actual agreement.",
     ],
     faqs: [
@@ -86,12 +86,49 @@ export const HUB_CONTENT_OVERRIDES: Record<string, HubContentOverride> = {
           "Small differences come from day-count conventions, rounding, and fees. Treat our numbers as approximations.",
       },
       {
-        question: 'Why are these entries marked "planned"?',
+        question: "Are these numbers binding on my lender?",
         answer:
-          "We publish the catalog early. When a calculator ships, you will open it from this sub-topic hub or search.",
+          "No. They are educational estimates. Your loan agreement, statements, and disclosures are authoritative.",
       },
     ],
     metaDescriptionOverride:
-      "Core loan and EMI calculator roadmap—amortization, tenure, interest, and flat vs reducing comparisons. Educational estimates; confirm with your lender.",
+      "Live core loan calculators: payment, EMI, implied rate, amount, tenure, total interest, amortization with CSV export, and flat vs reducing comparison. Educational estimates; confirm with your lender.",
+  },
+
+  "education/mathematics/basic-math-calculators": {
+    introParagraphs: [
+      "This section bundles high-traffic student tools: two-number arithmetic, three percentage modes, ratios and proportions, list statistics (average, mean, median, mode, sum), difference, rounding with several tie rules, and expression evaluators (scientific + PEMDAS with steps).",
+      "Results run in your browser. They are study aids—not a computer algebra system, not a substitute for showing work on an exam unless your instructor allows calculators, and not guaranteed to match every textbook’s rounding convention.",
+      "Share links encode your inputs in the URL when length allows; very large pasted lists may not fit—use copy summary or re-paste locally. For graded work, double-check angle mode (degrees vs radians) on trig and the rounding mode on the rounding tool.",
+    ],
+    faqs: [
+      {
+        question: "Are these answers always exact?",
+        answer:
+          "We use standard floating-point math like most calculators. Very large or tiny numbers can show rounding noise; expression tools format results for readability, not infinite precision.",
+      },
+      {
+        question: "Why might my share link not restore everything?",
+        answer:
+          "Share state is packed into a single query parameter with a length limit. Short inputs round-trip; oversized payloads are skipped so the page still loads with defaults.",
+      },
+      {
+        question: "Is this the same as Wolfram or a CAS?",
+        answer:
+          "No. We evaluate the grammar documented on each page (numbers, operators, parentheses, listed functions). We do not simplify symbolic algebra, solve equations generally, or integrate symbolically.",
+      },
+      {
+        question: "Average vs mean on this site?",
+        answer:
+          "Both calculators compute the arithmetic mean (sum ÷ count). One page is titled for searchers who say “average,” the other for “mean”; use median or mode when you need robust center or frequency instead.",
+      },
+      {
+        question: "What does “banker” rounding mean?",
+        answer:
+          "Half-to-even (IEEE-style): when a value is exactly halfway between two representable decimals at your precision, it rounds to the neighbor with an even last digit—useful to reduce bias in repeated rounding.",
+      },
+    ],
+    metaDescriptionOverride:
+      "Live basic math calculators: arithmetic, percentage (of / is what % / change), ratio, proportion, average & mean, median, mode, sum, difference, rounding (including half-to-even), scientific expressions, and PEMDAS with step-by-step trace. Educational use; verify critical work.",
   },
 };

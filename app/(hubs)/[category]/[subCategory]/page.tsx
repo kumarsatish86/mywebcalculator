@@ -17,7 +17,7 @@ import {
   isCalculatorCategory,
 } from "@/lib/category-tree";
 import { getSubcategoryHubContent } from "@/lib/hub-content";
-import { getBySubcategory } from "@/lib/registry";
+import { getBySubcategory, getCalculator } from "@/lib/registry";
 
 type Props = {
   params: Promise<{ category: string; subCategory: string }>;
@@ -112,19 +112,25 @@ export default async function SubcategoryHubPage({ params }: Props) {
       <div className="mt-12">
         {sections.length > 0 ? (
           <div className="mb-10 grid gap-3 md:grid-cols-2">
-            {sections.map((section) => (
-              <Link
-                key={section.slug}
-                href={`/${cat}/${subSlug}/${section.slug}`}
-                className="rounded-xl border border-[var(--border)] bg-[var(--surface)]/50 p-4 transition-colors hover:border-[var(--accent)]/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
-              >
-                <p className="font-medium text-[var(--text)]">{section.title}</p>
-                <p className="mt-1 text-sm text-[var(--muted)]">{section.description}</p>
-                <p className="mt-2 text-xs uppercase tracking-[0.12em] text-[var(--accent-bright)]">
-                  {section.calculators.length} planned calculators
-                </p>
-              </Link>
-            ))}
+            {sections.map((section) => {
+              const live = section.calculators.filter((c) => getCalculator(c.slug)).length;
+              const planned = section.calculators.length - live;
+              return (
+                <Link
+                  key={section.slug}
+                  href={`/${cat}/${subSlug}/${section.slug}`}
+                  className="rounded-xl border border-[var(--border)] bg-[var(--surface)]/50 p-4 transition-colors hover:border-[var(--accent)]/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
+                >
+                  <p className="font-medium text-[var(--text)]">{section.title}</p>
+                  <p className="mt-1 text-sm text-[var(--muted)]">{section.description}</p>
+                  <p className="mt-2 text-xs uppercase tracking-[0.12em] text-[var(--accent-bright)]">
+                    {planned === 0
+                      ? `${live} calculators`
+                      : `${live} live · ${planned} planned`}
+                  </p>
+                </Link>
+              );
+            })}
           </div>
         ) : null}
         {items.length > 0 ? (

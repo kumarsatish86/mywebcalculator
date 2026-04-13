@@ -1,0 +1,75 @@
+{
+  "MathActionBar": {
+    "resetInputs": "Reset inputs",
+    "copySummary": "Copy summary",
+    "copyShareLink": "Copy share link",
+    "printPage": "Print page",
+    "summaryCopied": "Summary copied to clipboard.",
+    "summaryFailed": "Could not copy—check browser permissions or try again.",
+    "linkCopiedWithInputs": "Share link copied (includes your inputs).",
+    "linkCopiedOmitted": "Link copied without saved inputs (data too long for the URL). Use Copy summary or shorten your list.",
+    "linkCopyFailed": "Could not copy link."
+  },
+  "CalculatorRelated": {
+    "title": "Related basic math calculators",
+    "introDefault": "Jump to nearby tools with the same list-style inputs, percentage logic, or expression engine (scientific vs PEMDAS with steps).",
+    "introMeanAvg": "<avg>Average</avg> and <mean>mean</mean> here both use the arithmetic mean (sum ÷ count)—different page titles for how people search. Prefer <median>median</median> or <mode>mode</mode> when you need a middle value or the most common entry instead."
+  },
+  "basicMathExtras": {
+    "listShareHint": "Very long lists may not fit in a share link. Use Copy summary or shorten the list if someone else needs your exact inputs.",
+    "exportCsv": "Export CSV",
+    "fpListMeanSum": "Uses floating-point math; double-check for graded work.",
+    "fpExpression": "Floating-point evaluation; verify critical or graded work independently.",
+    "clearExprHistory": "Clear expression history",
+    "ctrlEnterHint": "Ctrl+Enter focuses the result.",
+    "showStepsCheckbox": "Show step-by-step evaluation (same engine as PEMDAS)",
+    "proportionLegend": "Proportion A : B = C : X",
+    "proportionDiagramCaption": "Same order as the inputs below: left pair A and B, right pair C and X.",
+    "ratioScaleTip": "Tip: multiplying both sides by ×{factor} gives whole numbers <pair></pair>—try those terms to simplify."
+  },
+  "Article": {
+    "basic": {
+      "h2_when": "When to use this two-number calculator",
+      "p1": "This page is built for fast, transparent arithmetic: you pick exactly one operation—add, subtract, multiply, or divide—and we apply it to the two numbers you type. That makes it easy to check homework, compare prices, or sanity-check a spreadsheet cell without dealing with full expression syntax.",
+      "p2_prefix": "It does",
+      "p2_not": "not",
+      "p2_mid": "parse multi-step expressions like",
+      "p2_afterExpr": ". If you need standard order of operations (PEMDAS / BODMAS), use our",
+      "link_pemdas": "order of operations calculator",
+      "p2_or": "or",
+      "link_sci": "scientific calculator",
+      "p2_end": ", which evaluate a full line of operators, parentheses, and functions.",
+      "h3_div": "Division and signs",
+      "p3_prefix": "Division by zero is rejected with a clear message. Negative inputs are allowed; the result follows the usual rules of arithmetic. If you specifically want “first minus second,” the",
+      "link_diff": "difference calculator",
+      "p3_end": "labels that pattern explicitly for word problems.",
+      "h2_acc": "Accuracy and classroom use",
+      "p4_prefix": "Results use JavaScript floating-point numbers—the same family of rounding quirks you see in spreadsheets. For money or grades, your teacher or employer may require a fixed number of decimal places; use the",
+      "link_rnd": "rounding calculator",
+      "p4_end": "after you compute a value if you need a documented rounding mode (including half-to-even “banker” rounding).",
+      "p5": "You can copy a short text summary or a shareable link from the toolbar when you want to send someone the same inputs—handy for tutors and study groups."
+    },
+    "mean": {
+      "avg_h2": "When your worksheet says “average the scores”",
+      "avg_p1": "In many K–12 and intro college settings, “average” on a list of quiz or homework scores means the arithmetic mean: add every score, divide by how many there are. That is the number a gradebook or spreadsheet often shows as the class average when every assignment counts equally.",
+      "avg_p2_prefix": "This page uses that same definition. We also publish a",
+      "link_mean": "mean calculator",
+      "avg_p2_end": "with identical math—use whichever title your teacher or textbook prints in the instructions.",
+      "stat_h2": "Mean as a summary of a numeric dataset",
+      "stat_p1": "In statistics and data science, “mean” usually means the arithmetic mean: the balance point you get by spreading the total equally across every observation. It is sensitive to every value, which is a feature when you want a precise algebraic summary and a drawback when a few extreme points skew the story (think CEO pay mixed with typical salaries).",
+      "stat_p2_prefix": "If your syllabus uses the word “average” instead, open the",
+      "link_avg": "average calculator",
+      "stat_p2_end": "—the calculation is the same; only the page framing differs for search and bookmarks.",
+      "formula_h3": "The formula (both pages)",
+      "formula_p": "Sum all entered numbers, then divide by the count. Scientific notation (e.g. 2e-3) parses like in a spreadsheet when JavaScript accepts it.",
+      "outlier_h3": "Outliers and when the mean misleads",
+      "outlier_p_prefix": "Every outlier pulls the mean toward it. If your data have a few extreme scores (housing prices, one very low exam in an otherwise strong term), the",
+      "link_median": "median calculator",
+      "outlier_p_mid": "often reports a more representative “center” than the mean. For “most common” values, use the",
+      "link_mode": "mode calculator",
+      "outlier_p_end": ".",
+      "lists_h2": "Entering lists",
+      "lists_p": "Separate numbers with commas, spaces, or semicolons. Scientific notation such as 1.5e3 is accepted where JavaScript parsing allows it. Empty or invalid tokens produce a clear validation message for accessibility and grading workflows."
+    }
+  }
+}

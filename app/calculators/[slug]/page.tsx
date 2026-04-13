@@ -10,6 +10,7 @@ import { CALCULATOR_REGISTRY, getCalculator } from "@/lib/registry";
 
 type Props = {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
 export function generateStaticParams() {
@@ -38,8 +39,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function CalculatorPage({ params }: Props) {
+export default async function CalculatorPage({ params, searchParams }: Props) {
   const { slug } = await params;
+  const sp = await searchParams;
   const def = getCalculator(slug);
   if (!def) notFound();
 
@@ -53,7 +55,7 @@ export default async function CalculatorPage({ params }: Props) {
       />
       <CalculatorPageFrame definition={def} />
       <AnimatedPage className="w-full">
-        <CalculatorRouter slug={slug} />
+        <CalculatorRouter slug={slug} initialSearchParams={sp} />
       </AnimatedPage>
       <CalculatorArticle slug={slug}>
         <FaqAccordion detailsGroupName={`mwc-calc-${slug}`} items={def.faq} />

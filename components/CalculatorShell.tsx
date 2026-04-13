@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import { GlassCard } from "./GlassCard";
 import { transitionSoft } from "@/lib/motion";
 
-type CalculatorShellProps = {
+export type CalculatorShellProps = {
   title: string;
   description: string;
   children: ReactNode;
@@ -14,6 +14,8 @@ type CalculatorShellProps = {
   resultKey?: string | number;
   /** Tighter padding and typography for dense forms (e.g. many rows). */
   compact?: boolean;
+  /** Rendered below the description, above inputs (e.g. loan reset / copy / share). */
+  toolbar?: ReactNode;
 };
 
 export function CalculatorShell({
@@ -23,15 +25,18 @@ export function CalculatorShell({
   result,
   resultKey = 0,
   compact = false,
+  toolbar,
 }: CalculatorShellProps) {
   const reduce = useReducedMotion();
+  const headerPad = compact ? "pb-4" : toolbar ? "pb-4" : "pb-8";
+  const gridTop = compact ? "mt-5" : toolbar ? "mt-5" : "mt-8";
 
   return (
     <GlassCard
       className={`w-full max-w-full ${compact ? "!p-4 sm:!p-5 lg:!p-6" : "sm:p-8 lg:p-10"}`}
     >
       <header
-        className={`border-b border-[var(--border)] ${compact ? "space-y-2 pb-4" : "space-y-3 pb-8"}`}
+        className={`border-b border-[var(--border)] ${compact ? "space-y-2" : "space-y-3"} ${headerPad}`}
       >
         <div className="flex flex-wrap items-center gap-2">
           <span className="rounded-full border border-[var(--border)] bg-[var(--input-bg)] px-3 py-1 text-xs font-medium uppercase tracking-wider text-[var(--muted)]">
@@ -48,10 +53,19 @@ export function CalculatorShell({
         >
           {description}
         </p>
+        {toolbar ? (
+          <div
+            className={`max-w-full print:hidden ${compact ? "mt-3" : "mt-4"}`}
+            role="group"
+            aria-label="Calculator actions"
+          >
+            {toolbar}
+          </div>
+        ) : null}
       </header>
 
       <div
-        className={`grid lg:grid-cols-[1fr_minmax(260px,20rem)] lg:items-start ${compact ? "mt-5 gap-5 lg:gap-6" : "mt-8 gap-8 lg:gap-10"}`}
+        className={`grid lg:grid-cols-[1fr_minmax(260px,20rem)] lg:items-start ${compact ? `${gridTop} gap-5 lg:gap-6` : `${gridTop} gap-8 lg:gap-10`}`}
       >
         <div className={`order-2 min-w-0 lg:order-1 ${compact ? "space-y-3" : "space-y-4"}`}>
           {children}

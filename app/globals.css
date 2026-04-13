@@ -64,3 +64,19 @@ body {
     animation: site-bg-noise-drift 120s linear infinite alternate;
   }
 }
+
+@media print {
+  body {
+    background: #fff !important;
+    color: #000;
+  }
+
+  .site-bg-noise {
+    animation: none !important;
+  }
+
+  /* Calculator cards: keep borders readable when printing */
+  .rounded-2xl.border {
+    box-shadow: none !important;
+  }
+}
