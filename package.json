@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 5000",
+    "dev": "next dev -p 5000 --webpack",
+    "dev:clean": "node ./scripts/clear-next-dev-cache.mjs && next dev -p 5000 --webpack",
     "build": "next build",
     "start": "next start -p 5000",
     "lint": "eslint",

@@ -8,11 +8,13 @@ import { GRADE_SCALE_ROWS } from "@/lib/calculators/letterGrade";
 import { humanToCatYears } from "@/lib/calculators/catAge";
 import { BasicMathArticleBody } from "@/components/calculator-content/BasicMathArticleBody";
 import { BASIC_MATH_SLUGS } from "@/lib/calculators/basicMathSlugs";
-import { getCalculator } from "@/lib/registry";
+import { getRichArticle } from "@/lib/calculator-seo/getRichArticle";
+import { FAMILY_SLUG_SETS, getCalculator } from "@/lib/registry";
 import { ChartSkeleton } from "./ChartSkeleton";
 import { DaysBetweenTimeline } from "./DaysBetweenTimeline";
 import type { ReactNode } from "react";
 import { SectionReveal } from "./SectionReveal";
+import { SlugRichArticleBody } from "./SlugRichArticleBody";
 
 const WeightedGpaDemoChart = dynamic(() => import("./charts/WeightedGpaDemoChart"), {
   ssr: false,
@@ -61,6 +63,10 @@ const LOAN_EDU_SLUGS = new Set([
   "reducing-balance-emi-calculator",
   "flat-vs-reducing-interest-calculator",
 ]);
+
+function loanEduSlug(slug: string) {
+  return LOAN_EDU_SLUGS.has(slug) || FAMILY_SLUG_SETS.financeLoanType.has(slug);
+}
 
 const EMI_SIBLING_SLUGS = new Set([
   "emi-calculator-universal",
@@ -287,7 +293,12 @@ function TipReferenceTable() {
 }
 
 function ArticleBody({ slug }: { slug: string }) {
-  if (LOAN_EDU_SLUGS.has(slug)) {
+  const rich = getRichArticle(slug);
+  if (rich) {
+    return <SlugRichArticleBody article={rich} />;
+  }
+
+  if (loanEduSlug(slug)) {
     return (
       <>
         <SectionReveal className={sectionBox}>

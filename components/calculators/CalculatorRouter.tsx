@@ -42,6 +42,14 @@ import { TipSplitterCalculator } from "./TipSplitterCalculator";
 import { WeightedGpaCalculator } from "./WeightedGpaCalculator";
 import { BASIC_MATH_SLUGS } from "@/lib/calculators/basicMathSlugs";
 import { parseLoanSearchParamsToRecord, urlPrefsFromLoanQuery } from "@/lib/calculators/loanUrlParams";
+import { FAMILY_SLUG_SETS } from "@/lib/registry";
+import { BodyMetricsCalculatorHost } from "./family/BodyMetricsCalculatorHost";
+import { CreditDebtCalculatorHost } from "./family/CreditDebtCalculatorHost";
+import { EduMathCalculatorHost } from "./family/EduMathCalculatorHost";
+import { ElectricalCalculatorHost } from "./family/ElectricalCalculatorHost";
+import { LoanAdvancedPaymentCalculatorHost } from "./family/LoanAdvancedPaymentCalculatorHost";
+import { LoanComparisonCalculatorHost } from "./family/LoanComparisonCalculatorHost";
+import { LoanTypeCalculatorHost } from "./family/LoanTypeCalculatorHost";
 
 const MAP: Record<string, ComponentType> = {
   "weighted-gpa": WeightedGpaCalculator,
@@ -88,6 +96,10 @@ export const LOAN_CALCULATOR_SLUGS = new Set([
   "loan-amortization-calculator",
   "reducing-balance-emi-calculator",
   "flat-vs-reducing-interest-calculator",
+  ...FAMILY_SLUG_SETS.financeLoanType,
+  ...FAMILY_SLUG_SETS.financeAdvancedPayment,
+  ...FAMILY_SLUG_SETS.financeLoanComparison,
+  ...FAMILY_SLUG_SETS.financeCreditDebt,
 ]);
 
 export { BASIC_MATH_SLUGS };
@@ -99,6 +111,64 @@ type Props = {
 };
 
 export function CalculatorRouter({ slug, initialSearchParams }: Props) {
+  if (FAMILY_SLUG_SETS.electrical.has(slug)) {
+    return <ElectricalCalculatorHost slug={slug} />;
+  }
+  if (FAMILY_SLUG_SETS.healthBody.has(slug)) {
+    return <BodyMetricsCalculatorHost slug={slug} />;
+  }
+  if (FAMILY_SLUG_SETS.educationMathPlanned.has(slug)) {
+    return <EduMathCalculatorHost slug={slug} />;
+  }
+  if (FAMILY_SLUG_SETS.financeLoanType.has(slug)) {
+    const q = initialSearchParams ? parseLoanSearchParamsToRecord(initialSearchParams) : {};
+    const urlPrefs = urlPrefsFromLoanQuery(q);
+    const hasUrlPrefs = Object.keys(urlPrefs).length > 0;
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <LoanCalcPrefsProvider urlPrefs={hasUrlPrefs ? urlPrefs : undefined}>
+          <LoanTypeCalculatorHost />
+        </LoanCalcPrefsProvider>
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.financeAdvancedPayment.has(slug)) {
+    const q = initialSearchParams ? parseLoanSearchParamsToRecord(initialSearchParams) : {};
+    const urlPrefs = urlPrefsFromLoanQuery(q);
+    const hasUrlPrefs = Object.keys(urlPrefs).length > 0;
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <LoanCalcPrefsProvider urlPrefs={hasUrlPrefs ? urlPrefs : undefined}>
+          <LoanAdvancedPaymentCalculatorHost slug={slug} />
+        </LoanCalcPrefsProvider>
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.financeLoanComparison.has(slug)) {
+    const q = initialSearchParams ? parseLoanSearchParamsToRecord(initialSearchParams) : {};
+    const urlPrefs = urlPrefsFromLoanQuery(q);
+    const hasUrlPrefs = Object.keys(urlPrefs).length > 0;
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <LoanCalcPrefsProvider urlPrefs={hasUrlPrefs ? urlPrefs : undefined}>
+          <LoanComparisonCalculatorHost slug={slug} />
+        </LoanCalcPrefsProvider>
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.financeCreditDebt.has(slug)) {
+    const q = initialSearchParams ? parseLoanSearchParamsToRecord(initialSearchParams) : {};
+    const urlPrefs = urlPrefsFromLoanQuery(q);
+    const hasUrlPrefs = Object.keys(urlPrefs).length > 0;
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <LoanCalcPrefsProvider urlPrefs={hasUrlPrefs ? urlPrefs : undefined}>
+          <CreditDebtCalculatorHost slug={slug} />
+        </LoanCalcPrefsProvider>
+      </LoanInitialInputsProvider>
+    );
+  }
+
   const C = MAP[slug];
   if (!C) notFound();
   if (LOAN_CALCULATOR_SLUGS.has(slug)) {

@@ -1,6 +1,6 @@
 import type { SectionNode } from "../hub-section-types";
 
-const planned = (slug: string, title: string) => ({ slug, title, status: "planned" as const });
+const planned = (slug: string, title: string) => ({ slug, title });
 
 export const EDUCATION_MATHEMATICS_SECTIONS: SectionNode[] = [
   {

@@ -1,6 +1,6 @@
 import type { SectionNode } from "../hub-section-types";
 
-const p = (slug: string, title: string) => ({ slug, title, status: "planned" as const });
+const p = (slug: string, title: string) => ({ slug, title });
 
 export const HEALTH_BODY_METRICS_SECTIONS: SectionNode[] = [
   {

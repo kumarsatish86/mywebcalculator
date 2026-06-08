@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import "./globals.css";
@@ -17,6 +18,18 @@ const geistMono = Geist_Mono({
 });
 
 const siteUrl = "https://mywebcalculator.com";
+
+const themeInitScript = `
+(() => {
+  try {
+    const stored = localStorage.getItem("mwc-theme");
+    const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    document.documentElement.dataset.theme = stored === "light" || stored === "dark" ? stored : preferred;
+  } catch {
+    document.documentElement.dataset.theme = "light";
+  }
+})();
+`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -65,8 +78,18 @@ export default async function RootLayout({
 }>) {
   const messages = await getMessages();
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body className="flex min-h-full flex-col font-sans antialiased">
+        <Script
+          id="mwc-theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: themeInitScript }}
+        />
         <NextIntlClientProvider locale="en" messages={messages}>
           <JsonLdOrganization />
           <MainLayout>{children}</MainLayout>

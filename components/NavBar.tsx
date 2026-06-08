@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CALCULATOR_CATEGORIES, getCategoryHub } from "@/lib/category-tree";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const categoryLinks = CALCULATOR_CATEGORIES.map((id) => {
   const hub = getCategoryHub(id);
@@ -50,6 +51,7 @@ export function NavBar() {
             );
           })}
         </nav>
+        <ThemeToggle />
       </div>
     </header>
   );

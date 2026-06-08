@@ -4,10 +4,10 @@ import { AnimatedPage } from "@/components/AnimatedPage";
 import { CategoryListicle } from "@/components/hubs/CategoryListicle";
 import { HubContentAside } from "@/components/hubs/HubContentAside";
 import { HubFaq } from "@/components/hubs/HubFaq";
+import { HubHeroSection } from "@/components/hubs/HubHeroSection";
 import { HubIntroProse } from "@/components/hubs/HubIntroProse";
 import { HubRelatedLinks } from "@/components/hubs/HubRelatedLinks";
 import { JsonLdFaqPage } from "@/components/hubs/JsonLdFaqPage";
-import { SectionHeading } from "@/components/SectionHeading";
 import {
   allCategoryStaticParams,
   getCategoryHub,
@@ -46,17 +46,12 @@ export default async function CategoryHubPage({ params }: Props) {
   if (!isCalculatorCategory(cat)) {
     notFound();
   }
-  const hub = getCategoryHub(cat);
   const rich = getCategoryHubContent(cat);
 
   return (
     <AnimatedPage>
       <JsonLdFaqPage items={rich.faqs} />
-      <SectionHeading
-        eyebrow={hub.hubEyebrow}
-        title={hub.hubHeadline}
-        subtitle={hub.hubSubtitle}
-      />
+      <HubHeroSection category={cat} />
       <div className="mt-10 space-y-10">
         <HubIntroProse paragraphs={rich.introParagraphs} />
         {rich.secondaryHeading && rich.bulletPoints?.length ? (

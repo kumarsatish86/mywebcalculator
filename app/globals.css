@@ -21,6 +21,26 @@
   --shadow-glow: 0 12px 40px rgba(101, 72, 245, 0.18);
 }
 
+html[data-theme="dark"] {
+  --bg-deep: #080b13;
+  --surface: rgba(15, 23, 42, 0.68);
+  --surface-strong: rgba(30, 41, 59, 0.9);
+  --border: rgba(226, 232, 240, 0.14);
+  --text: #f8fafc;
+  --muted: rgba(226, 232, 240, 0.66);
+  --accent: #9b87ff;
+  --accent-bright: #2dd4bf;
+  --text-on-gradient: #ffffff;
+  --blob-1: rgba(132, 104, 255, 0.24);
+  --blob-2: rgba(45, 212, 191, 0.18);
+  --blob-3: rgba(244, 114, 182, 0.14);
+  --nav-bg: rgba(8, 11, 19, 0.78);
+  --input-bg: rgba(15, 23, 42, 0.92);
+  --ring: rgba(155, 135, 255, 0.55);
+  --shadow-card: 0 22px 58px rgba(0, 0, 0, 0.35), 0 6px 20px rgba(0, 0, 0, 0.22);
+  --shadow-glow: 0 14px 44px rgba(45, 212, 191, 0.16);
+}
+
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -29,6 +49,10 @@
 html {
   scroll-behavior: smooth;
   color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -47,6 +71,18 @@ body {
 ::selection {
   background: rgba(101, 72, 245, 0.22);
   color: var(--text);
+}
+
+.theme-toggle-sun {
+  display: none;
+}
+
+html[data-theme="dark"] .theme-toggle-sun {
+  display: block;
+}
+
+html[data-theme="dark"] .theme-toggle-moon {
+  display: none;
 }
 
 /* Subtle noise drift — CSS only so SiteBackground stays off the main JS bundle. */
