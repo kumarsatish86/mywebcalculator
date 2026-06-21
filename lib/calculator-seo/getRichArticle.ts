@@ -3,12 +3,56 @@ import { composeRichArticle, verticalForDefinition } from "./composeArticle";
 import { ADVANCED_EMI_ARTICLES } from "./advancedEmiContent";
 import { LOAN_COMPARISON_ARTICLES } from "./loanComparisonContent";
 import { CREDIT_DEBT_ARTICLES } from "./creditDebtContent";
+import { PREPAYMENT_FORECLOSURE_ARTICLES } from "./prepaymentForeclosureContent";
+import { EMI_SCHEDULE_PLANNING_ARTICLES } from "./emiSchedulePlanningContent";
+import { REGION_SPECIFIC_LOAN_ARTICLES } from "./regionSpecificLoanContent";
+import { SMART_AI_LOAN_ARTICLES } from "./smartAiLoanContent";
+import { LOAN_MICRO_TOOLS_ARTICLES } from "./loanMicroToolsContent";
+import { CORE_SALARY_ARTICLES } from "./coreSalaryContent";
+import { INDIA_SALARY_ARTICLES } from "./indiaSalaryContent";
+import { AI_FINANCE_SMART_ARTICLES } from "./aiFinanceSmartContent";
+import { AI_EDUCATION_SMART_ARTICLES } from "./aiEducationSmartContent";
+import { AI_HEALTH_SMART_ARTICLES } from "./aiHealthSmartContent";
+import { AI_DAILY_LIFE_SMART_ARTICLES } from "./aiDailyLifeSmartContent";
+import { AI_BUSINESS_SMART_ARTICLES } from "./aiBusinessSmartContent";
+import { AI_DEVELOPER_SMART_ARTICLES } from "./aiDeveloperSmartContent";
+import { AI_CONVERSION_SMART_ARTICLES } from "./aiConversionSmartContent";
+import { AI_PERSONALIZED_SMART_ARTICLES } from "./aiPersonalizedSmartContent";
+import { TIME_DATE_BASIC_ARTICLES } from "./timeDateBasicContent";
+import { TIME_DATE_ADVANCED_ARTICLES } from "./timeDateAdvancedContent";
+import { TIME_DATE_BUSINESS_ARTICLES } from "./timeDateBusinessContent";
+import { TIME_DATE_PERSONAL_ARTICLES } from "./timeDatePersonalContent";
+import { TIME_DATE_SPECIALIZED_ARTICLES } from "./timeDateSpecializedContent";
+import { TIME_DATE_FUN_ARTICLES } from "./timeDateFunContent";
+import { TIME_DATE_SMART_ARTICLES } from "./timeDateSmartContent";
 import type { RichArticle } from "./types";
 
 const HAND_CRAFTED_ARTICLES: Record<string, RichArticle> = {
   ...ADVANCED_EMI_ARTICLES,
   ...LOAN_COMPARISON_ARTICLES,
   ...CREDIT_DEBT_ARTICLES,
+  ...PREPAYMENT_FORECLOSURE_ARTICLES,
+  ...EMI_SCHEDULE_PLANNING_ARTICLES,
+  ...REGION_SPECIFIC_LOAN_ARTICLES,
+  ...SMART_AI_LOAN_ARTICLES,
+  ...LOAN_MICRO_TOOLS_ARTICLES,
+  ...CORE_SALARY_ARTICLES,
+  ...INDIA_SALARY_ARTICLES,
+  ...AI_FINANCE_SMART_ARTICLES,
+  ...AI_EDUCATION_SMART_ARTICLES,
+  ...AI_HEALTH_SMART_ARTICLES,
+  ...AI_DAILY_LIFE_SMART_ARTICLES,
+  ...AI_BUSINESS_SMART_ARTICLES,
+  ...AI_DEVELOPER_SMART_ARTICLES,
+  ...AI_CONVERSION_SMART_ARTICLES,
+  ...AI_PERSONALIZED_SMART_ARTICLES,
+  ...TIME_DATE_BASIC_ARTICLES,
+  ...TIME_DATE_ADVANCED_ARTICLES,
+  ...TIME_DATE_BUSINESS_ARTICLES,
+  ...TIME_DATE_PERSONAL_ARTICLES,
+  ...TIME_DATE_SPECIALIZED_ARTICLES,
+  ...TIME_DATE_FUN_ARTICLES,
+  ...TIME_DATE_SMART_ARTICLES,
 };
 
 export function isBulkFamilySlug(slug: string): boolean {
@@ -19,7 +63,29 @@ export function isBulkFamilySlug(slug: string): boolean {
     FAMILY_SLUG_SETS.financeLoanType.has(slug) ||
     FAMILY_SLUG_SETS.financeAdvancedPayment.has(slug) ||
     FAMILY_SLUG_SETS.financeLoanComparison.has(slug) ||
-    FAMILY_SLUG_SETS.financeCreditDebt.has(slug)
+    FAMILY_SLUG_SETS.financeCreditDebt.has(slug) ||
+    FAMILY_SLUG_SETS.financePrepaymentForeclosure.has(slug) ||
+    FAMILY_SLUG_SETS.financeEmiSchedulePlanning.has(slug) ||
+    FAMILY_SLUG_SETS.financeRegionSpecific.has(slug) ||
+    FAMILY_SLUG_SETS.financeSmartAiLoan.has(slug) ||
+    FAMILY_SLUG_SETS.financeLoanMicroTools.has(slug) ||
+    FAMILY_SLUG_SETS.financeCoreSalary.has(slug) ||
+    FAMILY_SLUG_SETS.financeIndiaSalary.has(slug) ||
+    FAMILY_SLUG_SETS.aiFinanceSmart.has(slug) ||
+    FAMILY_SLUG_SETS.aiEducationSmart.has(slug) ||
+    FAMILY_SLUG_SETS.aiHealthSmart.has(slug) ||
+    FAMILY_SLUG_SETS.aiDailyLifeSmart.has(slug) ||
+    FAMILY_SLUG_SETS.aiBusinessSmart.has(slug) ||
+    FAMILY_SLUG_SETS.aiDeveloperSmart.has(slug) ||
+    FAMILY_SLUG_SETS.aiConversionSmart.has(slug) ||
+    FAMILY_SLUG_SETS.aiPersonalizedSmart.has(slug) ||
+    FAMILY_SLUG_SETS.conversionTimeDateBasic.has(slug) ||
+    FAMILY_SLUG_SETS.conversionTimeDateAdvanced.has(slug) ||
+    FAMILY_SLUG_SETS.conversionTimeDateBusiness.has(slug) ||
+    FAMILY_SLUG_SETS.conversionTimeDatePersonal.has(slug) ||
+    FAMILY_SLUG_SETS.conversionTimeDateSpecialized.has(slug) ||
+    FAMILY_SLUG_SETS.conversionTimeDateFun.has(slug) ||
+    FAMILY_SLUG_SETS.conversionTimeDateSmart.has(slug)
   );
 }
 
@@ -33,6 +99,28 @@ export function allBulkFamilySlugs(): string[] {
   for (const s of FAMILY_SLUG_SETS.financeAdvancedPayment) out.add(s);
   for (const s of FAMILY_SLUG_SETS.financeLoanComparison) out.add(s);
   for (const s of FAMILY_SLUG_SETS.financeCreditDebt) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financePrepaymentForeclosure) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financeEmiSchedulePlanning) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financeRegionSpecific) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financeSmartAiLoan) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financeLoanMicroTools) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financeCoreSalary) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financeIndiaSalary) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.aiFinanceSmart) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.aiEducationSmart) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.aiHealthSmart) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.aiDailyLifeSmart) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.aiBusinessSmart) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.aiDeveloperSmart) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.aiConversionSmart) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.aiPersonalizedSmart) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.conversionTimeDateBasic) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.conversionTimeDateAdvanced) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.conversionTimeDateBusiness) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.conversionTimeDatePersonal) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.conversionTimeDateSpecialized) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.conversionTimeDateFun) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.conversionTimeDateSmart) out.add(s);
   return [...out].sort();
 }
 

@@ -1,6 +1,6 @@
 import type { CalculatorCategory, CalculatorDefinition, CalculatorFaqItem } from "../types";
 
-function baseFaq(vertical: string): CalculatorFaqItem[] {
+function baseFaq(vertical: string, category?: CalculatorCategory): CalculatorFaqItem[] {
   return [
     {
       question: "Does this tool store my inputs?",
@@ -9,7 +9,9 @@ function baseFaq(vertical: string): CalculatorFaqItem[] {
     {
       question: "Can I rely on this for legal, medical, or financial decisions?",
       answer:
-        vertical === "health-body"
+        category === "ai"
+          ? "No. These tools use fixed rules and heuristics—not a live AI model—and are not financial, medical, or legal advice."
+          : vertical === "health-body"
           ? "No. These are educational estimates only—not a medical device and not a substitute for a licensed clinician."
           : vertical === "finance-loan"
             ? "No. Lenders use their own rules, fees, and calendars. Treat results as planning math only."
@@ -69,7 +71,9 @@ export function buildHubSeoDefinition(args: {
       : args.vertical === "health-body"
         ? `${args.title}: educational estimator with clear limitations. Read the wellness disclaimer and compare trends only with professional context when decisions matter.`
         : args.vertical === "finance-loan"
-          ? `${args.title} using the same reducing-balance amortization engine as our core EMI tools—framed for this loan type with product-specific guidance in the article below.`
+          ? args.category === "ai"
+            ? `${args.title}: transparent rule-based hints in your browser—not a live AI model. Educational use only; not financial advice.`
+            : `${args.title} using the same reducing-balance amortization engine as our core EMI tools—framed for this loan type with product-specific guidance in the article below.`
           : `${args.title} with step-by-step numeric results, reference tables, and links to related math tools in the mathematics hub.`;
 
   return {
@@ -83,6 +87,6 @@ export function buildHubSeoDefinition(args: {
     description: `Free online ${stem} with transparent formulas and client-side computation.`,
     longDescription: longIntro,
     keywords,
-    faq: baseFaq(args.vertical),
+    faq: baseFaq(args.vertical, args.category),
   };
 }

@@ -1,0 +1,31 @@
+export type Mode =
+  | "budget"
+  | "expenseAnalyze"
+  | "savingsPlan"
+  | "expenseOptimize"
+  | "subscription"
+  | "investment"
+  | "portfolio"
+  | "sip"
+  | "risk"
+  | "allocation"
+  | "loanAdvisor"
+  | "emiOptimize"
+  | "debtRepay"
+  | "creditScore";
+
+export type AiFinanceSlug =
+  | "aist-ai-budget-planner"
+  | "aist-ai-expense-analyzer"
+  | "aist-ai-monthly-savings-planner"
+  | "aist-ai-expense-optimization-tool"
+  | "aist-ai-subscription-cost-analyzer"
+  | "aist-ai-investment-planner"
+  | "aist-ai-portfolio-analyzer"
+  | "aist-ai-sip-strategy-optimizer"
+  | "aist-ai-risk-analyzer-investor"
+  | "aist-ai-asset-allocation-calculator"
+  | "aist-ai-loan-advisor"
+  | "aist-ai-emi-strategy-optimizer"
+  | "aist-ai-debt-repayment-planner"
+  | "aist-ai-credit-score-improver";
