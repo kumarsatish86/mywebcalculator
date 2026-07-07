@@ -10,6 +10,16 @@ import { SMART_AI_LOAN_ARTICLES } from "./smartAiLoanContent";
 import { LOAN_MICRO_TOOLS_ARTICLES } from "./loanMicroToolsContent";
 import { CORE_SALARY_ARTICLES } from "./coreSalaryContent";
 import { INDIA_SALARY_ARTICLES } from "./indiaSalaryContent";
+import { TAX_DEDUCTION_ARTICLES } from "./taxDeductionContent";
+import { BENEFITS_CONTRIBUTIONS_ARTICLES } from "./benefitsContributionsContent";
+import { BONUS_INCENTIVE_ARTICLES } from "./bonusIncentiveContent";
+import { WORK_TIME_PAY_ARTICLES } from "./workTimePayContent";
+import { INTERNATIONAL_SALARY_ARTICLES } from "./internationalSalaryContent";
+import { SALARY_COMPARISON_PLANNING_ARTICLES } from "./salaryComparisonPlanningContent";
+import { SALARY_FINANCIAL_PLANNING_ARTICLES } from "./salaryFinancialPlanningContent";
+import { FREELANCE_GIG_INCOME_ARTICLES } from "./freelanceGigIncomeContent";
+import { HR_EMPLOYER_TOOLS_ARTICLES } from "./hrEmployerToolsContent";
+import { AI_POWERED_SALARY_ARTICLES } from "./aiPoweredSalaryContent";
 import { AI_FINANCE_SMART_ARTICLES } from "./aiFinanceSmartContent";
 import { AI_EDUCATION_SMART_ARTICLES } from "./aiEducationSmartContent";
 import { AI_HEALTH_SMART_ARTICLES } from "./aiHealthSmartContent";
@@ -38,6 +48,16 @@ const HAND_CRAFTED_ARTICLES: Record<string, RichArticle> = {
   ...LOAN_MICRO_TOOLS_ARTICLES,
   ...CORE_SALARY_ARTICLES,
   ...INDIA_SALARY_ARTICLES,
+  ...TAX_DEDUCTION_ARTICLES,
+  ...BENEFITS_CONTRIBUTIONS_ARTICLES,
+  ...BONUS_INCENTIVE_ARTICLES,
+  ...WORK_TIME_PAY_ARTICLES,
+  ...INTERNATIONAL_SALARY_ARTICLES,
+  ...SALARY_COMPARISON_PLANNING_ARTICLES,
+  ...SALARY_FINANCIAL_PLANNING_ARTICLES,
+  ...FREELANCE_GIG_INCOME_ARTICLES,
+  ...HR_EMPLOYER_TOOLS_ARTICLES,
+  ...AI_POWERED_SALARY_ARTICLES,
   ...AI_FINANCE_SMART_ARTICLES,
   ...AI_EDUCATION_SMART_ARTICLES,
   ...AI_HEALTH_SMART_ARTICLES,
@@ -71,6 +91,16 @@ export function isBulkFamilySlug(slug: string): boolean {
     FAMILY_SLUG_SETS.financeLoanMicroTools.has(slug) ||
     FAMILY_SLUG_SETS.financeCoreSalary.has(slug) ||
     FAMILY_SLUG_SETS.financeIndiaSalary.has(slug) ||
+    FAMILY_SLUG_SETS.financeTaxDeduction.has(slug) ||
+    FAMILY_SLUG_SETS.financeBenefitsContributions.has(slug) ||
+    FAMILY_SLUG_SETS.financeBonusIncentive.has(slug) ||
+    FAMILY_SLUG_SETS.financeWorkTimePay.has(slug) ||
+    FAMILY_SLUG_SETS.financeInternationalSalary.has(slug) ||
+    FAMILY_SLUG_SETS.financeSalaryComparisonPlanning.has(slug) ||
+    FAMILY_SLUG_SETS.financeSalaryFinancialPlanning.has(slug) ||
+    FAMILY_SLUG_SETS.financeFreelanceGigIncome.has(slug) ||
+    FAMILY_SLUG_SETS.financeHrEmployerTools.has(slug) ||
+    FAMILY_SLUG_SETS.financeAiPoweredSalary.has(slug) ||
     FAMILY_SLUG_SETS.aiFinanceSmart.has(slug) ||
     FAMILY_SLUG_SETS.aiEducationSmart.has(slug) ||
     FAMILY_SLUG_SETS.aiHealthSmart.has(slug) ||
@@ -106,6 +136,16 @@ export function allBulkFamilySlugs(): string[] {
   for (const s of FAMILY_SLUG_SETS.financeLoanMicroTools) out.add(s);
   for (const s of FAMILY_SLUG_SETS.financeCoreSalary) out.add(s);
   for (const s of FAMILY_SLUG_SETS.financeIndiaSalary) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financeTaxDeduction) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financeBenefitsContributions) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financeBonusIncentive) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financeWorkTimePay) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financeInternationalSalary) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financeSalaryComparisonPlanning) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financeSalaryFinancialPlanning) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financeFreelanceGigIncome) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financeHrEmployerTools) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.financeAiPoweredSalary) out.add(s);
   for (const s of FAMILY_SLUG_SETS.aiFinanceSmart) out.add(s);
   for (const s of FAMILY_SLUG_SETS.aiEducationSmart) out.add(s);
   for (const s of FAMILY_SLUG_SETS.aiHealthSmart) out.add(s);

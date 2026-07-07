@@ -1,10 +1,13 @@
-export type LoanCurrencyCode = "INR" | "USD" | "EUR" | "GBP";
+export type LoanCurrencyCode = "INR" | "USD" | "EUR" | "GBP" | "CAD" | "AUD" | "AED";
 
 const LOCALE_BY_CURRENCY: Record<LoanCurrencyCode, string> = {
   INR: "en-IN",
   USD: "en-US",
   EUR: "de-DE",
   GBP: "en-GB",
+  CAD: "en-CA",
+  AUD: "en-AU",
+  AED: "en-AE",
 };
 
 export function loanCurrencyLocale(code: LoanCurrencyCode): string {
@@ -29,7 +32,20 @@ export function formatLoanAxisTick(amount: number, currency: LoanCurrencyCode): 
     if (abs >= 1e3) return `${sign}₹${(abs / 1e3).toFixed(0)}k`;
     return `₹${Math.round(abs)}`;
   }
-  const sym = currency === "USD" ? "$" : currency === "EUR" ? "€" : "£";
+  const sym =
+    currency === "USD"
+      ? "$"
+      : currency === "EUR"
+        ? "€"
+        : currency === "GBP"
+          ? "£"
+          : currency === "CAD"
+            ? "C$"
+            : currency === "AUD"
+              ? "A$"
+              : currency === "AED"
+                ? "AED "
+                : "₹";
   if (abs >= 1e6) return `${sign}${sym}${(abs / 1e6).toFixed(1)}M`;
   if (abs >= 1e3) return `${sign}${sym}${(abs / 1e3).toFixed(0)}k`;
   return `${sym}${Math.round(abs)}`;

@@ -43,6 +43,16 @@ import { WeightedGpaCalculator } from "./WeightedGpaCalculator";
 import { BASIC_MATH_SLUGS } from "@/lib/calculators/basicMathSlugs";
 import { parseLoanSearchParamsToRecord, urlPrefsFromLoanQuery } from "@/lib/calculators/loanUrlParams";
 import { parseSalarySearchParams } from "@/lib/calculators/salaryCore";
+import { parseTaxDeductionSearchParams } from "@/lib/calculators/taxDeduction";
+import { parseBenefitsSearchParams } from "@/lib/calculators/benefitsContributions";
+import { parseBonusIncentiveSearchParams } from "@/lib/calculators/bonusIncentive";
+import { parseWorkTimePaySearchParams } from "@/lib/calculators/workTimePay";
+import { parseIntlSalarySearchParams } from "@/lib/calculators/internationalSalary";
+import { parseSalaryPlanningSearchParams } from "@/lib/calculators/salaryComparisonPlanning";
+import { parseSalaryFinancialPlanningSearchParams } from "@/lib/calculators/salaryFinancialPlanning";
+import { parseFreelanceGigSearchParams } from "@/lib/calculators/freelanceGigIncome";
+import { parseHrEmployerSearchParams } from "@/lib/calculators/hrEmployerTools";
+import { parseAiPoweredSalarySearchParams } from "@/lib/calculators/aiPoweredSalary";
 import { parseIndiaSalarySearchParams } from "@/lib/calculators/salaryIndia";
 import { parseAiFinanceSearchParams } from "@/lib/calculators/aiFinanceSmart";
 import { parseAiEducationSearchParams } from "@/lib/calculators/aiEducationSmart";
@@ -68,6 +78,16 @@ import { SmartAiLoanCalculatorHost } from "./family/SmartAiLoanCalculatorHost";
 import { LoanMicroToolsCalculatorHost } from "./family/LoanMicroToolsCalculatorHost";
 import { CoreSalaryCalculatorHost } from "./family/CoreSalaryCalculatorHost";
 import { IndiaSalaryCalculatorHost } from "./family/IndiaSalaryCalculatorHost";
+import { TaxDeductionCalculatorHost } from "./family/TaxDeductionCalculatorHost";
+import { BenefitsContributionsCalculatorHost } from "./family/BenefitsContributionsCalculatorHost";
+import { BonusIncentiveCalculatorHost } from "./family/BonusIncentiveCalculatorHost";
+import { WorkTimePayCalculatorHost } from "./family/WorkTimePayCalculatorHost";
+import { InternationalSalaryCalculatorHost } from "./family/InternationalSalaryCalculatorHost";
+import { SalaryComparisonPlanningCalculatorHost } from "./family/SalaryComparisonPlanningCalculatorHost";
+import { SalaryFinancialPlanningCalculatorHost } from "./family/SalaryFinancialPlanningCalculatorHost";
+import { FreelanceGigIncomeCalculatorHost } from "./family/FreelanceGigIncomeCalculatorHost";
+import { HrEmployerToolsCalculatorHost } from "./family/HrEmployerToolsCalculatorHost";
+import { AiPoweredSalaryCalculatorHost } from "./family/AiPoweredSalaryCalculatorHost";
 import { AiFinanceSmartCalculatorHost } from "./family/AiFinanceSmartCalculatorHost";
 import { AiEducationSmartCalculatorHost } from "./family/AiEducationSmartCalculatorHost";
 import { AiHealthSmartCalculatorHost } from "./family/AiHealthSmartCalculatorHost";
@@ -288,6 +308,86 @@ export function CalculatorRouter({ slug, initialSearchParams }: Props) {
     return (
       <LoanInitialInputsProvider value={q}>
         <IndiaSalaryCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.financeTaxDeduction.has(slug)) {
+    const q = initialSearchParams ? parseTaxDeductionSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <TaxDeductionCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.financeBenefitsContributions.has(slug)) {
+    const q = initialSearchParams ? parseBenefitsSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <BenefitsContributionsCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.financeBonusIncentive.has(slug)) {
+    const q = initialSearchParams ? parseBonusIncentiveSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <BonusIncentiveCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.financeWorkTimePay.has(slug)) {
+    const q = initialSearchParams ? parseWorkTimePaySearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <WorkTimePayCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.financeInternationalSalary.has(slug)) {
+    const q = initialSearchParams ? parseIntlSalarySearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <InternationalSalaryCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.financeSalaryComparisonPlanning.has(slug)) {
+    const q = initialSearchParams ? parseSalaryPlanningSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <SalaryComparisonPlanningCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.financeSalaryFinancialPlanning.has(slug)) {
+    const q = initialSearchParams ? parseSalaryFinancialPlanningSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <SalaryFinancialPlanningCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.financeFreelanceGigIncome.has(slug)) {
+    const q = initialSearchParams ? parseFreelanceGigSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <FreelanceGigIncomeCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.financeHrEmployerTools.has(slug)) {
+    const q = initialSearchParams ? parseHrEmployerSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <HrEmployerToolsCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.financeAiPoweredSalary.has(slug)) {
+    const q = initialSearchParams ? parseAiPoweredSalarySearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <AiPoweredSalaryCalculatorHost slug={slug} />
       </LoanInitialInputsProvider>
     );
   }

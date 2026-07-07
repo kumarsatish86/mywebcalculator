@@ -71,6 +71,56 @@ function financeIndiaSalaryCalculators(): SectionCalculatorNode[] {
   return node?.calculators ?? [];
 }
 
+function financeTaxDeductionCalculators(): SectionCalculatorNode[] {
+  const node = getSection("finance", "salary-income", "tax-deduction-calculators");
+  return node?.calculators ?? [];
+}
+
+function financeBenefitsContributionsCalculators(): SectionCalculatorNode[] {
+  const node = getSection("finance", "salary-income", "benefits-contributions");
+  return node?.calculators ?? [];
+}
+
+function financeBonusIncentiveCalculators(): SectionCalculatorNode[] {
+  const node = getSection("finance", "salary-income", "bonus-incentive-calculators");
+  return node?.calculators ?? [];
+}
+
+function financeWorkTimePayCalculators(): SectionCalculatorNode[] {
+  const node = getSection("finance", "salary-income", "work-time-pay-calculators");
+  return node?.calculators ?? [];
+}
+
+function financeInternationalSalaryCalculators(): SectionCalculatorNode[] {
+  const node = getSection("finance", "salary-income", "international-salary-calculators");
+  return node?.calculators ?? [];
+}
+
+function financeSalaryComparisonPlanningCalculators(): SectionCalculatorNode[] {
+  const node = getSection("finance", "salary-income", "salary-comparison-planning-calculators");
+  return node?.calculators ?? [];
+}
+
+function financeSalaryFinancialPlanningCalculators(): SectionCalculatorNode[] {
+  const node = getSection("finance", "salary-income", "salary-financial-planning");
+  return node?.calculators ?? [];
+}
+
+function financeFreelanceGigIncomeCalculators(): SectionCalculatorNode[] {
+  const node = getSection("finance", "salary-income", "freelancer-gig-income-calculators");
+  return node?.calculators ?? [];
+}
+
+function financeHrEmployerToolsCalculators(): SectionCalculatorNode[] {
+  const node = getSection("finance", "salary-income", "hr-employer-tools");
+  return node?.calculators ?? [];
+}
+
+function financeAiPoweredSalaryCalculators(): SectionCalculatorNode[] {
+  const node = getSection("finance", "salary-income", "ai-powered-salary-tools");
+  return node?.calculators ?? [];
+}
+
 function aiFinanceSmartToolsCalculators(): SectionCalculatorNode[] {
   const sec = AI_SMART_TOOLS_SECTIONS.find((s) => s.slug === "aist-finance");
   return sec?.calculators ?? [];
@@ -324,6 +374,126 @@ export function buildBulkRegistryEntries(existingSlugs: ReadonlySet<string>): Ca
     );
   }
 
+  for (const c of financeTaxDeductionCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "finance",
+        subCategorySlug: "salary-income",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of financeBenefitsContributionsCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "finance",
+        subCategorySlug: "salary-income",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of financeBonusIncentiveCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "finance",
+        subCategorySlug: "salary-income",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of financeWorkTimePayCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "finance",
+        subCategorySlug: "salary-income",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of financeInternationalSalaryCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "finance",
+        subCategorySlug: "salary-income",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of financeSalaryComparisonPlanningCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "finance",
+        subCategorySlug: "salary-income",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of financeSalaryFinancialPlanningCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "finance",
+        subCategorySlug: "salary-income",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of financeFreelanceGigIncomeCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "finance",
+        subCategorySlug: "salary-income",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of financeHrEmployerToolsCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "finance",
+        subCategorySlug: "salary-income",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of financeAiPoweredSalaryCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "finance",
+        subCategorySlug: "salary-income",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
   for (const c of aiFinanceSmartToolsCalculators()) {
     push(
       buildHubSeoDefinition({
@@ -522,6 +692,16 @@ export function bulkSlugSets(existingSlugs: ReadonlySet<string>): {
   financeLoanMicroTools: Set<string>;
   financeCoreSalary: Set<string>;
   financeIndiaSalary: Set<string>;
+  financeTaxDeduction: Set<string>;
+  financeBenefitsContributions: Set<string>;
+  financeBonusIncentive: Set<string>;
+  financeWorkTimePay: Set<string>;
+  financeInternationalSalary: Set<string>;
+  financeSalaryComparisonPlanning: Set<string>;
+  financeSalaryFinancialPlanning: Set<string>;
+  financeFreelanceGigIncome: Set<string>;
+  financeHrEmployerTools: Set<string>;
+  financeAiPoweredSalary: Set<string>;
   aiFinanceSmart: Set<string>;
   aiEducationSmart: Set<string>;
   aiHealthSmart: Set<string>;
@@ -552,6 +732,16 @@ export function bulkSlugSets(existingSlugs: ReadonlySet<string>): {
   const financeLoanMicroTools = new Set<string>();
   const financeCoreSalary = new Set<string>();
   const financeIndiaSalary = new Set<string>();
+  const financeTaxDeduction = new Set<string>();
+  const financeBenefitsContributions = new Set<string>();
+  const financeBonusIncentive = new Set<string>();
+  const financeWorkTimePay = new Set<string>();
+  const financeInternationalSalary = new Set<string>();
+  const financeSalaryComparisonPlanning = new Set<string>();
+  const financeSalaryFinancialPlanning = new Set<string>();
+  const financeFreelanceGigIncome = new Set<string>();
+  const financeHrEmployerTools = new Set<string>();
+  const financeAiPoweredSalary = new Set<string>();
   const aiFinanceSmart = new Set<string>();
   const aiEducationSmart = new Set<string>();
   const aiHealthSmart = new Set<string>();
@@ -611,6 +801,36 @@ export function bulkSlugSets(existingSlugs: ReadonlySet<string>): {
   }
   for (const c of financeIndiaSalaryCalculators()) {
     if (!existingSlugs.has(c.slug)) financeIndiaSalary.add(c.slug);
+  }
+  for (const c of financeTaxDeductionCalculators()) {
+    if (!existingSlugs.has(c.slug)) financeTaxDeduction.add(c.slug);
+  }
+  for (const c of financeBenefitsContributionsCalculators()) {
+    if (!existingSlugs.has(c.slug)) financeBenefitsContributions.add(c.slug);
+  }
+  for (const c of financeBonusIncentiveCalculators()) {
+    if (!existingSlugs.has(c.slug)) financeBonusIncentive.add(c.slug);
+  }
+  for (const c of financeWorkTimePayCalculators()) {
+    if (!existingSlugs.has(c.slug)) financeWorkTimePay.add(c.slug);
+  }
+  for (const c of financeInternationalSalaryCalculators()) {
+    if (!existingSlugs.has(c.slug)) financeInternationalSalary.add(c.slug);
+  }
+  for (const c of financeSalaryComparisonPlanningCalculators()) {
+    if (!existingSlugs.has(c.slug)) financeSalaryComparisonPlanning.add(c.slug);
+  }
+  for (const c of financeSalaryFinancialPlanningCalculators()) {
+    if (!existingSlugs.has(c.slug)) financeSalaryFinancialPlanning.add(c.slug);
+  }
+  for (const c of financeFreelanceGigIncomeCalculators()) {
+    if (!existingSlugs.has(c.slug)) financeFreelanceGigIncome.add(c.slug);
+  }
+  for (const c of financeHrEmployerToolsCalculators()) {
+    if (!existingSlugs.has(c.slug)) financeHrEmployerTools.add(c.slug);
+  }
+  for (const c of financeAiPoweredSalaryCalculators()) {
+    if (!existingSlugs.has(c.slug)) financeAiPoweredSalary.add(c.slug);
   }
   for (const c of aiFinanceSmartToolsCalculators()) {
     if (!existingSlugs.has(c.slug)) aiFinanceSmart.add(c.slug);
@@ -673,6 +893,16 @@ export function bulkSlugSets(existingSlugs: ReadonlySet<string>): {
     financeLoanMicroTools,
     financeCoreSalary,
     financeIndiaSalary,
+    financeTaxDeduction,
+    financeBenefitsContributions,
+    financeBonusIncentive,
+    financeWorkTimePay,
+    financeInternationalSalary,
+    financeSalaryComparisonPlanning,
+    financeSalaryFinancialPlanning,
+    financeFreelanceGigIncome,
+    financeHrEmployerTools,
+    financeAiPoweredSalary,
     aiFinanceSmart,
     aiEducationSmart,
     aiHealthSmart,

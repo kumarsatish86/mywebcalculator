@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(node -e \"const f=require\\('fs'\\).readFileSync\\('lib/calculator-seo/coreSalaryContent.ts','utf8'\\); console.log\\('Lines:', f.split\\('\\\\n'\\).length, '| Words:', f.split\\(/\\\\s+/\\).length\\)\")"
+    ]
+  }
+}
