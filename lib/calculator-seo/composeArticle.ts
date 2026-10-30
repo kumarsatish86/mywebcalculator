@@ -263,8 +263,49 @@ function buildMeta(def: CalculatorDefinition, vertical: RichArticleVertical, see
 export function verticalForDefinition(def: CalculatorDefinition): RichArticleVertical | null {
   if (def.category === "finance" && def.subCategorySlug === "loans-emi") return "finance-loan";
   if (def.category === "education" && def.subCategorySlug === "mathematics") return "education-math";
-  if (def.category === "health" && def.subCategorySlug === "body-metrics") return "health-body";
-  if (def.category === "engineering" && def.subCategorySlug === "electrical") return "engineering-electrical";
+  if (
+    def.category === "health" &&
+    (def.subCategorySlug === "body-metrics" ||
+      def.subCategorySlug === "medical" ||
+      def.subCategorySlug === "diet-nutrition")
+  ) {
+    return "health-body";
+  }
+  if (
+    def.category === "engineering" &&
+    (def.subCategorySlug === "electrical" ||
+      def.subCategorySlug === "civil" ||
+      def.subCategorySlug === "it-dev")
+  ) {
+    return "engineering-electrical";
+  }
+  if (
+    def.category === "daily" &&
+    (def.subCategorySlug === "home-utility" ||
+      def.subCategorySlug === "shopping-discount" ||
+      def.subCategorySlug === "travel")
+  ) {
+    return "finance-loan";
+  }
+  if (
+    def.category === "conversion" &&
+    (def.subCategorySlug === "unit-converters" ||
+      def.subCategorySlug === "time-date" ||
+      def.subCategorySlug === "currency")
+  ) {
+    return "finance-loan";
+  }
+  if (
+    def.category === "business" &&
+    (def.subCategorySlug === "business-finance" ||
+      def.subCategorySlug === "marketing" ||
+      def.subCategorySlug === "hr-productivity")
+  ) {
+    return "finance-loan";
+  }
+  if (def.category === "ai" && (def.subCategorySlug === "generators" || def.subCategorySlug === "smart-tools")) {
+    return "finance-loan";
+  }
   return null;
 }
 

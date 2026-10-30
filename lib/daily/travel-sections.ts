@@ -1,6 +1,6 @@
 import type { SectionNode } from "../hub-section-types";
 
-const p = (slug: string, title: string) => ({ slug, title, status: "planned" as const });
+const live = (slug: string, title: string) => ({ slug, title });
 
 export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
   {
@@ -8,14 +8,14 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "Fuel and vehicle travel calculators",
     description: "Trip fuel, mileage costs, EV range, and simple operating cost estimates.",
     calculators: [
-      p("travel-fuel-cost-calculator", "Fuel Cost Calculator"),
-      p("travel-mileage-calculator", "Mileage Calculator"),
-      p("travel-mpg-calculator", "MPG Calculator"),
-      p("travel-km-per-liter-calculator", "km per Liter Calculator"),
-      p("travel-gas-price-trip-calculator", "Gas Price Trip Calculator"),
-      p("travel-ev-charging-cost-trip-calculator", "EV Charging Cost Trip Calculator"),
-      p("travel-range-estimator", "Range Estimator"),
-      p("travel-toll-cost-estimator", "Toll Cost Estimator"),
+      live("travel-fuel-cost-calculator", "Fuel Cost Calculator"),
+      live("travel-mileage-calculator", "Mileage Calculator"),
+      live("travel-mpg-calculator", "MPG Calculator"),
+      live("travel-km-per-liter-calculator", "km per Liter Calculator"),
+      live("travel-gas-price-trip-calculator", "Gas Price Trip Calculator"),
+      live("travel-ev-charging-cost-trip-calculator", "EV Charging Cost Trip Calculator"),
+      live("travel-range-estimator", "Range Estimator"),
+      live("travel-toll-cost-estimator", "Toll Cost Estimator"),
     ],
   },
   {
@@ -23,11 +23,11 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "Trip planning calculators",
     description: "Budget envelopes, daily spend, multi-city costs, and buffer planning.",
     calculators: [
-      p("travel-trip-budget-calculator", "Trip Budget Calculator"),
-      p("travel-daily-travel-budget-calculator", "Daily Travel Budget Calculator"),
-      p("travel-multi-city-cost-estimator", "Multi-city Cost Estimator"),
-      p("travel-contingency-fund-calculator", "Contingency Fund Calculator"),
-      p("travel-trip-duration-cost-calculator", "Trip Duration Cost Calculator"),
+      live("travel-trip-budget-calculator", "Trip Budget Calculator"),
+      live("travel-daily-travel-budget-calculator", "Daily Travel Budget Calculator"),
+      live("travel-multi-city-cost-estimator", "Multi-city Cost Estimator"),
+      live("travel-contingency-fund-calculator", "Contingency Fund Calculator"),
+      live("travel-trip-duration-cost-calculator", "Trip Duration Cost Calculator"),
     ],
   },
   {
@@ -35,11 +35,11 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "Accommodation calculators",
     description: "Nightly rates with fees, length of stay, and resort or cleaning extras.",
     calculators: [
-      p("travel-hotel-stay-cost-calculator", "Hotel Stay Cost Calculator"),
-      p("travel-nightly-rate-with-fees-calculator", "Nightly Rate with Fees Calculator"),
-      p("travel-resort-fee-total-calculator", "Resort Fee Total Calculator"),
-      p("travel-extended-stay-discount-calculator", "Extended Stay Discount Calculator"),
-      p("travel-cleaning-fee-amortization-calculator", "Cleaning Fee Amortization Calculator"),
+      live("travel-hotel-stay-cost-calculator", "Hotel Stay Cost Calculator"),
+      live("travel-nightly-rate-with-fees-calculator", "Nightly Rate with Fees Calculator"),
+      live("travel-resort-fee-total-calculator", "Resort Fee Total Calculator"),
+      live("travel-extended-stay-discount-calculator", "Extended Stay Discount Calculator"),
+      live("travel-cleaning-fee-amortization-calculator", "Cleaning Fee Amortization Calculator"),
     ],
   },
   {
@@ -47,11 +47,11 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "Flight and airfare calculators",
     description: "Per-mile costs, baggage fees, seat upgrades, and reward mile value.",
     calculators: [
-      p("travel-airfare-per-mile-calculator", "Airfare per Mile Calculator"),
-      p("travel-baggage-fee-total-calculator", "Baggage Fee Total Calculator"),
-      p("travel-seat-upgrade-value-calculator", "Seat Upgrade Value Calculator"),
-      p("travel-miles-to-dollar-value-calculator", "Miles to Dollar Value Calculator"),
-      p("travel-layover-time-cost-calculator", "Layover Time Cost Calculator"),
+      live("travel-airfare-per-mile-calculator", "Airfare per Mile Calculator"),
+      live("travel-baggage-fee-total-calculator", "Baggage Fee Total Calculator"),
+      live("travel-seat-upgrade-value-calculator", "Seat Upgrade Value Calculator"),
+      live("travel-miles-to-dollar-value-calculator", "Miles to Dollar Value Calculator"),
+      live("travel-layover-time-cost-calculator", "Layover Time Cost Calculator"),
     ],
   },
   {
@@ -59,10 +59,10 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "Currency and international travel calculators",
     description: "FX budgets, fee-adjusted rates, and tipping abroad.",
     calculators: [
-      p("travel-currency-exchange-budget-calculator", "Currency Exchange Budget Calculator"),
-      p("travel-atm-fee-adjusted-rate-calculator", "ATM Fee-adjusted Rate Calculator"),
-      p("travel-tipping-abroad-calculator", "Tipping Abroad Calculator"),
-      p("travel-purchasing-power-comparison-calculator", "Purchasing Power Comparison Calculator"),
+      live("travel-currency-exchange-budget-calculator", "Currency Exchange Budget Calculator"),
+      live("travel-atm-fee-adjusted-rate-calculator", "ATM Fee-adjusted Rate Calculator"),
+      live("travel-tipping-abroad-calculator", "Tipping Abroad Calculator"),
+      live("travel-purchasing-power-comparison-calculator", "Purchasing Power Comparison Calculator"),
     ],
   },
   {
@@ -70,10 +70,10 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "Food and dining travel calculators",
     description: "Per diem meals, group splits, and all-inclusive value checks.",
     calculators: [
-      p("travel-meal-per-diem-calculator", "Meal Per Diem Calculator"),
-      p("travel-restaurant-bill-split-travel-calculator", "Restaurant Bill Split (Travel)"),
-      p("travel-all-inclusive-value-calculator", "All-inclusive Value Calculator"),
-      p("travel-street-food-budget-calculator", "Street Food Budget Calculator"),
+      live("travel-meal-per-diem-calculator", "Meal Per Diem Calculator"),
+      live("travel-restaurant-bill-split-travel-calculator", "Restaurant Bill Split (Travel)"),
+      live("travel-all-inclusive-value-calculator", "All-inclusive Value Calculator"),
+      live("travel-street-food-budget-calculator", "Street Food Budget Calculator"),
     ],
   },
   {
@@ -81,10 +81,10 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "Luggage and packing calculators",
     description: "Weight limits, linear inches, and carry-on compliance hints.",
     calculators: [
-      p("travel-luggage-weight-allowance-calculator", "Luggage Weight Allowance Calculator"),
-      p("travel-linear-inches-bag-calculator", "Linear Inches Bag Calculator"),
-      p("travel-carry-on-compliance-estimator", "Carry-on Compliance Estimator"),
-      p("travel-packing-list-cost-estimator", "Packing List Cost Estimator"),
+      live("travel-luggage-weight-allowance-calculator", "Luggage Weight Allowance Calculator"),
+      live("travel-linear-inches-bag-calculator", "Linear Inches Bag Calculator"),
+      live("travel-carry-on-compliance-estimator", "Carry-on Compliance Estimator"),
+      live("travel-packing-list-cost-estimator", "Packing List Cost Estimator"),
     ],
   },
   {
@@ -92,10 +92,10 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "Public transport calculators",
     description: "Passes versus pay-per-ride, commuter totals, and zone fares.",
     calculators: [
-      p("travel-transit-pass-vs-pay-per-ride-calculator", "Transit Pass vs Pay-per-ride Calculator"),
-      p("travel-monthly-commute-cost-calculator", "Monthly Commute Cost Calculator"),
-      p("travel-zone-fare-estimator", "Zone Fare Estimator"),
-      p("travel-multi-day-transit-card-calculator", "Multi-day Transit Card Calculator"),
+      live("travel-transit-pass-vs-pay-per-ride-calculator", "Transit Pass vs Pay-per-ride Calculator"),
+      live("travel-monthly-commute-cost-calculator", "Monthly Commute Cost Calculator"),
+      live("travel-zone-fare-estimator", "Zone Fare Estimator"),
+      live("travel-multi-day-transit-card-calculator", "Multi-day Transit Card Calculator"),
     ],
   },
   {
@@ -103,10 +103,10 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "Taxi and rideshare calculators",
     description: "Fare estimates, surge multipliers, and tip-inclusive totals.",
     calculators: [
-      p("travel-taxi-fare-estimator", "Taxi Fare Estimator"),
-      p("travel-rideshare-cost-comparison-calculator", "Rideshare Cost Comparison Calculator"),
-      p("travel-surge-pricing-impact-calculator", "Surge Pricing Impact Calculator"),
-      p("travel-airport-transfer-cost-calculator", "Airport Transfer Cost Calculator"),
+      live("travel-taxi-fare-estimator", "Taxi Fare Estimator"),
+      live("travel-rideshare-cost-comparison-calculator", "Rideshare Cost Comparison Calculator"),
+      live("travel-surge-pricing-impact-calculator", "Surge Pricing Impact Calculator"),
+      live("travel-airport-transfer-cost-calculator", "Airport Transfer Cost Calculator"),
     ],
   },
   {
@@ -114,10 +114,10 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "Time and distance travel calculators",
     description: "Drive time, time zones, jet lag windows, and average speed.",
     calculators: [
-      p("travel-drive-time-calculator", "Drive Time Calculator"),
-      p("travel-time-zone-difference-calculator", "Time Zone Difference Calculator"),
-      p("travel-jet-lag-adjustment-estimator", "Jet Lag Adjustment Estimator"),
-      p("travel-average-speed-trip-calculator", "Average Speed Trip Calculator"),
+      live("travel-drive-time-calculator", "Drive Time Calculator"),
+      live("travel-time-zone-difference-calculator", "Time Zone Difference Calculator"),
+      live("travel-jet-lag-adjustment-estimator", "Jet Lag Adjustment Estimator"),
+      live("travel-average-speed-trip-calculator", "Average Speed Trip Calculator"),
     ],
   },
   {
@@ -125,10 +125,10 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "Vacation and holiday calculators",
     description: "Family trip budgets, cruise packages, and peak versus off-season savings.",
     calculators: [
-      p("travel-family-vacation-budget-calculator", "Family Vacation Budget Calculator"),
-      p("travel-cruise-package-comparison-calculator", "Cruise Package Comparison Calculator"),
-      p("travel-peak-vs-off-season-savings-calculator", "Peak vs Off-season Savings Calculator"),
-      p("travel-holiday-surcharge-estimator", "Holiday Surcharge Estimator"),
+      live("travel-family-vacation-budget-calculator", "Family Vacation Budget Calculator"),
+      live("travel-cruise-package-comparison-calculator", "Cruise Package Comparison Calculator"),
+      live("travel-peak-vs-off-season-savings-calculator", "Peak vs Off-season Savings Calculator"),
+      live("travel-holiday-surcharge-estimator", "Holiday Surcharge Estimator"),
     ],
   },
   {
@@ -136,10 +136,10 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "Travel insurance calculators",
     description: "Premium versus risk, cancellation cover, and medical add-on value.",
     calculators: [
-      p("travel-insurance-premium-estimator", "Travel Insurance Premium Estimator"),
-      p("travel-cancellation-cover-value-calculator", "Cancellation Cover Value Calculator"),
-      p("travel-medical-cover-comparison-calculator", "Medical Cover Comparison Calculator"),
-      p("travel-gear-cover-calculator", "Gear Cover Calculator"),
+      live("travel-insurance-premium-estimator", "Travel Insurance Premium Estimator"),
+      live("travel-cancellation-cover-value-calculator", "Cancellation Cover Value Calculator"),
+      live("travel-medical-cover-comparison-calculator", "Medical Cover Comparison Calculator"),
+      live("travel-gear-cover-calculator", "Gear Cover Calculator"),
     ],
   },
   {
@@ -147,10 +147,10 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "Group and split-cost travel calculators",
     description: "Shared lodging, pooled fuel, and fair expense splits for groups.",
     calculators: [
-      p("travel-group-expense-split-calculator", "Group Expense Split Calculator"),
-      p("travel-shared-accommodation-per-person-calculator", "Shared Accommodation per Person Calculator"),
-      p("travel-pooled-fuel-split-calculator", "Pooled Fuel Split Calculator"),
-      p("travel-tour-package-per-head-calculator", "Tour Package per Head Calculator"),
+      live("travel-group-expense-split-calculator", "Group Expense Split Calculator"),
+      live("travel-shared-accommodation-per-person-calculator", "Shared Accommodation per Person Calculator"),
+      live("travel-pooled-fuel-split-calculator", "Pooled Fuel Split Calculator"),
+      live("travel-tour-package-per-head-calculator", "Tour Package per Head Calculator"),
     ],
   },
   {
@@ -158,10 +158,10 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "Eco and sustainable travel calculators",
     description: "Trip emissions, offset costs, and train versus fly comparisons.",
     calculators: [
-      p("travel-trip-carbon-footprint-estimator", "Trip Carbon Footprint Estimator"),
-      p("travel-carbon-offset-cost-calculator", "Carbon Offset Cost Calculator"),
-      p("travel-train-vs-fly-emissions-calculator", "Train vs Fly Emissions Calculator"),
-      p("travel-eco-hotel-premium-calculator", "Eco Hotel Premium Calculator"),
+      live("travel-trip-carbon-footprint-estimator", "Trip Carbon Footprint Estimator"),
+      live("travel-carbon-offset-cost-calculator", "Carbon Offset Cost Calculator"),
+      live("travel-train-vs-fly-emissions-calculator", "Train vs Fly Emissions Calculator"),
+      live("travel-eco-hotel-premium-calculator", "Eco Hotel Premium Calculator"),
     ],
   },
   {
@@ -169,10 +169,10 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "Business travel calculators",
     description: "Per diems, reimbursable mileage, and blended trip deductions.",
     calculators: [
-      p("travel-business-per-diem-calculator", "Business Per Diem Calculator"),
-      p("travel-reimbursable-mileage-calculator", "Reimbursable Mileage Calculator"),
-      p("travel-blended-business-leisure-cost-calculator", "Blended Business-leisure Cost Calculator"),
-      p("travel-client-billable-travel-calculator", "Client Billable Travel Calculator"),
+      live("travel-business-per-diem-calculator", "Business Per Diem Calculator"),
+      live("travel-reimbursable-mileage-calculator", "Reimbursable Mileage Calculator"),
+      live("travel-blended-business-leisure-cost-calculator", "Blended Business-leisure Cost Calculator"),
+      live("travel-client-billable-travel-calculator", "Client Billable Travel Calculator"),
     ],
   },
   {
@@ -180,9 +180,9 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "AI-assisted travel planning calculators",
     description: "Itinerary cost envelopes, prompt-based budget drafts, and scenario tweaks.",
     calculators: [
-      p("travel-ai-itinerary-budget-envelope-calculator", "AI Itinerary Budget Envelope Calculator"),
-      p("travel-ai-scenario-cost-tweak-calculator", "AI Scenario Cost Tweak Calculator"),
-      p("travel-ai-alternative-destination-cost-calculator", "AI Alternative Destination Cost Calculator"),
+      live("travel-ai-itinerary-budget-envelope-calculator", "AI Itinerary Budget Envelope Calculator"),
+      live("travel-ai-scenario-cost-tweak-calculator", "AI Scenario Cost Tweak Calculator"),
+      live("travel-ai-alternative-destination-cost-calculator", "AI Alternative Destination Cost Calculator"),
     ],
   },
   {
@@ -190,10 +190,10 @@ export const DAILY_TRAVEL_SECTIONS: SectionNode[] = [
     title: "Quote and comparison travel calculators",
     description: "Side-by-side quotes for packages, insurance, and transport bundles.",
     calculators: [
-      p("travel-package-quote-comparison-calculator", "Package Quote Comparison Calculator"),
-      p("travel-insurance-quote-comparison-calculator", "Insurance Quote Comparison Calculator"),
-      p("travel-transport-bundle-comparison-calculator", "Transport Bundle Comparison Calculator"),
-      p("travel-ota-vs-direct-booking-calculator", "OTA vs Direct Booking Calculator"),
+      live("travel-package-quote-comparison-calculator", "Package Quote Comparison Calculator"),
+      live("travel-insurance-quote-comparison-calculator", "Insurance Quote Comparison Calculator"),
+      live("travel-transport-bundle-comparison-calculator", "Transport Bundle Comparison Calculator"),
+      live("travel-ota-vs-direct-booking-calculator", "OTA vs Direct Booking Calculator"),
     ],
   },
 ];

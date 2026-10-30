@@ -125,6 +125,9 @@ import { parseExamBasicScoreSearchParams } from "@/lib/calculators/examBasicScor
 import { parseExamTargetScoreSearchParams } from "@/lib/calculators/examTargetScore";
 import { parseExamGpaCgpaSearchParams } from "@/lib/calculators/examGpaCgpa";
 import { parseExamStrategySearchParams } from "@/lib/calculators/examStrategy";
+import { parsePlannerSearchParams } from "@/lib/calculators/examStrategyPlanner";
+import { parseLpsSearchParams } from "@/lib/calculators/engineering/lightningProtection";
+import { parseDiSearchParams } from "@/lib/calculators/dailyInterestDecision";
 import { parseExamPerformanceSearchParams } from "@/lib/calculators/examPerformanceAnalysis";
 import { parseExamCompetitiveSearchParams } from "@/lib/calculators/examCompetitive";
 import { parseExamSchoolCollegeSearchParams } from "@/lib/calculators/examSchoolCollege";
@@ -140,9 +143,89 @@ import { parseAiPersonalizedSearchParams } from "@/lib/calculators/aiPersonalize
 import { parseTimeDateSearchParams } from "@/lib/calculators/timeDateParams";
 import { FAMILY_SLUG_SETS } from "@/lib/registry";
 import { BodyMetricsCalculatorHost } from "./family/BodyMetricsCalculatorHost";
+import { MedicalClinicalRiskCalculatorHost } from "./family/MedicalClinicalRiskCalculatorHost";
+import { MedicalLifestyleCalculatorHost } from "./family/MedicalLifestyleCalculatorHost";
+import { MedicalGeriatricsCalculatorHost } from "./family/MedicalGeriatricsCalculatorHost";
+import { MedicalOrthopedicCalculatorHost } from "./family/MedicalOrthopedicCalculatorHost";
+import { MedicalOncologyCalculatorHost } from "./family/MedicalOncologyCalculatorHost";
+import { MedicalRespiratoryCalculatorHost } from "./family/MedicalRespiratoryCalculatorHost";
+import { MedicalEmergencyCalculatorHost } from "./family/MedicalEmergencyCalculatorHost";
+import { MedicalNeurologyCalculatorHost } from "./family/MedicalNeurologyCalculatorHost";
+import { parseMedicalClinicalSearchParams } from "@/lib/calculators/medicalClinicalRisk";
+import { parseMedicalLifestyleSearchParams } from "@/lib/calculators/medicalLifestyle";
+import { parseMedicalGeriatricsSearchParams } from "@/lib/calculators/medicalGeriatrics";
+import { parseMedicalOrthoSearchParams } from "@/lib/calculators/medicalOrthopedic";
+import { parseMedicalOncologySearchParams } from "@/lib/calculators/medicalOncology";
+import { parseMedicalRespSearchParams } from "@/lib/calculators/medicalRespiratory";
+import { parseMedicalEmergencySearchParams } from "@/lib/calculators/medicalEmergency";
+import { parseMedicalNeuroSearchParams } from "@/lib/calculators/medicalNeurology";
+import { parseMedicalBodySearchParams } from "@/lib/calculators/medicalBodyMetrics";
+import { parseMedicalNutritionMedSearchParams } from "@/lib/calculators/medicalNutritionMed";
+import { parseMedicalHeartSearchParams } from "@/lib/calculators/medicalHeart";
+import { parseMedicalDiabetesSearchParams } from "@/lib/calculators/medicalDiabetes";
+import { parseMedicalPregnancySearchParams } from "@/lib/calculators/medicalPregnancy";
+import { parseMedicalPedsSearchParams } from "@/lib/calculators/medicalPediatrics";
+import { parseMedicalDrugSearchParams } from "@/lib/calculators/medicalDrugDosage";
+import { parseMedicalLabSearchParams } from "@/lib/calculators/medicalLabValues";
+import { MedicalBodyMetricsCalculatorHost } from "./family/MedicalBodyMetricsCalculatorHost";
+import { MedicalNutritionMedCalculatorHost } from "./family/MedicalNutritionMedCalculatorHost";
+import { MedicalHeartCalculatorHost } from "./family/MedicalHeartCalculatorHost";
+import { MedicalDiabetesCalculatorHost } from "./family/MedicalDiabetesCalculatorHost";
+import { MedicalPregnancyCalculatorHost } from "./family/MedicalPregnancyCalculatorHost";
+import { MedicalPediatricsCalculatorHost } from "./family/MedicalPediatricsCalculatorHost";
+import { MedicalDrugDosageCalculatorHost } from "./family/MedicalDrugDosageCalculatorHost";
+import { MedicalLabValuesCalculatorHost } from "./family/MedicalLabValuesCalculatorHost";
+import { DietCalorieEnergyCalculatorHost } from "./family/DietCalorieEnergyCalculatorHost";
+import { DietMacrosCalculatorHost } from "./family/DietMacrosCalculatorHost";
+import { DietWeightMgmtCalculatorHost } from "./family/DietWeightMgmtCalculatorHost";
+import { DietHydrationCalculatorHost } from "./family/DietHydrationCalculatorHost";
+import { DietMealPlanningCalculatorHost } from "./family/DietMealPlanningCalculatorHost";
+import { DietTrendsCalculatorHost } from "./family/DietTrendsCalculatorHost";
+import { DietMicrosCalculatorHost } from "./family/DietMicrosCalculatorHost";
+import { DietFitnessCalculatorHost } from "./family/DietFitnessCalculatorHost";
+import { DietConditionCalculatorHost } from "./family/DietConditionCalculatorHost";
+import { DietAgeGenderCalculatorHost } from "./family/DietAgeGenderCalculatorHost";
+import { DietFoodBasedCalculatorHost } from "./family/DietFoodBasedCalculatorHost";
+import { DietAiAdvancedCalculatorHost } from "./family/DietAiAdvancedCalculatorHost";
+import { parseDietCalorieSearchParams } from "@/lib/calculators/dietCalorieEnergy";
+import { parseDietMacroSearchParams } from "@/lib/calculators/dietMacros";
+import { parseDietWeightSearchParams } from "@/lib/calculators/dietWeightMgmt";
+import { parseDietHydrationSearchParams } from "@/lib/calculators/dietHydration";
+import { parseDietMealSearchParams } from "@/lib/calculators/dietMealPlanning";
+import { parseDietTrendsSearchParams } from "@/lib/calculators/dietTrends";
+import { parseDietMicroSearchParams } from "@/lib/calculators/dietMicros";
+import { parseDietFitnessSearchParams } from "@/lib/calculators/dietFitness";
+import { parseDietConditionSearchParams } from "@/lib/calculators/dietCondition";
+import { parseDietAgeSearchParams } from "@/lib/calculators/dietAgeGender";
+import { parseDietFoodSearchParams } from "@/lib/calculators/dietFoodBased";
+import { parseDietAiSearchParams } from "@/lib/calculators/dietAiAdvanced";
 import { CreditDebtCalculatorHost } from "./family/CreditDebtCalculatorHost";
 import { EduMathCalculatorHost } from "./family/EduMathCalculatorHost";
 import { ElectricalCalculatorHost } from "./family/ElectricalCalculatorHost";
+import { LightningProtectionWorkspace } from "./LightningProtectionWorkspace";
+import { DailyInterestWorkspace } from "./DailyInterestWorkspace";
+import { CivilCalculatorRouter } from "./family/CivilCalculatorRouter";
+import { parseCivilSearchParams } from "@/lib/calculators/civilHelpers";
+import { ItDevCalculatorRouter } from "./family/ItDevCalculatorRouter";
+import { parseItSearchParams } from "@/lib/calculators/itHelpers";
+import { HomeUtilityCalculatorRouter } from "./family/HomeUtilityCalculatorRouter";
+import { parseHomeSearchParams } from "@/lib/calculators/homeHelpers";
+import { ShopDiscountCalculatorRouter } from "./family/ShopDiscountCalculatorRouter";
+import { parseShopSearchParams } from "@/lib/calculators/shopHelpers";
+import { TravelCalculatorRouter } from "./family/TravelCalculatorRouter";
+import { parseTravelSearchParams } from "@/lib/calculators/travelHelpers";
+import { UnitConvertersCalculatorRouter } from "./family/UnitConvertersCalculatorRouter";
+import { parseUnitSearchParams } from "@/lib/calculators/unitHelpers";
+import { CurrencyCalculatorRouter } from "./family/CurrencyCalculatorRouter";
+import { parseCurSearchParams } from "@/lib/calculators/curHelpers";
+import { BizfinCalculatorRouter } from "./family/BizfinCalculatorRouter";
+import { parseBizfinSearchParams } from "@/lib/calculators/bizfinHelpers";
+import { MktCalculatorRouter } from "./family/MktCalculatorRouter";
+import { parseMktSearchParams } from "@/lib/calculators/mktHelpers";
+import { HrCalculatorRouter } from "./family/HrCalculatorRouter";
+import { parseHrSearchParams } from "@/lib/calculators/hrHelpers";
+import { AigenCalculatorRouter } from "./family/AigenCalculatorRouter";
+import { parseAigenSearchParams } from "@/lib/calculators/aigenHelpers";
 import { LoanAdvancedPaymentCalculatorHost } from "./family/LoanAdvancedPaymentCalculatorHost";
 import { LoanComparisonCalculatorHost } from "./family/LoanComparisonCalculatorHost";
 import { LoanTypeCalculatorHost } from "./family/LoanTypeCalculatorHost";
@@ -235,6 +318,7 @@ import { ExamBasicScoreCalculatorHost } from "./family/ExamBasicScoreCalculatorH
 import { ExamTargetScoreCalculatorHost } from "./family/ExamTargetScoreCalculatorHost";
 import { ExamGpaCgpaCalculatorHost } from "./family/ExamGpaCgpaCalculatorHost";
 import { ExamStrategyCalculatorHost } from "./family/ExamStrategyCalculatorHost";
+import { ExamStrategyPlannerHost } from "./ExamStrategyPlannerHost";
 import { ExamPerformanceAnalysisCalculatorHost } from "./family/ExamPerformanceAnalysisCalculatorHost";
 import { ExamCompetitiveCalculatorHost } from "./family/ExamCompetitiveCalculatorHost";
 import { ExamSchoolCollegeCalculatorHost } from "./family/ExamSchoolCollegeCalculatorHost";
@@ -329,11 +413,331 @@ type Props = {
 };
 
 export function CalculatorRouter({ slug, initialSearchParams }: Props) {
+  if (slug === "elec-lightning-protection-calculator") {
+    const q = initialSearchParams ? parseLpsSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <LightningProtectionWorkspace />
+      </LoanInitialInputsProvider>
+    );
+  }
   if (FAMILY_SLUG_SETS.electrical.has(slug)) {
     return <ElectricalCalculatorHost slug={slug} />;
   }
+  if (FAMILY_SLUG_SETS.engineeringCivil.has(slug)) {
+    const q = initialSearchParams ? parseCivilSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <CivilCalculatorRouter slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.engineeringItDev.has(slug)) {
+    const q = initialSearchParams ? parseItSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <ItDevCalculatorRouter slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.dailyHomeUtility.has(slug)) {
+    const q = initialSearchParams ? parseHomeSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <HomeUtilityCalculatorRouter slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.dailyShoppingDiscount.has(slug)) {
+    const q = initialSearchParams ? parseShopSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <ShopDiscountCalculatorRouter slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.dailyTravel.has(slug)) {
+    const q = initialSearchParams ? parseTravelSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <TravelCalculatorRouter slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.conversionUnitConverters.has(slug)) {
+    const q = initialSearchParams ? parseUnitSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <UnitConvertersCalculatorRouter slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.conversionCurrency.has(slug)) {
+    const q = initialSearchParams ? parseCurSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <CurrencyCalculatorRouter slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.businessFinance.has(slug)) {
+    const q = initialSearchParams ? parseBizfinSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <BizfinCalculatorRouter slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.businessMarketing.has(slug)) {
+    const q = initialSearchParams ? parseMktSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MktCalculatorRouter slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.businessHrProductivity.has(slug)) {
+    const q = initialSearchParams ? parseHrSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <HrCalculatorRouter slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.aiGenerators.has(slug)) {
+    const q = initialSearchParams ? parseAigenSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <AigenCalculatorRouter slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
   if (FAMILY_SLUG_SETS.healthBody.has(slug)) {
     return <BodyMetricsCalculatorHost slug={slug} />;
+  }
+  if (FAMILY_SLUG_SETS.healthMedicalClinicalRisk.has(slug)) {
+    const q = initialSearchParams ? parseMedicalClinicalSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MedicalClinicalRiskCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthMedicalLifestyle.has(slug)) {
+    const q = initialSearchParams ? parseMedicalLifestyleSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MedicalLifestyleCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthMedicalGeriatrics.has(slug)) {
+    const q = initialSearchParams ? parseMedicalGeriatricsSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MedicalGeriatricsCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthMedicalOrthopedic.has(slug)) {
+    const q = initialSearchParams ? parseMedicalOrthoSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MedicalOrthopedicCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthMedicalOncology.has(slug)) {
+    const q = initialSearchParams ? parseMedicalOncologySearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MedicalOncologyCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthMedicalRespiratory.has(slug)) {
+    const q = initialSearchParams ? parseMedicalRespSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MedicalRespiratoryCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthMedicalEmergency.has(slug)) {
+    const q = initialSearchParams ? parseMedicalEmergencySearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MedicalEmergencyCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthMedicalNeurology.has(slug)) {
+    const q = initialSearchParams ? parseMedicalNeuroSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MedicalNeurologyCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthMedicalBodyMetrics.has(slug)) {
+    const q = initialSearchParams ? parseMedicalBodySearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MedicalBodyMetricsCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthMedicalNutritionMed.has(slug)) {
+    const q = initialSearchParams ? parseMedicalNutritionMedSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MedicalNutritionMedCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthMedicalHeart.has(slug)) {
+    const q = initialSearchParams ? parseMedicalHeartSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MedicalHeartCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthMedicalDiabetes.has(slug)) {
+    const q = initialSearchParams ? parseMedicalDiabetesSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MedicalDiabetesCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthMedicalPregnancy.has(slug)) {
+    const q = initialSearchParams ? parseMedicalPregnancySearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MedicalPregnancyCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthMedicalPediatrics.has(slug)) {
+    const q = initialSearchParams ? parseMedicalPedsSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MedicalPediatricsCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthMedicalDrugDosage.has(slug)) {
+    const q = initialSearchParams ? parseMedicalDrugSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MedicalDrugDosageCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthMedicalLabValues.has(slug)) {
+    const q = initialSearchParams ? parseMedicalLabSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <MedicalLabValuesCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthDietCalorieEnergy.has(slug)) {
+    const q = initialSearchParams ? parseDietCalorieSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <DietCalorieEnergyCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthDietMacros.has(slug)) {
+    const q = initialSearchParams ? parseDietMacroSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <DietMacrosCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthDietWeightMgmt.has(slug)) {
+    const q = initialSearchParams ? parseDietWeightSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <DietWeightMgmtCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthDietHydration.has(slug)) {
+    const q = initialSearchParams ? parseDietHydrationSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <DietHydrationCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthDietMealPlanning.has(slug)) {
+    const q = initialSearchParams ? parseDietMealSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <DietMealPlanningCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthDietTrends.has(slug)) {
+    const q = initialSearchParams ? parseDietTrendsSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <DietTrendsCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthDietMicros.has(slug)) {
+    const q = initialSearchParams ? parseDietMicroSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <DietMicrosCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthDietFitness.has(slug)) {
+    const q = initialSearchParams ? parseDietFitnessSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <DietFitnessCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthDietCondition.has(slug)) {
+    const q = initialSearchParams ? parseDietConditionSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <DietConditionCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthDietAgeGender.has(slug)) {
+    const q = initialSearchParams ? parseDietAgeSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <DietAgeGenderCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthDietFoodBased.has(slug)) {
+    const q = initialSearchParams ? parseDietFoodSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <DietFoodBasedCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (FAMILY_SLUG_SETS.healthDietAiAdvanced.has(slug)) {
+    const q = initialSearchParams ? parseDietAiSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <DietAiAdvancedCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
   }
   if (FAMILY_SLUG_SETS.educationMathPlanned.has(slug)) {
     return <EduMathCalculatorHost slug={slug} />;
@@ -429,6 +833,20 @@ export function CalculatorRouter({ slug, initialSearchParams }: Props) {
       <LoanInitialInputsProvider value={q}>
         <LoanCalcPrefsProvider urlPrefs={hasUrlPrefs ? urlPrefs : undefined}>
           <SmartAiLoanCalculatorHost slug={slug} />
+        </LoanCalcPrefsProvider>
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (slug === "daily-interest-calculator") {
+    const loanQ = initialSearchParams ? parseLoanSearchParamsToRecord(initialSearchParams) : {};
+    const diQ = initialSearchParams ? parseDiSearchParams(initialSearchParams) : {};
+    const q = { ...loanQ, ...diQ };
+    const urlPrefs = urlPrefsFromLoanQuery(q);
+    const hasUrlPrefs = Object.keys(urlPrefs).length > 0;
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <LoanCalcPrefsProvider urlPrefs={hasUrlPrefs ? urlPrefs : undefined}>
+          <DailyInterestWorkspace />
         </LoanCalcPrefsProvider>
       </LoanInitialInputsProvider>
     );
@@ -1106,6 +1524,14 @@ export function CalculatorRouter({ slug, initialSearchParams }: Props) {
     return (
       <LoanInitialInputsProvider value={q}>
         <ExamGpaCgpaCalculatorHost slug={slug} />
+      </LoanInitialInputsProvider>
+    );
+  }
+  if (slug === "exam-strategy-planner") {
+    const q = initialSearchParams ? parsePlannerSearchParams(initialSearchParams) : {};
+    return (
+      <LoanInitialInputsProvider value={q}>
+        <ExamStrategyPlannerHost />
       </LoanInitialInputsProvider>
     );
   }

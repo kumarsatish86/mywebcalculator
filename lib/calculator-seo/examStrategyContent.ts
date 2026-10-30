@@ -131,4 +131,74 @@ export const EXAM_STRATEGY_ARTICLES: Record<string, RichArticle> = {
     ["mock test performance", "mock score trend", "exam mock analysis"],
     "none",
   ),
+  "exam-strategy-planner": {
+    slug: "exam-strategy-planner",
+    vertical: "education-math",
+    category: "education",
+    shellNote: SHELL,
+    sections: [
+      {
+        heading: "How the strategy is calculated",
+        paragraphs: [
+          "The planner combines attempt mix, expected-value optimal attempts, and section time weights into one digital twin: expected / best / worst score bands plus Aggressive, Balanced, and Safe attempt rates.",
+          "Accuracy and confidence thresholds drive risk labels and coach tips. Negative marking uses your preset’s +/− scheme (or Custom overrides).",
+        ],
+      },
+      {
+        heading: "Negative marking and time management",
+        paragraphs: [
+          "When expected marks per question turn negative at your accuracy, the Safe strategy reduces attempts. The timeline allocates Easy → Medium → Hard → Review windows from total minutes.",
+          "JEE, NEET, CAT, UPSC, GATE, SSC, and CUET presets supply teaching defaults—always confirm official rules for your session.",
+        ],
+      },
+      {
+        heading: "Common mistakes",
+        paragraphs: [
+          "Guessing every leftover question under −1 marking, spending equal time on every item, and skipping a final review window are the most common score leaks this tool highlights.",
+        ],
+      },
+    ],
+    tables: [
+      {
+        title: "Strategy modes",
+        columnHeaders: ["Mode", "Typical attempt share", "When to use"],
+        rows: [
+          ["Aggressive", "~90%+", "High accuracy, low penalty fear"],
+          ["Balanced", "~80%", "Default for most competitive papers"],
+          ["Safe", "~65%", "Accuracy still building or heavy penalties"],
+        ],
+      },
+    ],
+    chart: {
+      kind: "sparkTrendDemo",
+      title: "Readiness momentum",
+      caption: "Share URL preserves exam, mix, and accuracy inputs.",
+      sparkValues: [0.3, 0.45, 0.55, 0.7, 0.82, 0.9],
+    },
+    faq: [
+      {
+        question: "Is this official rank prediction?",
+        answer:
+          "No. Score bands are educational estimates from your inputs. Rank tools on the Exam Success Center use separate heuristics and still need official keys and cut-offs.",
+      },
+      {
+        question: "Can I share my plan?",
+        answer: "Yes — inputs sync into the URL so you can bookmark or send a link.",
+      },
+    ],
+    meta: {
+      seoTitle: "AI Exam Strategy Planner | Score bands, timing & study plan",
+      seoDescription:
+        "Rules-based exam digital twin: expected score, attempt strategies, time timeline, and a 7-day study plan for JEE, NEET, CAT, and more.",
+      keywords: [
+        "exam strategy planner",
+        "jee attempt strategy",
+        "negative marking strategy",
+        "exam time management",
+        "mock to rank",
+      ],
+    },
+    hubHref: HUB_HREF,
+    hubLabel: HUB_LABEL,
+  },
 };

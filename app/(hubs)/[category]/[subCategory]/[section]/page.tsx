@@ -7,6 +7,7 @@ import { HubFaq } from "@/components/hubs/HubFaq";
 import { HubIntroProse } from "@/components/hubs/HubIntroProse";
 import { HubRelatedLinks } from "@/components/hubs/HubRelatedLinks";
 import { JsonLdFaqPage } from "@/components/hubs/JsonLdFaqPage";
+import { ExamSuccessCenterClient } from "@/components/education/exam-success/ExamSuccessCenterClient";
 import {
   allCategorySectionStaticParams,
   getCategoryHub,
@@ -222,42 +223,46 @@ export default async function CategorySectionPage({ params }: Props) {
         </aside>
       ) : null}
 
-      <ul className="grid gap-3 sm:grid-cols-2">
-        {sectionNode.calculators.map((item) => {
-          const live = getCalculator(item.slug);
-          const inner = (
-            <>
-              <p className="font-medium text-[var(--text)]">{item.title}</p>
-              <p className="mt-1 text-xs uppercase tracking-[0.12em] text-[var(--muted)]">
+      {category === "education" && subCategory === "exam-score" && section === "exam-strategy" ? (
+        <ExamSuccessCenterClient />
+      ) : (
+        <ul className="grid gap-3 sm:grid-cols-2">
+          {sectionNode.calculators.map((item) => {
+            const live = getCalculator(item.slug);
+            const inner = (
+              <>
+                <p className="font-medium text-[var(--text)]">{item.title}</p>
+                <p className="mt-1 text-xs uppercase tracking-[0.12em] text-[var(--muted)]">
+                  {live ? (
+                    <>
+                      <span className="text-[var(--accent-bright)]">Open · </span>
+                      {item.slug}
+                    </>
+                  ) : (
+                    <>
+                      Planned · {item.slug}
+                    </>
+                  )}
+                </p>
+              </>
+            );
+            return (
+              <li key={item.slug} className="rounded-xl border border-[var(--border)] bg-[var(--surface)]/60 p-4">
                 {live ? (
-                  <>
-                    <span className="text-[var(--accent-bright)]">Open · </span>
-                    {item.slug}
-                  </>
+                  <Link
+                    href={`/calculators/${item.slug}`}
+                    className="block rounded-lg outline-none transition-colors hover:bg-[var(--surface)]/80 focus-visible:ring-2 focus-visible:ring-[var(--ring)] -m-1 p-1"
+                  >
+                    {inner}
+                  </Link>
                 ) : (
-                  <>
-                    Planned · {item.slug}
-                  </>
+                  inner
                 )}
-              </p>
-            </>
-          );
-          return (
-            <li key={item.slug} className="rounded-xl border border-[var(--border)] bg-[var(--surface)]/60 p-4">
-              {live ? (
-                <Link
-                  href={`/calculators/${item.slug}`}
-                  className="block rounded-lg outline-none transition-colors hover:bg-[var(--surface)]/80 focus-visible:ring-2 focus-visible:ring-[var(--ring)] -m-1 p-1"
-                >
-                  {inner}
-                </Link>
-              ) : (
-                inner
-              )}
-            </li>
-          );
-        })}
-      </ul>
+              </li>
+            );
+          })}
+        </ul>
+      )}
 
       <div className="mt-16 space-y-12 border-t border-[var(--border)] pt-12">
         <HubFaq items={rich.faqs} />

@@ -98,9 +98,11 @@ export const EDUCATION_EXAM_SCORE_SECTIONS: SectionNode[] = [
   },
   {
     slug: "exam-strategy",
-    title: "Exam strategy calculators",
-    description: "Section timing, attempt plans, and mock performance synthesis.",
+    title: "Exam Success Center",
+    description:
+      "AI Exam Strategy Center — guided goals, before/during/after workflows, and a rules-based strategy planner.",
     calculators: [
+      live("exam-strategy-planner", "AI Exam Strategy Planner"),
       live("time-allocation-calculator-per-section", "Time Allocation Calculator per Section"),
       live("question-attempt-strategy-calculator", "Question Attempt Strategy Calculator"),
       live("optimal-attempt-calculator", "Optimal Attempt Calculator"),

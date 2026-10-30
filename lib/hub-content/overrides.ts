@@ -131,4 +131,43 @@ export const HUB_CONTENT_OVERRIDES: Record<string, HubContentOverride> = {
     metaDescriptionOverride:
       "Live basic math calculators: arithmetic, percentage (of / is what % / change), ratio, proportion, average & mean, median, mode, sum, difference, rounding (including half-to-even), scientific expressions, and PEMDAS with step-by-step trace. Educational use; verify critical work.",
   },
+
+  "education/exam-score/exam-strategy": {
+    introParagraphs: [
+      "The Exam Success Center organizes attempt strategy, timing, mocks, and rank tools into guided goals and journeys—not a flat directory of calculators.",
+      "Start with the AI Exam Strategy Planner for a rules-based digital twin (score bands, strategies, timeline, study plan), or pick a workflow such as Crack JEE in 90 Days or Fix Negative Marking.",
+      "All math is transparent and educational. Confirm official marking schemes and timing with your exam authority before you rely on any plan.",
+    ],
+    secondaryHeading: "How to use this center",
+    bulletPoints: [
+      "Choose a goal or describe a problem (“I finish only 70% of the paper”).",
+      "Follow Before → During → After → AI Insights stage rails.",
+      "Open a workflow journey so the next tool is always clear.",
+      "Use exam tabs (JEE, NEET, CAT, …) to filter the toolkit.",
+    ],
+    faqs: [
+      {
+        question: "Is the Exam Strategy Planner a live AI model?",
+        answer:
+          "No. It uses deterministic rules and the same marking math as our other exam tools. Copy may say “AI” for product positioning; numbers come from engines, not an LLM.",
+      },
+      {
+        question: "What is a workflow journey?",
+        answer:
+          "An ordered checklist of calculators (for example hours → revision → mocks → timing → rank). Open /journeys/… or the Workflow cards on this page.",
+      },
+      {
+        question: "Do you save my exam readiness progress?",
+        answer:
+          "Readiness bars on this page use anonymous localStorage on your device only. There is no account sync in this version.",
+      },
+      {
+        question: "Are JEE/NEET presets official?",
+        answer:
+          "Presets are teaching defaults for duration, question count, and marking. Always verify against the current information bulletin for your attempt year.",
+      },
+    ],
+    metaDescriptionOverride:
+      "AI Exam Success Center: guided exam strategy workflows, time allocation, negative marking, mock analysis, rank tools, and a rules-based strategy planner. Educational use only.",
+  },
 };

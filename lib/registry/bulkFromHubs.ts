@@ -3,8 +3,19 @@ import type { SectionCalculatorNode, SectionNode } from "../hub-section-types";
 import { getSection } from "../category-tree";
 import { EDUCATION_MATHEMATICS_SECTIONS } from "../education/math-sections";
 import { CONVERSION_TIME_DATE_SECTIONS } from "../conversion/time-date-sections";
+import { CONVERSION_UNIT_CONVERTERS_SECTIONS } from "../conversion/unit-converters-sections";
 import { AI_SMART_TOOLS_SECTIONS } from "../ai/smart-tools-sections";
+import { AI_GENERATORS_SECTIONS } from "../ai/generators-sections";
 import { ENGINEERING_ELECTRICAL_SECTIONS } from "../engineering/electrical-sections";
+import { ENGINEERING_CIVIL_SECTIONS } from "../engineering/civil-sections";
+import { ENGINEERING_IT_DEV_SECTIONS } from "../engineering/it-dev-sections";
+import { DAILY_HOME_UTILITY_SECTIONS } from "../daily/home-utility-sections";
+import { DAILY_SHOPPING_DISCOUNT_SECTIONS } from "../daily/shopping-discount-sections";
+import { DAILY_TRAVEL_SECTIONS } from "../daily/travel-sections";
+import { CONVERSION_CURRENCY_SECTIONS } from "../conversion/currency-sections";
+import { BUSINESS_FINANCE_SECTIONS } from "../business/business-finance-sections";
+import { BUSINESS_MARKETING_SECTIONS } from "../business/marketing-sections";
+import { BUSINESS_HR_PRODUCTIVITY_SECTIONS } from "../business/hr-productivity-sections";
 import { HEALTH_BODY_METRICS_SECTIONS } from "../health/body-metrics-sections";
 import { buildHubSeoDefinition } from "./helpers";
 
@@ -382,6 +393,152 @@ function educationBiologyAiBonusCalculators(): SectionCalculatorNode[] {
   return node?.calculators ?? [];
 }
 
+function healthMedicalClinicalRiskCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "medical", "clinical-risk-scores");
+  return node?.calculators ?? [];
+}
+
+function healthMedicalLifestyleCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "medical", "lifestyle-habits");
+  return node?.calculators ?? [];
+}
+
+function healthMedicalGeriatricsCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "medical", "geriatrics-aging");
+  return node?.calculators ?? [];
+}
+
+function healthMedicalOrthopedicCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "medical", "orthopedic");
+  return node?.calculators ?? [];
+}
+
+function healthMedicalOncologyCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "medical", "oncology-risk");
+  return node?.calculators ?? [];
+}
+
+function healthMedicalRespiratoryCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "medical", "respiratory");
+  return node?.calculators ?? [];
+}
+
+function healthMedicalEmergencyCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "medical", "emergency-critical-care");
+  return node?.calculators ?? [];
+}
+
+function healthMedicalNeurologyCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "medical", "neurology-mental-health");
+  return node?.calculators ?? [];
+}
+
+function healthMedicalBodyMetricsCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "medical", "medical-body-metrics");
+  return node?.calculators ?? [];
+}
+
+function healthMedicalNutritionMedCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "medical", "medical-nutrition");
+  return node?.calculators ?? [];
+}
+
+function healthMedicalHeartCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "medical", "heart-cardiovascular");
+  return node?.calculators ?? [];
+}
+
+function healthMedicalDiabetesCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "medical", "diabetes-glucose");
+  return node?.calculators ?? [];
+}
+
+function healthMedicalPregnancyCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "medical", "pregnancy-womens-health");
+  return node?.calculators ?? [];
+}
+
+function healthMedicalPediatricsCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "medical", "pediatrics-child-health");
+  return node?.calculators ?? [];
+}
+
+function healthMedicalDrugDosageCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "medical", "drug-dosage-pharmacology");
+  return node?.calculators ?? [];
+}
+
+function healthMedicalLabValuesCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "medical", "lab-values-clinical");
+  return node?.calculators ?? [];
+}
+
+function healthDietCalorieEnergyCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "diet-nutrition", "calorie-energy");
+  return node?.calculators ?? [];
+}
+function healthDietMacrosCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "diet-nutrition", "macronutrients");
+  return node?.calculators ?? [];
+}
+function healthDietWeightMgmtCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "diet-nutrition", "weight-management-diet");
+  return node?.calculators ?? [];
+}
+function healthDietHydrationCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "diet-nutrition", "hydration-water");
+  return node?.calculators ?? [];
+}
+function healthDietMealPlanningCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "diet-nutrition", "meal-diet-planning");
+  return node?.calculators ?? [];
+}
+function healthDietTrendsCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "diet-nutrition", "diet-specific-trends");
+  return node?.calculators ?? [];
+}
+function healthDietMicrosCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "diet-nutrition", "micronutrients");
+  return node?.calculators ?? [];
+}
+function healthDietFitnessCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "diet-nutrition", "fitness-nutrition");
+  return node?.calculators ?? [];
+}
+function healthDietConditionCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "diet-nutrition", "condition-specific-diets");
+  return node?.calculators ?? [];
+}
+function healthDietAgeGenderCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "diet-nutrition", "age-gender-nutrition");
+  return node?.calculators ?? [];
+}
+function healthDietFoodBasedCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "diet-nutrition", "food-based-calories");
+  return node?.calculators ?? [];
+}
+function healthDietAiAdvancedCalculators(): SectionCalculatorNode[] {
+  const node = getSection("health", "diet-nutrition", "advanced-ai-nutrition");
+  return node?.calculators ?? [];
+}
+
+function pushHealthDietSeo(
+  push: (d: CalculatorDefinition) => void,
+  calculators: SectionCalculatorNode[],
+) {
+  for (const c of calculators) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "diet-nutrition",
+        vertical: "health-body",
+      }),
+    );
+  }
+}
+
 function educationChemistryBonusMicroCalculators(): SectionCalculatorNode[] {
   const node = getSection("education", "science", "chemistry-bonus-micro");
   return node?.calculators ?? [];
@@ -591,6 +748,138 @@ export function buildBulkRegistryEntries(existingSlugs: ReadonlySet<string>): Ca
     );
   }
 
+  for (const c of flattenCalculators(ENGINEERING_CIVIL_SECTIONS)) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "engineering",
+        subCategorySlug: "civil",
+        vertical: "engineering-electrical",
+      }),
+    );
+  }
+
+  for (const c of flattenCalculators(ENGINEERING_IT_DEV_SECTIONS)) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "engineering",
+        subCategorySlug: "it-dev",
+        vertical: "engineering-electrical",
+      }),
+    );
+  }
+
+  for (const c of flattenCalculators(DAILY_HOME_UTILITY_SECTIONS)) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "daily",
+        subCategorySlug: "home-utility",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of flattenCalculators(DAILY_SHOPPING_DISCOUNT_SECTIONS)) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "daily",
+        subCategorySlug: "shopping-discount",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of flattenCalculators(DAILY_TRAVEL_SECTIONS)) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "daily",
+        subCategorySlug: "travel",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of flattenCalculators(CONVERSION_UNIT_CONVERTERS_SECTIONS)) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "conversion",
+        subCategorySlug: "unit-converters",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of flattenCalculators(CONVERSION_CURRENCY_SECTIONS)) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "conversion",
+        subCategorySlug: "currency",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of flattenCalculators(BUSINESS_FINANCE_SECTIONS)) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "business",
+        subCategorySlug: "business-finance",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of flattenCalculators(BUSINESS_MARKETING_SECTIONS)) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "business",
+        subCategorySlug: "marketing",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of flattenCalculators(BUSINESS_HR_PRODUCTIVITY_SECTIONS)) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "business",
+        subCategorySlug: "hr-productivity",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
+  for (const c of flattenCalculators(AI_GENERATORS_SECTIONS)) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "ai",
+        subCategorySlug: "generators",
+        vertical: "finance-loan",
+      }),
+    );
+  }
+
   for (const c of flattenCalculators(HEALTH_BODY_METRICS_SECTIONS)) {
     push(
       buildHubSeoDefinition({
@@ -602,6 +891,196 @@ export function buildBulkRegistryEntries(existingSlugs: ReadonlySet<string>): Ca
       }),
     );
   }
+
+  for (const c of healthMedicalClinicalRiskCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "medical",
+        vertical: "health-body",
+      }),
+    );
+  }
+  for (const c of healthMedicalLifestyleCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "medical",
+        vertical: "health-body",
+      }),
+    );
+  }
+  for (const c of healthMedicalGeriatricsCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "medical",
+        vertical: "health-body",
+      }),
+    );
+  }
+  for (const c of healthMedicalOrthopedicCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "medical",
+        vertical: "health-body",
+      }),
+    );
+  }
+  for (const c of healthMedicalOncologyCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "medical",
+        vertical: "health-body",
+      }),
+    );
+  }
+  for (const c of healthMedicalRespiratoryCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "medical",
+        vertical: "health-body",
+      }),
+    );
+  }
+  for (const c of healthMedicalEmergencyCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "medical",
+        vertical: "health-body",
+      }),
+    );
+  }
+  for (const c of healthMedicalNeurologyCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "medical",
+        vertical: "health-body",
+      }),
+    );
+  }
+  for (const c of healthMedicalBodyMetricsCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "medical",
+        vertical: "health-body",
+      }),
+    );
+  }
+  for (const c of healthMedicalNutritionMedCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "medical",
+        vertical: "health-body",
+      }),
+    );
+  }
+  for (const c of healthMedicalHeartCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "medical",
+        vertical: "health-body",
+      }),
+    );
+  }
+  for (const c of healthMedicalDiabetesCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "medical",
+        vertical: "health-body",
+      }),
+    );
+  }
+  for (const c of healthMedicalPregnancyCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "medical",
+        vertical: "health-body",
+      }),
+    );
+  }
+  for (const c of healthMedicalPediatricsCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "medical",
+        vertical: "health-body",
+      }),
+    );
+  }
+  for (const c of healthMedicalDrugDosageCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "medical",
+        vertical: "health-body",
+      }),
+    );
+  }
+  for (const c of healthMedicalLabValuesCalculators()) {
+    push(
+      buildHubSeoDefinition({
+        slug: c.slug,
+        title: c.title,
+        category: "health",
+        subCategorySlug: "medical",
+        vertical: "health-body",
+      }),
+    );
+  }
+
+  pushHealthDietSeo(push, healthDietCalorieEnergyCalculators());
+  pushHealthDietSeo(push, healthDietMacrosCalculators());
+  pushHealthDietSeo(push, healthDietWeightMgmtCalculators());
+  pushHealthDietSeo(push, healthDietHydrationCalculators());
+  pushHealthDietSeo(push, healthDietMealPlanningCalculators());
+  pushHealthDietSeo(push, healthDietTrendsCalculators());
+  pushHealthDietSeo(push, healthDietMicrosCalculators());
+  pushHealthDietSeo(push, healthDietFitnessCalculators());
+  pushHealthDietSeo(push, healthDietConditionCalculators());
+  pushHealthDietSeo(push, healthDietAgeGenderCalculators());
+  pushHealthDietSeo(push, healthDietFoodBasedCalculators());
+  pushHealthDietSeo(push, healthDietAiAdvancedCalculators());
 
   for (const sec of EDUCATION_MATHEMATICS_SECTIONS) {
     for (const c of sec.calculators) {
@@ -1955,7 +2434,46 @@ export function buildBulkRegistryEntries(existingSlugs: ReadonlySet<string>): Ca
 
 export function bulkSlugSets(existingSlugs: ReadonlySet<string>): {
   electrical: Set<string>;
+  engineeringCivil: Set<string>;
+  engineeringItDev: Set<string>;
+  dailyHomeUtility: Set<string>;
+  dailyShoppingDiscount: Set<string>;
+  dailyTravel: Set<string>;
+  conversionUnitConverters: Set<string>;
+  conversionCurrency: Set<string>;
+  businessFinance: Set<string>;
+  businessMarketing: Set<string>;
+  businessHrProductivity: Set<string>;
+  aiGenerators: Set<string>;
   healthBody: Set<string>;
+  healthMedicalClinicalRisk: Set<string>;
+  healthMedicalLifestyle: Set<string>;
+  healthMedicalGeriatrics: Set<string>;
+  healthMedicalOrthopedic: Set<string>;
+  healthMedicalOncology: Set<string>;
+  healthMedicalRespiratory: Set<string>;
+  healthMedicalEmergency: Set<string>;
+  healthMedicalNeurology: Set<string>;
+  healthMedicalBodyMetrics: Set<string>;
+  healthMedicalNutritionMed: Set<string>;
+  healthMedicalHeart: Set<string>;
+  healthMedicalDiabetes: Set<string>;
+  healthMedicalPregnancy: Set<string>;
+  healthMedicalPediatrics: Set<string>;
+  healthMedicalDrugDosage: Set<string>;
+  healthMedicalLabValues: Set<string>;
+  healthDietCalorieEnergy: Set<string>;
+  healthDietMacros: Set<string>;
+  healthDietWeightMgmt: Set<string>;
+  healthDietHydration: Set<string>;
+  healthDietMealPlanning: Set<string>;
+  healthDietTrends: Set<string>;
+  healthDietMicros: Set<string>;
+  healthDietFitness: Set<string>;
+  healthDietCondition: Set<string>;
+  healthDietAgeGender: Set<string>;
+  healthDietFoodBased: Set<string>;
+  healthDietAiAdvanced: Set<string>;
   educationMathPlanned: Set<string>;
   financeLoanType: Set<string>;
   financeAdvancedPayment: Set<string>;
@@ -2070,7 +2588,46 @@ export function bulkSlugSets(existingSlugs: ReadonlySet<string>): {
   conversionTimeDateSmart: Set<string>;
 } {
   const electrical = new Set<string>();
+  const engineeringCivil = new Set<string>();
+  const engineeringItDev = new Set<string>();
+  const dailyHomeUtility = new Set<string>();
+  const dailyShoppingDiscount = new Set<string>();
+  const dailyTravel = new Set<string>();
+  const conversionUnitConverters = new Set<string>();
+  const conversionCurrency = new Set<string>();
+  const businessFinance = new Set<string>();
+  const businessMarketing = new Set<string>();
+  const businessHrProductivity = new Set<string>();
+  const aiGenerators = new Set<string>();
   const healthBody = new Set<string>();
+  const healthMedicalClinicalRisk = new Set<string>();
+  const healthMedicalLifestyle = new Set<string>();
+  const healthMedicalGeriatrics = new Set<string>();
+  const healthMedicalOrthopedic = new Set<string>();
+  const healthMedicalOncology = new Set<string>();
+  const healthMedicalRespiratory = new Set<string>();
+  const healthMedicalEmergency = new Set<string>();
+  const healthMedicalNeurology = new Set<string>();
+  const healthMedicalBodyMetrics = new Set<string>();
+  const healthMedicalNutritionMed = new Set<string>();
+  const healthMedicalHeart = new Set<string>();
+  const healthMedicalDiabetes = new Set<string>();
+  const healthMedicalPregnancy = new Set<string>();
+  const healthMedicalPediatrics = new Set<string>();
+  const healthMedicalDrugDosage = new Set<string>();
+  const healthMedicalLabValues = new Set<string>();
+  const healthDietCalorieEnergy = new Set<string>();
+  const healthDietMacros = new Set<string>();
+  const healthDietWeightMgmt = new Set<string>();
+  const healthDietHydration = new Set<string>();
+  const healthDietMealPlanning = new Set<string>();
+  const healthDietTrends = new Set<string>();
+  const healthDietMicros = new Set<string>();
+  const healthDietFitness = new Set<string>();
+  const healthDietCondition = new Set<string>();
+  const healthDietAgeGender = new Set<string>();
+  const healthDietFoodBased = new Set<string>();
+  const healthDietAiAdvanced = new Set<string>();
   const educationMathPlanned = new Set<string>();
   const financeLoanType = new Set<string>();
   const financeAdvancedPayment = new Set<string>();
@@ -2187,8 +2744,125 @@ export function bulkSlugSets(existingSlugs: ReadonlySet<string>): {
   for (const c of flattenCalculators(ENGINEERING_ELECTRICAL_SECTIONS)) {
     if (!existingSlugs.has(c.slug)) electrical.add(c.slug);
   }
+  for (const c of flattenCalculators(ENGINEERING_CIVIL_SECTIONS)) {
+    if (!existingSlugs.has(c.slug)) engineeringCivil.add(c.slug);
+  }
+  for (const c of flattenCalculators(ENGINEERING_IT_DEV_SECTIONS)) {
+    if (!existingSlugs.has(c.slug)) engineeringItDev.add(c.slug);
+  }
+  for (const c of flattenCalculators(DAILY_HOME_UTILITY_SECTIONS)) {
+    if (!existingSlugs.has(c.slug)) dailyHomeUtility.add(c.slug);
+  }
+  for (const c of flattenCalculators(DAILY_SHOPPING_DISCOUNT_SECTIONS)) {
+    if (!existingSlugs.has(c.slug)) dailyShoppingDiscount.add(c.slug);
+  }
+  for (const c of flattenCalculators(DAILY_TRAVEL_SECTIONS)) {
+    if (!existingSlugs.has(c.slug)) dailyTravel.add(c.slug);
+  }
+  for (const c of flattenCalculators(CONVERSION_UNIT_CONVERTERS_SECTIONS)) {
+    if (!existingSlugs.has(c.slug)) conversionUnitConverters.add(c.slug);
+  }
+  for (const c of flattenCalculators(CONVERSION_CURRENCY_SECTIONS)) {
+    if (!existingSlugs.has(c.slug)) conversionCurrency.add(c.slug);
+  }
+  for (const c of flattenCalculators(BUSINESS_FINANCE_SECTIONS)) {
+    if (!existingSlugs.has(c.slug)) businessFinance.add(c.slug);
+  }
+  for (const c of flattenCalculators(BUSINESS_MARKETING_SECTIONS)) {
+    if (!existingSlugs.has(c.slug)) businessMarketing.add(c.slug);
+  }
+  for (const c of flattenCalculators(BUSINESS_HR_PRODUCTIVITY_SECTIONS)) {
+    if (!existingSlugs.has(c.slug)) businessHrProductivity.add(c.slug);
+  }
+  for (const c of flattenCalculators(AI_GENERATORS_SECTIONS)) {
+    if (!existingSlugs.has(c.slug)) aiGenerators.add(c.slug);
+  }
   for (const c of flattenCalculators(HEALTH_BODY_METRICS_SECTIONS)) {
     if (!existingSlugs.has(c.slug)) healthBody.add(c.slug);
+  }
+  for (const c of healthMedicalClinicalRiskCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthMedicalClinicalRisk.add(c.slug);
+  }
+  for (const c of healthMedicalLifestyleCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthMedicalLifestyle.add(c.slug);
+  }
+  for (const c of healthMedicalGeriatricsCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthMedicalGeriatrics.add(c.slug);
+  }
+  for (const c of healthMedicalOrthopedicCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthMedicalOrthopedic.add(c.slug);
+  }
+  for (const c of healthMedicalOncologyCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthMedicalOncology.add(c.slug);
+  }
+  for (const c of healthMedicalRespiratoryCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthMedicalRespiratory.add(c.slug);
+  }
+  for (const c of healthMedicalEmergencyCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthMedicalEmergency.add(c.slug);
+  }
+  for (const c of healthMedicalNeurologyCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthMedicalNeurology.add(c.slug);
+  }
+  for (const c of healthMedicalBodyMetricsCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthMedicalBodyMetrics.add(c.slug);
+  }
+  for (const c of healthMedicalNutritionMedCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthMedicalNutritionMed.add(c.slug);
+  }
+  for (const c of healthMedicalHeartCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthMedicalHeart.add(c.slug);
+  }
+  for (const c of healthMedicalDiabetesCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthMedicalDiabetes.add(c.slug);
+  }
+  for (const c of healthMedicalPregnancyCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthMedicalPregnancy.add(c.slug);
+  }
+  for (const c of healthMedicalPediatricsCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthMedicalPediatrics.add(c.slug);
+  }
+  for (const c of healthMedicalDrugDosageCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthMedicalDrugDosage.add(c.slug);
+  }
+  for (const c of healthMedicalLabValuesCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthMedicalLabValues.add(c.slug);
+  }
+  for (const c of healthDietCalorieEnergyCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthDietCalorieEnergy.add(c.slug);
+  }
+  for (const c of healthDietMacrosCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthDietMacros.add(c.slug);
+  }
+  for (const c of healthDietWeightMgmtCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthDietWeightMgmt.add(c.slug);
+  }
+  for (const c of healthDietHydrationCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthDietHydration.add(c.slug);
+  }
+  for (const c of healthDietMealPlanningCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthDietMealPlanning.add(c.slug);
+  }
+  for (const c of healthDietTrendsCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthDietTrends.add(c.slug);
+  }
+  for (const c of healthDietMicrosCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthDietMicros.add(c.slug);
+  }
+  for (const c of healthDietFitnessCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthDietFitness.add(c.slug);
+  }
+  for (const c of healthDietConditionCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthDietCondition.add(c.slug);
+  }
+  for (const c of healthDietAgeGenderCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthDietAgeGender.add(c.slug);
+  }
+  for (const c of healthDietFoodBasedCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthDietFoodBased.add(c.slug);
+  }
+  for (const c of healthDietAiAdvancedCalculators()) {
+    if (!existingSlugs.has(c.slug)) healthDietAiAdvanced.add(c.slug);
   }
   for (const sec of EDUCATION_MATHEMATICS_SECTIONS) {
     for (const c of sec.calculators) {
@@ -2531,7 +3205,46 @@ export function bulkSlugSets(existingSlugs: ReadonlySet<string>): {
 
   return {
     electrical,
+    engineeringCivil,
+    engineeringItDev,
+    dailyHomeUtility,
+    dailyShoppingDiscount,
+    dailyTravel,
+    conversionUnitConverters,
+    conversionCurrency,
+    businessFinance,
+    businessMarketing,
+    businessHrProductivity,
+    aiGenerators,
     healthBody,
+    healthMedicalClinicalRisk,
+    healthMedicalLifestyle,
+    healthMedicalGeriatrics,
+    healthMedicalOrthopedic,
+    healthMedicalOncology,
+    healthMedicalRespiratory,
+    healthMedicalEmergency,
+    healthMedicalNeurology,
+    healthMedicalBodyMetrics,
+    healthMedicalNutritionMed,
+    healthMedicalHeart,
+    healthMedicalDiabetes,
+    healthMedicalPregnancy,
+    healthMedicalPediatrics,
+    healthMedicalDrugDosage,
+    healthMedicalLabValues,
+    healthDietCalorieEnergy,
+    healthDietMacros,
+    healthDietWeightMgmt,
+    healthDietHydration,
+    healthDietMealPlanning,
+    healthDietTrends,
+    healthDietMicros,
+    healthDietFitness,
+    healthDietCondition,
+    healthDietAgeGender,
+    healthDietFoodBased,
+    healthDietAiAdvanced,
     educationMathPlanned,
     financeLoanType,
     financeAdvancedPayment,

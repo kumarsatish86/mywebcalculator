@@ -1,0 +1,458 @@
+[
+  {
+    "key": "Profit",
+    "engine": "bizfinProfit",
+    "compute": "computeBizfinProfit",
+    "slugType": "BizfinProfitSlug",
+    "sectionSlug": "bizfin-profitability-core",
+    "hubLabel": "Business · Business finance · Profitability calculators",
+    "title": "Profitability tools",
+    "rows": [
+      [
+        "Profit",
+        "Revenue − expenses"
+      ],
+      [
+        "Gross profit",
+        "Revenue − COGS"
+      ],
+      [
+        "Net profit",
+        "Revenue − all costs & tax"
+      ],
+      [
+        "Margins",
+        "Profit ÷ revenue"
+      ],
+      [
+        "EBITDA / EBIT",
+        "Operating earnings views"
+      ]
+    ],
+    "calcs": [
+      {
+        "slug": "bizfin-profit-calculator",
+        "title": "Profit",
+        "mode": "revExp",
+        "defaults": {
+          "a": "100000",
+          "b": "70000"
+        },
+        "labels": {
+          "a": "Revenue",
+          "b": "Expenses"
+        },
+        "fields": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "slug": "bizfin-gross-profit-calculator",
+        "title": "Gross profit",
+        "mode": "revCogs",
+        "defaults": {
+          "a": "100000",
+          "b": "55000"
+        },
+        "labels": {
+          "a": "Revenue",
+          "b": "COGS"
+        },
+        "fields": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "slug": "bizfin-net-profit-calculator",
+        "title": "Net profit",
+        "mode": "net",
+        "defaults": {
+          "a": "100000",
+          "b": "40000",
+          "c": "25000",
+          "r": "3000",
+          "t": "5000"
+        },
+        "labels": {
+          "a": "Revenue",
+          "b": "COGS",
+          "c": "Operating expenses",
+          "r": "Interest",
+          "t": "Tax"
+        },
+        "fields": [
+          "a",
+          "b",
+          "c",
+          "r",
+          "t"
+        ]
+      },
+      {
+        "slug": "bizfin-operating-profit-calculator",
+        "title": "Operating profit",
+        "mode": "ebit",
+        "defaults": {
+          "a": "100000",
+          "b": "40000",
+          "c": "25000"
+        },
+        "labels": {
+          "a": "Revenue",
+          "b": "COGS",
+          "c": "Operating expenses"
+        },
+        "fields": [
+          "a",
+          "b",
+          "c"
+        ]
+      },
+      {
+        "slug": "bizfin-profit-margin-calculator",
+        "title": "Profit margin",
+        "mode": "marginProfit",
+        "defaults": {
+          "a": "100000",
+          "b": "18000"
+        },
+        "labels": {
+          "a": "Revenue",
+          "b": "Profit"
+        },
+        "fields": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "slug": "bizfin-gross-margin-calculator",
+        "title": "Gross margin",
+        "mode": "revCogs",
+        "defaults": {
+          "a": "100000",
+          "b": "55000"
+        },
+        "labels": {
+          "a": "Revenue",
+          "b": "COGS"
+        },
+        "fields": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "slug": "bizfin-net-margin-calculator",
+        "title": "Net margin",
+        "mode": "net",
+        "defaults": {
+          "a": "100000",
+          "b": "40000",
+          "c": "25000",
+          "r": "3000",
+          "t": "5000"
+        },
+        "labels": {
+          "a": "Revenue",
+          "b": "COGS",
+          "c": "Operating expenses",
+          "r": "Interest",
+          "t": "Tax"
+        },
+        "fields": [
+          "a",
+          "b",
+          "c",
+          "r",
+          "t"
+        ]
+      },
+      {
+        "slug": "bizfin-contribution-margin-calculator",
+        "title": "Contribution margin",
+        "mode": "contrib",
+        "defaults": {
+          "a": "100000",
+          "b": "45000"
+        },
+        "labels": {
+          "a": "Revenue",
+          "b": "Variable costs"
+        },
+        "fields": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "slug": "bizfin-ebitda-calculator",
+        "title": "EBITDA",
+        "mode": "ebitda",
+        "defaults": {
+          "a": "100000",
+          "b": "40000",
+          "c": "25000",
+          "d": "8000"
+        },
+        "labels": {
+          "a": "Revenue",
+          "b": "COGS",
+          "c": "Operating expenses",
+          "d": "D&A"
+        },
+        "fields": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      {
+        "slug": "bizfin-ebit-calculator",
+        "title": "EBIT",
+        "mode": "ebit",
+        "defaults": {
+          "a": "100000",
+          "b": "40000",
+          "c": "25000"
+        },
+        "labels": {
+          "a": "Revenue",
+          "b": "COGS",
+          "c": "Operating expenses"
+        },
+        "fields": [
+          "a",
+          "b",
+          "c"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "Invest",
+    "engine": "bizfinInvest",
+    "compute": "computeBizfinInvest",
+    "slugType": "BizfinInvestSlug",
+    "sectionSlug": "bizfin-investment-return",
+    "hubLabel": "Business · Business finance · Investment and return calculators",
+    "title": "Investment and return tools",
+    "rows": [
+      [
+        "ROI / annualized ROI",
+        "(Gain − cost) ÷ cost"
+      ],
+      [
+        "IRR / NPV",
+        "Discrete cash-flow teaching models"
+      ],
+      [
+        "Payback",
+        "Investment ÷ cash flow"
+      ],
+      [
+        "Valuation",
+        "EBITDA × multiple; EV / equity"
+      ]
+    ],
+    "calcs": [
+      {
+        "slug": "bizfin-roi-calculator",
+        "title": "ROI",
+        "mode": "roi",
+        "defaults": {
+          "a": "50000",
+          "b": "65000"
+        },
+        "labels": {
+          "a": "Investment cost",
+          "b": "Final / gain value"
+        },
+        "fields": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "slug": "bizfin-annualized-roi-calculator",
+        "title": "Annualized ROI",
+        "mode": "annRoi",
+        "defaults": {
+          "a": "50000",
+          "b": "80000",
+          "n": "3"
+        },
+        "labels": {
+          "a": "Initial cost",
+          "b": "Final value",
+          "n": "Years"
+        },
+        "fields": [
+          "a",
+          "b",
+          "n"
+        ]
+      },
+      {
+        "slug": "bizfin-irr-calculator",
+        "title": "IRR",
+        "mode": "irr",
+        "defaults": {
+          "a": "-100000",
+          "b": "40000",
+          "c": "40000",
+          "d": "50000"
+        },
+        "labels": {
+          "a": "CF0 (usually negative)",
+          "b": "CF1",
+          "c": "CF2",
+          "d": "CF3"
+        },
+        "fields": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      {
+        "slug": "bizfin-npv-calculator",
+        "title": "NPV",
+        "mode": "npv",
+        "defaults": {
+          "a": "-100000",
+          "b": "40000",
+          "c": "40000",
+          "d": "50000",
+          "r": "10"
+        },
+        "labels": {
+          "a": "CF0",
+          "b": "CF1",
+          "c": "CF2",
+          "d": "CF3",
+          "r": "Discount rate %"
+        },
+        "fields": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "r"
+        ]
+      },
+      {
+        "slug": "bizfin-payback-period-calculator",
+        "title": "Payback period",
+        "mode": "payback",
+        "defaults": {
+          "a": "120000",
+          "b": "30000"
+        },
+        "labels": {
+          "a": "Investment",
+          "b": "Annual cash flow"
+        },
+        "fields": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "slug": "bizfin-discounted-payback-period-calculator",
+        "title": "Discounted payback",
+        "mode": "dpayback",
+        "defaults": {
+          "a": "120000",
+          "b": "30000",
+          "r": "8"
+        },
+        "labels": {
+          "a": "Investment",
+          "b": "Annual cash flow",
+          "r": "Discount rate %"
+        },
+        "fields": [
+          "a",
+          "b",
+          "r"
+        ]
+      },
+      {
+        "slug": "bizfin-capital-gain-calculator",
+        "title": "Capital gain",
+        "mode": "capgain",
+        "defaults": {
+          "a": "100000",
+          "b": "140000"
+        },
+        "labels": {
+          "a": "Buy / cost basis",
+          "b": "Sell price"
+        },
+        "fields": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "slug": "bizfin-business-valuation-calculator",
+        "title": "Business valuation",
+        "mode": "val",
+        "defaults": {
+          "a": "500000",
+          "b": "6"
+        },
+        "labels": {
+          "a": "EBITDA",
+          "b": "Multiple"
+        },
+        "fields": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "slug": "bizfin-equity-value-calculator",
+        "title": "Equity value",
+        "mode": "equity",
+        "defaults": {
+          "a": "3000000",
+          "b": "400000"
+        },
+        "labels": {
+          "a": "Enterprise value",
+          "b": "Net debt"
+        },
+        "fields": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "slug": "bizfin-enterprise-value-calculator",
+        "title": "Enterprise value",
+        "mode": "ev",
+        "defaults": {
+          "a": "2500000",
+          "b": "800000",
+          "c": "200000"
+        },
+        "labels": {
+          "a": "Equity / market cap",
+          "b": "Debt",
+          "c": "Cash"
+        },
+        "fields": [
+          "a",
+          "b",
+          "c"
+        ]
+      }
+    ]
+  }
+]

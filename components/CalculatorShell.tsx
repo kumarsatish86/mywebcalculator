@@ -65,9 +65,19 @@ export function CalculatorShell({
       </header>
 
       <div
-        className={`grid lg:grid-cols-[1fr_minmax(260px,20rem)] lg:items-start ${compact ? `${gridTop} gap-5 lg:gap-6` : `${gridTop} gap-8 lg:gap-10`}`}
+        className={
+          result
+            ? `grid lg:grid-cols-[1fr_minmax(260px,20rem)] lg:items-start ${compact ? `${gridTop} gap-5 lg:gap-6` : `${gridTop} gap-8 lg:gap-10`}`
+            : `${gridTop} w-full min-w-0`
+        }
       >
-        <div className={`order-2 min-w-0 lg:order-1 ${compact ? "space-y-3" : "space-y-4"}`}>
+        <div
+          className={
+            result
+              ? `order-2 min-w-0 lg:order-1 ${compact ? "space-y-3" : "space-y-4"}`
+              : `min-w-0 w-full ${compact ? "space-y-3" : "space-y-4"}`
+          }
+        >
           {children}
         </div>
         {result ? (

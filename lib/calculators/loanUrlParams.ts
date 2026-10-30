@@ -14,6 +14,8 @@ export const LOAN_URL = {
   CUR: "cur",
   TM: "tm",
   BR: "br",
+  /** Optional monthly income for affordability (loan-payment smart results). */
+  INC: "inc",
 } as const;
 
 const CURRENCIES = new Set<string>(["INR", "USD", "EUR", "GBP"]);
@@ -22,7 +24,7 @@ export function parseLoanSearchParamsToRecord(
   sp: Record<string, string | string[] | undefined>,
 ): Record<string, string> {
   const out: Record<string, string> = {};
-  const keys = [LOAN_URL.P, LOAN_URL.A, LOAN_URL.T, LOAN_URL.X, LOAN_URL.U, LOAN_URL.E, LOAN_URL.F, LOAN_URL.R, LOAN_URL.CUR, LOAN_URL.TM, LOAN_URL.BR];
+  const keys = [LOAN_URL.P, LOAN_URL.A, LOAN_URL.T, LOAN_URL.X, LOAN_URL.U, LOAN_URL.E, LOAN_URL.F, LOAN_URL.R, LOAN_URL.CUR, LOAN_URL.TM, LOAN_URL.BR, LOAN_URL.INC];
   for (const k of keys) {
     const raw = sp[k];
     const v = Array.isArray(raw) ? raw[0] : raw;

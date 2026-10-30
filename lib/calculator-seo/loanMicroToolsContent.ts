@@ -185,6 +185,21 @@ export const LOAN_MICRO_TOOLS_ARTICLES: Record<string, RichArticle> = {
           "Relationship between daily and monthly rate: The simple relationship is Monthly rate ≈ Daily rate × 30.4167. At 6.5% APR: Daily rate = 0.017808%; Monthly rate = 0.5417%. The difference is in how these interact over 30-day, 31-day, and 28-day months — the daily method produces slightly different monthly totals by month length, while the standard formula uses a flat monthly rate regardless of month length.",
         ],
       },
+      {
+        heading: "Using the Financial Decision Center (Study Aid)",
+        paragraphs: [
+          "The interactive workspace above remaps 'how much interest?' into decision questions: what does this cost me each day, what if I delay, and what should I do next? Loan-type presets (home, personal, car, education, business, credit card, OD, gold, mortgage) load illustrative average APRs for teaching — they are not live bank quotes. Override APR anytime with your statement rate.",
+          "Modes: Quick for balance + rate + days; Financial Planner for inflation and health-score context; Compare Loans for illustrative HDFC / SBI / ICICI / Axis rows; Delay Cost and Penalty for delay days plus a flat late-fee band; Foreclosure / Prepay for lump and extra-monthly heuristics. The Cost timeline (today → 7 → 30 → 90 → 365) and days slider chart show linear Actual/365 accrual and simple APR shock lines (+0.7% / +1.5%).",
+          "Decision options A/B/C (prepay lump, modest extra EMI, refinance-to-lower band) and the intelligence Q&A table are rules-based study strings — not a lender audit. 'Bank charging correctly?' is intentionally answered as unknown: verify day-count and fees on your statement. Prepay interest-saved figures are teaching heuristics, not full amortization; use the linked prepayment savings and foreclosure calculators for schedule-faithful sketches.",
+        ],
+      },
+      {
+        heading: "When Actual/365 Is Enough — and When It Is Not",
+        paragraphs: [
+          "Use Actual/365 here for foreclosure per-diem checks, bridge/OD mental math, and 'cost of waiting N days' estimates. It matches many Indian retail agreements and keeps the Decision Center transparent.",
+          "Do not treat the workspace as statement truth when your agreement uses Actual/360, monthly rests only, compound EMI schedules, or lender-specific rounding. Delay totals here add interest × days plus an optional flat penalty band — real late fees, GST, and penal rates vary by product. Prepay months-shortened estimates ignore amortization shape; always confirm payoff with the lender before acting.",
+        ],
+      },
     ],
     tables: [
       {
@@ -243,11 +258,26 @@ export const LOAN_MICRO_TOOLS_ARTICLES: Record<string, RichArticle> = {
         answer:
           "Enter the current applicable rate — the rate that will appear on your next month's loan statement. For floating-rate home loans (RLLR/EBLR-linked), this is your lender's current applicable rate after any recent RBI rate changes. If the rate changed mid-calculation period (e.g., mid-month), technically you would need to split the period and calculate at each rate separately. For quick estimates, using the current rate for the full period produces a very close approximation — the difference from a rate change mid-period is usually under ₹50–100 on a typical monthly accrual.",
       },
+      {
+        question: "What is the Financial Decision Center on this page?",
+        answer:
+          "It is a rules-based study layer on top of Actual/365 daily interest: health score vs loan-type bands, cost timeline, delay/penalty sketch, prepay and extra-payment heuristics, illustrative bank APR rows, and next-action options. It does not call a live AI model and does not replace your lender's payoff letter. Use it to explore 'what if' questions, then verify with statement day-count and the linked EMI / prepayment / foreclosure tools.",
+      },
+      {
+        question: "Are the bank APR rows and loan presets real market rates?",
+        answer:
+          "No. Presets and the HDFC / SBI / ICICI / Axis compare table are curated illustrative averages for teaching relative daily and annual cost. Always enter the APR from your sanction letter or latest statement. Live bank rate APIs are intentionally out of scope for this calculator.",
+      },
+      {
+        question: "Can I trust the prepay interest-saved number for foreclosure?",
+        answer:
+          "Treat it as an educational heuristic (outstanding × rate × remaining horizon with a discount factor), not amortization truth. Banks recompute interest on the remaining schedule after a part-payment or foreclosure. For a closer sketch, open the Loan Prepayment Savings and Loan Foreclosure calculators from the Decision Center toolkit, then confirm the final figure with your lender.",
+      },
     ],
     meta: {
       seoTitle: "Daily Interest Calculator — Loan Interest Per Day (Actual/365) | mywebcalculator",
       seoDescription:
-        "Calculate daily loan interest accrual from outstanding balance and APR. Useful for foreclosure settlement, bridge loans, penal interest, and per-diem cost of payment delays. Actual/365 convention.",
+        "Calculate daily loan interest accrual from outstanding balance and APR. Decision Center for delay, prepay sketches, and next steps. Useful for foreclosure settlement, bridge loans, and per-diem delays. Actual/365 convention.",
       keywords: [
         "daily interest calculator",
         "loan interest per day calculator",

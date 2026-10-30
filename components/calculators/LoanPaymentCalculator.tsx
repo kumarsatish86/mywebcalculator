@@ -8,7 +8,9 @@ import { LoanCalculatorChrome } from "@/components/calculators/LoanCalculatorChr
 import { LoanToolBar } from "@/components/calculators/LoanToolBar";
 import { FieldInput, FieldLabel } from "@/components/fields";
 import { UserLoanBalanceMini } from "@/components/calculator-content/charts/UserLoanBalanceMini";
+import { SmartResultPanel } from "@/components/results/SmartResultPanel";
 import { formatLoanMoney } from "@/lib/calculators/loanFormat";
+import { computeAffordability } from "@/lib/calculators/loanAffordability";
 import { LOAN_URL } from "@/lib/calculators/loanUrlParams";
 import { parseAprPercent, parsePositive, parseTermToMonths, termMonthsHint } from "@/lib/calculators/loanInputParse";
 import {
@@ -26,16 +28,18 @@ export function LoanPaymentCalculator() {
   const [principal, setPrincipal] = useState(useLoanInitialInput(LOAN_URL.P, "25000"));
   const [apr, setApr] = useState(useLoanInitialInput(LOAN_URL.A, "6.5"));
   const [termRaw, setTermRaw] = useState(useLoanInitialInput(LOAN_URL.T, "5"));
+  const [income, setIncome] = useState(useLoanInitialInput(LOAN_URL.INC, ""));
 
-  const shareParams = useCallback(
-    () => ({
+  const shareParams = useCallback(() => {
+    const out: Record<string, string> = {
       [LOAN_URL.P]: principal,
       [LOAN_URL.A]: apr,
       [LOAN_URL.T]: termRaw,
-    }),
-    [principal, apr, termRaw],
-  );
-  useLoanUrlSync(shareParams, [principal, apr, termRaw, currency, termMode, bankPennyRounding]);
+    };
+    if (income.trim()) out[LOAN_URL.INC] = income;
+    return out;
+  }, [principal, apr, termRaw, income]);
+  useLoanUrlSync(shareParams, [principal, apr, termRaw, income, currency, termMode, bankPennyRounding]);
 
   const parsed = useMemo(() => {
     const p0 = parsePositive(principal, "Principal");
@@ -45,6 +49,12 @@ export function LoanPaymentCalculator() {
     if (!a0.ok) return { err: a0.error };
     if (!t0.ok) return { err: t0.error };
     const term: LoanTermInput = { termMonths: t0.value };
+    let monthlyIncome: number | undefined;
+    if (income.trim()) {
+      const i0 = parsePositive(income, "Monthly income");
+      if (!i0.ok) return { err: i0.error };
+      monthlyIncome = i0.value;
+    }
     if (bankPennyRounding) {
       const sched = amortizationSchedule(p0.value, a0.value, term, undefined, true);
       if ("error" in sched) return { err: sched.error };
@@ -60,6 +70,7 @@ export function LoanPaymentCalculator() {
         term,
         p: p0.value,
         aprNum: a0.value,
+        monthlyIncome,
       };
     }
     const result = monthlyLoanPayment({
@@ -74,8 +85,24 @@ export function LoanPaymentCalculator() {
       term,
       p: p0.value,
       aprNum: a0.value,
+      monthlyIncome,
     };
-  }, [principal, apr, termRaw, termMode, bankPennyRounding]);
+  }, [principal, apr, termRaw, termMode, bankPennyRounding, income]);
+
+  const afford = useMemo(() => {
+    if (parsed.err || !parsed.result) return null;
+    return computeAffordability(
+      {
+        payment: parsed.result.payment,
+        totalPaid: parsed.result.totalPaid,
+        totalInterest: parsed.result.totalInterest,
+        principal: parsed.p!,
+        termMonths: parsed.result.termMonths,
+        monthlyIncome: parsed.monthlyIncome,
+      },
+      currency,
+    );
+  }, [parsed, currency]);
 
   const hint = termMonthsHint(termMode, termRaw);
   const fieldInvalid = Boolean(parsed.err);
@@ -86,8 +113,8 @@ export function LoanPaymentCalculator() {
       <LoanCalculatorChrome />
       <CalculatorShell
         title="Loan payment"
-        description="Fixed-rate amortizing loan: monthly payment, total paid, and total interest. Matches the core EMI tools’ math."
-        resultKey={`${principal}-${apr}-${termRaw}-${currency}`}
+        description="Fixed-rate amortizing loan with smart affordability KPIs when you add monthly income. Teaching estimate—not lending advice."
+        resultKey={`${principal}-${apr}-${termRaw}-${income}-${currency}`}
         toolbar={
           <LoanToolBar
             variant="inline"
@@ -99,6 +126,7 @@ export function LoanPaymentCalculator() {
               setPrincipal("25000");
               setApr("6.5");
               setTermRaw("5");
+              setIncome("");
             }}
             getSummary={() =>
               parsed.err
@@ -112,33 +140,31 @@ export function LoanPaymentCalculator() {
             <p id={`${LP_TOOL}-result-error`} role="alert" className="text-sm font-medium text-rose-700">
               {parsed.err}
             </p>
-          ) : (
-            <div className="space-y-4 text-sm">
-              <div>
-                <p className="text-[var(--muted)]">Monthly payment</p>
-                <p className="font-mono text-3xl font-semibold text-[var(--accent-bright)]">
-                  {formatLoanMoney(parsed.result!.payment, currency)}
-                </p>
-              </div>
-              <div className="grid gap-2 border-t border-[var(--border)] pt-4">
-                <div className="flex justify-between gap-4">
-                  <span className="text-[var(--muted)]">Total paid</span>
-                  <span className="font-mono text-[var(--text)]">
-                    {formatLoanMoney(parsed.result!.totalPaid, currency)}
-                  </span>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <span className="text-[var(--muted)]">Total interest</span>
-                  <span className="font-mono text-[var(--text)]">
-                    {formatLoanMoney(parsed.result!.totalInterest, currency)}
-                  </span>
-                </div>
-              </div>
-            </div>
-          )
+          ) : afford ? (
+            <SmartResultPanel
+              primaryLabel="Monthly EMI"
+              primaryValue={formatLoanMoney(parsed.result!.payment, currency)}
+              statusLabel={afford.statusLabel}
+              statusTone={afford.statusTone}
+              risk={afford.risk}
+              kpis={afford.kpis}
+              suggestions={afford.suggestions.map((text) => ({ text }))}
+              chart={
+                parsed.term ? (
+                  <UserLoanBalanceMini
+                    principal={parsed.p!}
+                    apr={parsed.aprNum!}
+                    term={parsed.term}
+                    currency={currency}
+                    bankPennyRounding={bankPennyRounding}
+                  />
+                ) : null
+              }
+            />
+          ) : null
         }
       >
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <FieldLabel htmlFor={`${LP_TOOL}-p`}>Principal</FieldLabel>
             <FieldInput
@@ -176,20 +202,22 @@ export function LoanPaymentCalculator() {
             />
             {hint ? <p className="mt-1 text-xs text-[var(--muted)]">{hint}</p> : null}
           </div>
+          <div>
+            <FieldLabel htmlFor={`${LP_TOOL}-inc`}>Monthly income (optional)</FieldLabel>
+            <FieldInput
+              id={`${LP_TOOL}-inc`}
+              inputMode="decimal"
+              value={income}
+              onChange={(e) => setIncome(e.target.value)}
+              className="mt-2"
+              placeholder="For affordability"
+            />
+          </div>
         </div>
         {parsed.err ? (
           <p id={formErrorId} role="alert" className="mt-2 text-sm text-rose-700">
             {parsed.err}
           </p>
-        ) : null}
-        {!parsed.err && parsed.term ? (
-          <UserLoanBalanceMini
-            principal={parsed.p!}
-            apr={parsed.aprNum!}
-            term={parsed.term}
-            currency={currency}
-            bankPennyRounding={bankPennyRounding}
-          />
         ) : null}
       </CalculatorShell>
     </>

@@ -5,6 +5,8 @@ import { FaqAccordion } from "@/components/calculator-content/FaqAccordion";
 import { AnimatedPage } from "@/components/AnimatedPage";
 import { CalculatorPageFrame } from "@/components/calculators/CalculatorPageFrame";
 import { CalculatorRouter } from "@/components/calculators/CalculatorRouter";
+import { RelatedToolsRail } from "@/components/recommendations/RelatedToolsRail";
+import { ExplainAccordionClient } from "@/components/results/ExplainAccordionClient";
 import { getRichArticle } from "@/lib/calculator-seo/getRichArticle";
 import { buildCalculatorJsonLd } from "@/lib/calculator-jsonld";
 import { CALCULATOR_REGISTRY, getCalculator } from "@/lib/registry";
@@ -45,6 +47,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+/** Workspace hosts: compact breadcrumb chrome (title lives in the shell). */
+const WORKSPACE_SLUGS = new Set([
+  "elec-lightning-protection-calculator",
+  "exam-strategy-planner",
+  "daily-interest-calculator",
+]);
+
+/**
+ * Workspaces that already ship Formula / Standards / FAQ inside the host.
+ * Those keep the long article collapsed so the page does not feel duplicated.
+ * Other workspaces (e.g. daily interest) keep the full guide + FAQ visible below.
+ */
+const WORKSPACE_COLLAPSE_ARTICLE = new Set([
+  "elec-lightning-protection-calculator",
+  "exam-strategy-planner",
+]);
+
+const EXPLAIN_PILOTS = new Set([
+  "loan-payment",
+  "loan-emi-calculator",
+  "body-bmi-calculator",
+  "exam-strategy-planner",
+]);
+
 export default async function CalculatorPage({ params, searchParams }: Props) {
   const { slug } = await params;
   const sp = await searchParams;
@@ -54,6 +80,10 @@ export default async function CalculatorPage({ params, searchParams }: Props) {
   const rich = getRichArticle(slug);
   const faqItems = rich ? [...rich.faq, ...def.faq] : def.faq;
   const jsonLd = buildCalculatorJsonLd({ ...def, faq: faqItems });
+  const isWorkspace = WORKSPACE_SLUGS.has(slug);
+  const collapseArticle = WORKSPACE_COLLAPSE_ARTICLE.has(slug);
+  const showExplain = !isWorkspace && EXPLAIN_PILOTS.has(slug) && Boolean(rich);
+  const showRelated = !collapseArticle;
 
   return (
     <>
@@ -61,13 +91,37 @@ export default async function CalculatorPage({ params, searchParams }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <CalculatorPageFrame definition={def} />
+      <CalculatorPageFrame definition={def} compact={isWorkspace} />
       <AnimatedPage className="w-full">
         <CalculatorRouter slug={slug} initialSearchParams={sp} />
+        {showExplain ? (
+          <div className="mx-auto mt-6 max-w-4xl px-4 sm:px-0">
+            <ExplainAccordionClient article={rich} />
+          </div>
+        ) : null}
+        {showRelated ? (
+          <div className="mx-auto max-w-4xl px-4 sm:px-0">
+            <RelatedToolsRail slug={slug} />
+          </div>
+        ) : null}
       </AnimatedPage>
-      <CalculatorArticle slug={slug}>
-        <FaqAccordion detailsGroupName={`mwc-calc-${slug}`} items={faqItems} />
-      </CalculatorArticle>
+      {collapseArticle ? (
+        <details className="mx-auto mt-10 max-w-4xl rounded-xl border border-[var(--border)] bg-[var(--surface)]/40 px-4 py-3 open:pb-6">
+          <summary className="cursor-pointer list-none text-sm font-semibold text-[var(--text)] marker:content-none [&::-webkit-details-marker]:hidden">
+            <span className="text-[var(--accent)]">Documentation &amp; references</span>
+            <span className="ml-2 font-normal text-[var(--muted)]">
+              (collapsed — Formula / Standards / FAQ live in the workspace tabs above)
+            </span>
+          </summary>
+          <CalculatorArticle slug={slug} compact>
+            <FaqAccordion detailsGroupName={`mwc-calc-${slug}`} items={faqItems} />
+          </CalculatorArticle>
+        </details>
+      ) : (
+        <CalculatorArticle slug={slug}>
+          <FaqAccordion detailsGroupName={`mwc-calc-${slug}`} items={faqItems} />
+        </CalculatorArticle>
+      )}
     </>
   );
 }

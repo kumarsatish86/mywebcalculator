@@ -1,5 +1,154 @@
 import { FAMILY_SLUG_SETS, getCalculator } from "@/lib/registry";
 import { composeRichArticle, verticalForDefinition } from "./composeArticle";
+import { MEDICAL_CLINICAL_RISK_ARTICLES } from "./medicalClinicalRiskContent";
+import { MEDICAL_LIFESTYLE_ARTICLES } from "./medicalLifestyleContent";
+import { MEDICAL_GERIATRICS_ARTICLES } from "./medicalGeriatricsContent";
+import { MEDICAL_ORTHOPEDIC_ARTICLES } from "./medicalOrthopedicContent";
+import { MEDICAL_ONCOLOGY_ARTICLES } from "./medicalOncologyContent";
+import { MEDICAL_RESPIRATORY_ARTICLES } from "./medicalRespiratoryContent";
+import { MEDICAL_EMERGENCY_ARTICLES } from "./medicalEmergencyContent";
+import { MEDICAL_NEUROLOGY_ARTICLES } from "./medicalNeurologyContent";
+import { MEDICAL_BODY_METRICS_ARTICLES } from "./medicalBodyMetricsContent";
+import { MEDICAL_NUTRITION_MED_ARTICLES } from "./medicalNutritionMedContent";
+import { MEDICAL_HEART_ARTICLES } from "./medicalHeartContent";
+import { MEDICAL_DIABETES_ARTICLES } from "./medicalDiabetesContent";
+import { MEDICAL_PREGNANCY_ARTICLES } from "./medicalPregnancyContent";
+import { MEDICAL_PEDIATRICS_ARTICLES } from "./medicalPediatricsContent";
+import { MEDICAL_DRUG_DOSAGE_ARTICLES } from "./medicalDrugDosageContent";
+import { MEDICAL_LAB_VALUES_ARTICLES } from "./medicalLabValuesContent";
+import { DIET_CALORIE_ENERGY_ARTICLES } from "./dietCalorieEnergyContent";
+import { DIET_MACROS_ARTICLES } from "./dietMacrosContent";
+import { DIET_WEIGHT_MGMT_ARTICLES } from "./dietWeightMgmtContent";
+import { DIET_HYDRATION_ARTICLES } from "./dietHydrationContent";
+import { DIET_MEAL_PLANNING_ARTICLES } from "./dietMealPlanningContent";
+import { DIET_TRENDS_ARTICLES } from "./dietTrendsContent";
+import { DIET_MICROS_ARTICLES } from "./dietMicrosContent";
+import { DIET_FITNESS_ARTICLES } from "./dietFitnessContent";
+import { DIET_CONDITION_ARTICLES } from "./dietConditionContent";
+import { DIET_AGE_GENDER_ARTICLES } from "./dietAgeGenderContent";
+import { DIET_FOOD_BASED_ARTICLES } from "./dietFoodBasedContent";
+import { DIET_AI_ADVANCED_ARTICLES } from "./dietAiAdvancedContent";
+import { CIVIL_CONCRETE_ARTICLES } from "./civilConcreteContent";
+import { CIVIL_BRICKWORK_ARTICLES } from "./civilBrickworkContent";
+import { CIVIL_AREA_VOLUME_ARTICLES } from "./civilAreaVolumeContent";
+import { CIVIL_STEEL_ARTICLES } from "./civilSteelContent";
+import { CIVIL_PLASTERING_ARTICLES } from "./civilPlasteringContent";
+import { CIVIL_FOUNDATION_ARTICLES } from "./civilFoundationContent";
+import { CIVIL_ROAD_ARTICLES } from "./civilRoadContent";
+import { CIVIL_WATER_ARTICLES } from "./civilWaterContent";
+import { CIVIL_ESTIMATION_ARTICLES } from "./civilEstimationContent";
+import { CIVIL_SURVEYING_ARTICLES } from "./civilSurveyingContent";
+import { CIVIL_ADVANCED_ARTICLES } from "./civilAdvancedContent";
+import { IT_BINARY_ARTICLES } from "./itBinaryContent";
+import { IT_STORAGE_ARTICLES } from "./itStorageContent";
+import { IT_NETWORKING_ARTICLES } from "./itNetworkingContent";
+import { IT_CRYPTO_ARTICLES } from "./itCryptoContent";
+import { IT_LOGIC_ARTICLES } from "./itLogicContent";
+import { IT_DATABASE_ARTICLES } from "./itDatabaseContent";
+import { IT_CLOUD_ARTICLES } from "./itCloudContent";
+import { IT_PERF_ARTICLES } from "./itPerfContent";
+import { IT_UI_ARTICLES } from "./itUiContent";
+import { IT_API_ARTICLES } from "./itApiContent";
+import { IT_TIME_ARTICLES } from "./itTimeContent";
+import { IT_UTILS_ARTICLES } from "./itUtilsContent";
+import { HOME_ELECTRICITY_ARTICLES } from "./homeElectricityContent";
+import { HOME_WATER_ARTICLES } from "./homeWaterContent";
+import { HOME_RENT_ARTICLES } from "./homeRentContent";
+import { HOME_BILLS_ARTICLES } from "./homeBillsContent";
+import { HOME_MAINTENANCE_ARTICLES } from "./homeMaintenanceContent";
+import { HOME_SPACE_ARTICLES } from "./homeSpaceContent";
+import { HOME_APPLIANCE_ARTICLES } from "./homeApplianceContent";
+import { HOME_KITCHEN_ARTICLES } from "./homeKitchenContent";
+import { HOME_PARKING_ARTICLES } from "./homeParkingContent";
+import { HOME_SMART_ARTICLES } from "./homeSmartContent";
+import { HOME_BONUS_ARTICLES } from "./homeBonusContent";
+import { SHOP_PRICING_ARTICLES } from "./shopPricingContent";
+import { SHOP_TAX_ARTICLES } from "./shopTaxContent";
+import { SHOP_SELLER_ARTICLES } from "./shopSellerContent";
+import { SHOP_MARGIN_ARTICLES } from "./shopMarginContent";
+import { SHOP_COMPARE_ARTICLES } from "./shopCompareContent";
+import { SHOP_COUPON_ARTICLES } from "./shopCouponContent";
+import { SHOP_PAYMENT_ARTICLES } from "./shopPaymentContent";
+import { SHOP_DELIVERY_ARTICLES } from "./shopDeliveryContent";
+import { SHOP_CURRENCY_ARTICLES } from "./shopCurrencyContent";
+import { SHOP_SMART_ARTICLES } from "./shopSmartContent";
+import { TRAVEL_FUEL_ARTICLES } from "./travelFuelContent";
+import { TRAVEL_TRIP_ARTICLES } from "./travelTripContent";
+import { TRAVEL_STAY_ARTICLES } from "./travelStayContent";
+import { TRAVEL_FLIGHT_ARTICLES } from "./travelFlightContent";
+import { TRAVEL_MONEY_ARTICLES } from "./travelMoneyContent";
+import { TRAVEL_LOCAL_ARTICLES } from "./travelLocalContent";
+import { TRAVEL_MISC_ARTICLES } from "./travelMiscContent";
+import { UNIT_LENGTH_ARTICLES } from "./unitLengthContent";
+import { UNIT_MASS_ARTICLES } from "./unitMassContent";
+import { UNIT_AREA_VOLUME_ARTICLES } from "./unitAreaVolumeContent";
+import { UNIT_THERMO_MOTION_ARTICLES } from "./unitThermoMotionContent";
+import { UNIT_ENERGY_POWER_ARTICLES } from "./unitEnergyPowerContent";
+import { UNIT_PRESSURE_ANGLE_ARTICLES } from "./unitPressureAngleContent";
+import { UNIT_DIGITAL_ARTICLES } from "./unitDigitalContent";
+import { UNIT_APPLIED_ARTICLES } from "./unitAppliedContent";
+import { CUR_BASIC_ARTICLES } from "./curBasicContent";
+import { CUR_ADVANCED_ARTICLES } from "./curAdvancedContent";
+import { CUR_FOREX_ARTICLES } from "./curForexContent";
+import { CUR_CRYPTO_ARTICLES } from "./curCryptoContent";
+import { CUR_BANKING_ARTICLES } from "./curBankingContent";
+import { CUR_TRAVEL_ARTICLES } from "./curTravelContent";
+import { CUR_BUSINESS_ARTICLES } from "./curBusinessContent";
+import { CUR_INFLATION_ARTICLES } from "./curInflationContent";
+import { CUR_SMART_ARTICLES } from "./curSmartContent";
+import { CUR_TIME_ARTICLES } from "./curTimeContent";
+import { CUR_MICRO_ARTICLES } from "./curMicroContent";
+import { BIZFIN_PROFIT_ARTICLES } from "./bizfinProfitContent";
+import { BIZFIN_INVEST_ARTICLES } from "./bizfinInvestContent";
+import { BIZFIN_COST_ARTICLES } from "./bizfinCostContent";
+import { BIZFIN_PRICING_ARTICLES } from "./bizfinPricingContent";
+import { BIZFIN_CASH_ARTICLES } from "./bizfinCashContent";
+import { BIZFIN_RATIOS_ARTICLES } from "./bizfinRatiosContent";
+import { BIZFIN_TAX_ARTICLES } from "./bizfinTaxContent";
+import { BIZFIN_INVENTORY_ARTICLES } from "./bizfinInventoryContent";
+import { BIZFIN_OPS_ARTICLES } from "./bizfinOpsContent";
+import { BIZFIN_PAYROLL_ARTICLES } from "./bizfinPayrollContent";
+import { BIZFIN_SAAS_ARTICLES } from "./bizfinSaasContent";
+import { BIZFIN_MARKETING_ARTICLES } from "./bizfinMarketingContent";
+import { BIZFIN_FORECAST_ARTICLES } from "./bizfinForecastContent";
+import { BIZFIN_INTL_ARTICLES } from "./bizfinIntlContent";
+import { BIZFIN_ADVANCED_ARTICLES } from "./bizfinAdvancedContent";
+import { MKT_ADS_ARTICLES } from "./mktAdsContent";
+import { MKT_CRO_ARTICLES } from "./mktCroContent";
+import { MKT_REVENUE_ARTICLES } from "./mktRevenueContent";
+import { MKT_EMAIL_ARTICLES } from "./mktEmailContent";
+import { MKT_SOCIAL_ARTICLES } from "./mktSocialContent";
+import { MKT_SEO_ARTICLES } from "./mktSeoContent";
+import { MKT_ECOM_ARTICLES } from "./mktEcomContent";
+import { MKT_CONTENT_ARTICLES } from "./mktContentContent";
+import { MKT_LEADS_ARTICLES } from "./mktLeadsContent";
+import { MKT_AFFILIATE_ARTICLES } from "./mktAffiliateContent";
+import { MKT_SAAS_ARTICLES } from "./mktSaasContent";
+import { MKT_ANALYTICS_ARTICLES } from "./mktAnalyticsContent";
+import { MKT_VIRAL_ARTICLES } from "./mktViralContent";
+import { HR_PAYROLL_ARTICLES } from "./hrPayrollContent";
+import { HR_ATTENDANCE_ARTICLES } from "./hrAttendanceContent";
+import { HR_LEAVE_ARTICLES } from "./hrLeaveContent";
+import { HR_PRODUCTIVITY_ARTICLES } from "./hrProductivityContent";
+import { HR_COST_ARTICLES } from "./hrCostContent";
+import { HR_ATTRITION_ARTICLES } from "./hrAttritionContent";
+import { HR_WORKFORCE_ARTICLES } from "./hrWorkforceContent";
+import { HR_COMPLIANCE_ARTICLES } from "./hrComplianceContent";
+import { HR_BONUS_ARTICLES } from "./hrBonusContent";
+import { HR_SCHEDULING_ARTICLES } from "./hrSchedulingContent";
+import { HR_AI_ARTICLES } from "./hrAiContent";
+import { AIGEN_CONTENT_ARTICLES } from "./aigenContentContent";
+import { AIGEN_FINANCE_ARTICLES } from "./aigenFinanceContent";
+import { AIGEN_EDUCATION_ARTICLES } from "./aigenEducationContent";
+import { AIGEN_HEALTH_ARTICLES } from "./aigenHealthContent";
+import { AIGEN_BUSINESS_ARTICLES } from "./aigenBusinessContent";
+import { AIGEN_MARKETING_ARTICLES } from "./aigenMarketingContent";
+import { AIGEN_DEVELOPER_ARTICLES } from "./aigenDeveloperContent";
+import { AIGEN_CREATIVE_ARTICLES } from "./aigenCreativeContent";
+import { AIGEN_TRAVEL_ARTICLES } from "./aigenTravelContent";
+import { AIGEN_PERSONAL_ARTICLES } from "./aigenPersonalContent";
+import { AIGEN_SMART_ARTICLES } from "./aigenSmartContent";
+import { AIGEN_ADVANCED_ARTICLES } from "./aigenAdvancedContent";
 import { ADVANCED_EMI_ARTICLES } from "./advancedEmiContent";
 import { LOAN_COMPARISON_ARTICLES } from "./loanComparisonContent";
 import { CREDIT_DEBT_ARTICLES } from "./creditDebtContent";
@@ -92,6 +241,7 @@ import { EXAM_BASIC_SCORE_ARTICLES } from "./examBasicScoreContent";
 import { EXAM_TARGET_SCORE_ARTICLES } from "./examTargetScoreContent";
 import { EXAM_GPA_CGPA_ARTICLES } from "./examGpaCgpaContent";
 import { EXAM_STRATEGY_ARTICLES } from "./examStrategyContent";
+import { LIGHTNING_PROTECTION_ARTICLES } from "./lightningProtectionContent";
 import { EXAM_PERFORMANCE_ANALYSIS_ARTICLES } from "./examPerformanceAnalysisContent";
 import { EXAM_COMPETITIVE_ARTICLES } from "./examCompetitiveContent";
 import { EXAM_SCHOOL_COLLEGE_ARTICLES } from "./examSchoolCollegeContent";
@@ -205,6 +355,7 @@ const HAND_CRAFTED_ARTICLES: Record<string, RichArticle> = {
   ...EXAM_TARGET_SCORE_ARTICLES,
   ...EXAM_GPA_CGPA_ARTICLES,
   ...EXAM_STRATEGY_ARTICLES,
+  ...LIGHTNING_PROTECTION_ARTICLES,
   ...EXAM_PERFORMANCE_ANALYSIS_ARTICLES,
   ...EXAM_COMPETITIVE_ARTICLES,
   ...EXAM_SCHOOL_COLLEGE_ARTICLES,
@@ -223,12 +374,200 @@ const HAND_CRAFTED_ARTICLES: Record<string, RichArticle> = {
   ...TIME_DATE_SPECIALIZED_ARTICLES,
   ...TIME_DATE_FUN_ARTICLES,
   ...TIME_DATE_SMART_ARTICLES,
+  ...MEDICAL_CLINICAL_RISK_ARTICLES,
+  ...MEDICAL_LIFESTYLE_ARTICLES,
+  ...MEDICAL_GERIATRICS_ARTICLES,
+  ...MEDICAL_ORTHOPEDIC_ARTICLES,
+  ...MEDICAL_ONCOLOGY_ARTICLES,
+  ...MEDICAL_RESPIRATORY_ARTICLES,
+  ...MEDICAL_EMERGENCY_ARTICLES,
+  ...MEDICAL_NEUROLOGY_ARTICLES,
+  ...MEDICAL_BODY_METRICS_ARTICLES,
+  ...MEDICAL_NUTRITION_MED_ARTICLES,
+  ...MEDICAL_HEART_ARTICLES,
+  ...MEDICAL_DIABETES_ARTICLES,
+  ...MEDICAL_PREGNANCY_ARTICLES,
+  ...MEDICAL_PEDIATRICS_ARTICLES,
+  ...MEDICAL_DRUG_DOSAGE_ARTICLES,
+  ...MEDICAL_LAB_VALUES_ARTICLES,
+  ...DIET_CALORIE_ENERGY_ARTICLES,
+  ...DIET_MACROS_ARTICLES,
+  ...DIET_WEIGHT_MGMT_ARTICLES,
+  ...DIET_HYDRATION_ARTICLES,
+  ...DIET_MEAL_PLANNING_ARTICLES,
+  ...DIET_TRENDS_ARTICLES,
+  ...DIET_MICROS_ARTICLES,
+  ...DIET_FITNESS_ARTICLES,
+  ...DIET_CONDITION_ARTICLES,
+  ...DIET_AGE_GENDER_ARTICLES,
+  ...DIET_FOOD_BASED_ARTICLES,
+  ...DIET_AI_ADVANCED_ARTICLES,
+  ...CIVIL_CONCRETE_ARTICLES,
+  ...CIVIL_BRICKWORK_ARTICLES,
+  ...CIVIL_AREA_VOLUME_ARTICLES,
+  ...CIVIL_STEEL_ARTICLES,
+  ...CIVIL_PLASTERING_ARTICLES,
+  ...CIVIL_FOUNDATION_ARTICLES,
+  ...CIVIL_ROAD_ARTICLES,
+  ...CIVIL_WATER_ARTICLES,
+  ...CIVIL_ESTIMATION_ARTICLES,
+  ...CIVIL_SURVEYING_ARTICLES,
+  ...CIVIL_ADVANCED_ARTICLES,
+  ...IT_BINARY_ARTICLES,
+  ...IT_STORAGE_ARTICLES,
+  ...IT_NETWORKING_ARTICLES,
+  ...IT_CRYPTO_ARTICLES,
+  ...IT_LOGIC_ARTICLES,
+  ...IT_DATABASE_ARTICLES,
+  ...IT_CLOUD_ARTICLES,
+  ...IT_PERF_ARTICLES,
+  ...IT_UI_ARTICLES,
+  ...IT_API_ARTICLES,
+  ...IT_TIME_ARTICLES,
+  ...IT_UTILS_ARTICLES,
+  ...HOME_ELECTRICITY_ARTICLES,
+  ...HOME_WATER_ARTICLES,
+  ...HOME_RENT_ARTICLES,
+  ...HOME_BILLS_ARTICLES,
+  ...HOME_MAINTENANCE_ARTICLES,
+  ...HOME_SPACE_ARTICLES,
+  ...HOME_APPLIANCE_ARTICLES,
+  ...HOME_KITCHEN_ARTICLES,
+  ...HOME_PARKING_ARTICLES,
+  ...HOME_SMART_ARTICLES,
+  ...HOME_BONUS_ARTICLES,
+  ...SHOP_PRICING_ARTICLES,
+  ...SHOP_TAX_ARTICLES,
+  ...SHOP_SELLER_ARTICLES,
+  ...SHOP_MARGIN_ARTICLES,
+  ...SHOP_COMPARE_ARTICLES,
+  ...SHOP_COUPON_ARTICLES,
+  ...SHOP_PAYMENT_ARTICLES,
+  ...SHOP_DELIVERY_ARTICLES,
+  ...SHOP_CURRENCY_ARTICLES,
+  ...SHOP_SMART_ARTICLES,
+  ...TRAVEL_FUEL_ARTICLES,
+  ...TRAVEL_TRIP_ARTICLES,
+  ...TRAVEL_STAY_ARTICLES,
+  ...TRAVEL_FLIGHT_ARTICLES,
+  ...TRAVEL_MONEY_ARTICLES,
+  ...TRAVEL_LOCAL_ARTICLES,
+  ...TRAVEL_MISC_ARTICLES,
+  ...UNIT_LENGTH_ARTICLES,
+  ...UNIT_MASS_ARTICLES,
+  ...UNIT_AREA_VOLUME_ARTICLES,
+  ...UNIT_THERMO_MOTION_ARTICLES,
+  ...UNIT_ENERGY_POWER_ARTICLES,
+  ...UNIT_PRESSURE_ANGLE_ARTICLES,
+  ...UNIT_DIGITAL_ARTICLES,
+  ...UNIT_APPLIED_ARTICLES,
+  ...CUR_BASIC_ARTICLES,
+  ...CUR_ADVANCED_ARTICLES,
+  ...CUR_FOREX_ARTICLES,
+  ...CUR_CRYPTO_ARTICLES,
+  ...CUR_BANKING_ARTICLES,
+  ...CUR_TRAVEL_ARTICLES,
+  ...CUR_BUSINESS_ARTICLES,
+  ...CUR_INFLATION_ARTICLES,
+  ...CUR_SMART_ARTICLES,
+  ...CUR_TIME_ARTICLES,
+  ...CUR_MICRO_ARTICLES,
+  ...BIZFIN_PROFIT_ARTICLES,
+  ...BIZFIN_INVEST_ARTICLES,
+  ...BIZFIN_COST_ARTICLES,
+  ...BIZFIN_PRICING_ARTICLES,
+  ...BIZFIN_CASH_ARTICLES,
+  ...BIZFIN_RATIOS_ARTICLES,
+  ...BIZFIN_TAX_ARTICLES,
+  ...BIZFIN_INVENTORY_ARTICLES,
+  ...BIZFIN_OPS_ARTICLES,
+  ...BIZFIN_PAYROLL_ARTICLES,
+  ...BIZFIN_SAAS_ARTICLES,
+  ...BIZFIN_MARKETING_ARTICLES,
+  ...BIZFIN_FORECAST_ARTICLES,
+  ...BIZFIN_INTL_ARTICLES,
+  ...BIZFIN_ADVANCED_ARTICLES,
+  ...MKT_ADS_ARTICLES,
+  ...MKT_CRO_ARTICLES,
+  ...MKT_REVENUE_ARTICLES,
+  ...MKT_EMAIL_ARTICLES,
+  ...MKT_SOCIAL_ARTICLES,
+  ...MKT_SEO_ARTICLES,
+  ...MKT_ECOM_ARTICLES,
+  ...MKT_CONTENT_ARTICLES,
+  ...MKT_LEADS_ARTICLES,
+  ...MKT_AFFILIATE_ARTICLES,
+  ...MKT_SAAS_ARTICLES,
+  ...MKT_ANALYTICS_ARTICLES,
+  ...MKT_VIRAL_ARTICLES,
+  ...HR_PAYROLL_ARTICLES,
+  ...HR_ATTENDANCE_ARTICLES,
+  ...HR_LEAVE_ARTICLES,
+  ...HR_PRODUCTIVITY_ARTICLES,
+  ...HR_COST_ARTICLES,
+  ...HR_ATTRITION_ARTICLES,
+  ...HR_WORKFORCE_ARTICLES,
+  ...HR_COMPLIANCE_ARTICLES,
+  ...HR_BONUS_ARTICLES,
+  ...HR_SCHEDULING_ARTICLES,
+  ...HR_AI_ARTICLES,
+  ...AIGEN_CONTENT_ARTICLES,
+  ...AIGEN_FINANCE_ARTICLES,
+  ...AIGEN_EDUCATION_ARTICLES,
+  ...AIGEN_HEALTH_ARTICLES,
+  ...AIGEN_BUSINESS_ARTICLES,
+  ...AIGEN_MARKETING_ARTICLES,
+  ...AIGEN_DEVELOPER_ARTICLES,
+  ...AIGEN_CREATIVE_ARTICLES,
+  ...AIGEN_TRAVEL_ARTICLES,
+  ...AIGEN_PERSONAL_ARTICLES,
+  ...AIGEN_SMART_ARTICLES,
+  ...AIGEN_ADVANCED_ARTICLES,
 };
 
 export function isBulkFamilySlug(slug: string): boolean {
   return (
     FAMILY_SLUG_SETS.electrical.has(slug) ||
+    FAMILY_SLUG_SETS.engineeringCivil.has(slug) ||
+    FAMILY_SLUG_SETS.engineeringItDev.has(slug) ||
+    FAMILY_SLUG_SETS.dailyHomeUtility.has(slug) ||
+    FAMILY_SLUG_SETS.dailyShoppingDiscount.has(slug) ||
+    FAMILY_SLUG_SETS.dailyTravel.has(slug) ||
+    FAMILY_SLUG_SETS.conversionUnitConverters.has(slug) ||
+    FAMILY_SLUG_SETS.conversionCurrency.has(slug) ||
+    FAMILY_SLUG_SETS.businessFinance.has(slug) ||
+    FAMILY_SLUG_SETS.businessMarketing.has(slug) ||
+    FAMILY_SLUG_SETS.businessHrProductivity.has(slug) ||
+    FAMILY_SLUG_SETS.aiGenerators.has(slug) ||
     FAMILY_SLUG_SETS.healthBody.has(slug) ||
+    FAMILY_SLUG_SETS.healthMedicalClinicalRisk.has(slug) ||
+    FAMILY_SLUG_SETS.healthMedicalLifestyle.has(slug) ||
+    FAMILY_SLUG_SETS.healthMedicalGeriatrics.has(slug) ||
+    FAMILY_SLUG_SETS.healthMedicalOrthopedic.has(slug) ||
+    FAMILY_SLUG_SETS.healthMedicalOncology.has(slug) ||
+    FAMILY_SLUG_SETS.healthMedicalRespiratory.has(slug) ||
+    FAMILY_SLUG_SETS.healthMedicalEmergency.has(slug) ||
+    FAMILY_SLUG_SETS.healthMedicalNeurology.has(slug) ||
+    FAMILY_SLUG_SETS.healthMedicalBodyMetrics.has(slug) ||
+    FAMILY_SLUG_SETS.healthMedicalNutritionMed.has(slug) ||
+    FAMILY_SLUG_SETS.healthMedicalHeart.has(slug) ||
+    FAMILY_SLUG_SETS.healthMedicalDiabetes.has(slug) ||
+    FAMILY_SLUG_SETS.healthMedicalPregnancy.has(slug) ||
+    FAMILY_SLUG_SETS.healthMedicalPediatrics.has(slug) ||
+    FAMILY_SLUG_SETS.healthMedicalDrugDosage.has(slug) ||
+    FAMILY_SLUG_SETS.healthMedicalLabValues.has(slug) ||
+    FAMILY_SLUG_SETS.healthDietCalorieEnergy.has(slug) ||
+    FAMILY_SLUG_SETS.healthDietMacros.has(slug) ||
+    FAMILY_SLUG_SETS.healthDietWeightMgmt.has(slug) ||
+    FAMILY_SLUG_SETS.healthDietHydration.has(slug) ||
+    FAMILY_SLUG_SETS.healthDietMealPlanning.has(slug) ||
+    FAMILY_SLUG_SETS.healthDietTrends.has(slug) ||
+    FAMILY_SLUG_SETS.healthDietMicros.has(slug) ||
+    FAMILY_SLUG_SETS.healthDietFitness.has(slug) ||
+    FAMILY_SLUG_SETS.healthDietCondition.has(slug) ||
+    FAMILY_SLUG_SETS.healthDietAgeGender.has(slug) ||
+    FAMILY_SLUG_SETS.healthDietFoodBased.has(slug) ||
+    FAMILY_SLUG_SETS.healthDietAiAdvanced.has(slug) ||
     FAMILY_SLUG_SETS.educationMathPlanned.has(slug) ||
     FAMILY_SLUG_SETS.financeLoanType.has(slug) ||
     FAMILY_SLUG_SETS.financeAdvancedPayment.has(slug) ||
@@ -348,7 +687,46 @@ export function isBulkFamilySlug(slug: string): boolean {
 export function allBulkFamilySlugs(): string[] {
   const out = new Set<string>();
   for (const s of FAMILY_SLUG_SETS.electrical) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.engineeringCivil) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.engineeringItDev) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.dailyHomeUtility) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.dailyShoppingDiscount) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.dailyTravel) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.conversionUnitConverters) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.conversionCurrency) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.businessFinance) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.businessMarketing) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.businessHrProductivity) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.aiGenerators) out.add(s);
   for (const s of FAMILY_SLUG_SETS.healthBody) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthMedicalClinicalRisk) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthMedicalLifestyle) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthMedicalGeriatrics) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthMedicalOrthopedic) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthMedicalOncology) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthMedicalRespiratory) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthMedicalEmergency) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthMedicalNeurology) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthMedicalBodyMetrics) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthMedicalNutritionMed) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthMedicalHeart) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthMedicalDiabetes) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthMedicalPregnancy) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthMedicalPediatrics) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthMedicalDrugDosage) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthMedicalLabValues) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthDietCalorieEnergy) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthDietMacros) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthDietWeightMgmt) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthDietHydration) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthDietMealPlanning) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthDietTrends) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthDietMicros) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthDietFitness) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthDietCondition) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthDietAgeGender) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthDietFoodBased) out.add(s);
+  for (const s of FAMILY_SLUG_SETS.healthDietAiAdvanced) out.add(s);
   for (const s of FAMILY_SLUG_SETS.educationMathPlanned) out.add(s);
   for (const s of FAMILY_SLUG_SETS.financeLoanType) out.add(s);
   for (const s of FAMILY_SLUG_SETS.financeAdvancedPayment) out.add(s);

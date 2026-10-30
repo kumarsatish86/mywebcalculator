@@ -584,12 +584,21 @@ function ArticleBody({ slug }: { slug: string }) {
   }
 }
 
-export function CalculatorArticle({ slug, children }: { slug: string; children?: ReactNode }) {
+export function CalculatorArticle({
+  slug,
+  children,
+  compact,
+}: {
+  slug: string;
+  children?: ReactNode;
+  /** Tighter spacing when nested under a workspace details panel. */
+  compact?: boolean;
+}) {
   const def = getCalculator(slug);
   if (!def) return null;
 
   return (
-    <article className="mt-14 w-full max-w-full space-y-10 pb-8">
+    <article className={`w-full max-w-full space-y-10 pb-8 ${compact ? "mt-4" : "mt-14"}`}>
       <ArticleBody slug={slug} />
       {BASIC_MATH_SLUGS.has(slug) ? <BasicMathRelatedSection slug={slug} /> : null}
       {children ? <SectionReveal>{children}</SectionReveal> : null}
